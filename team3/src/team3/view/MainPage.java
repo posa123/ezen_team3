@@ -24,11 +24,19 @@ public class MainPage {
 	} 
 	// 도서 삭제
 	String 도서삭제() {
-		
+		System.out.println("삭제할 도서이름을 입력해주세요"); String 도서이름 = scanner.next();
+		boolean a =  Controller.getIController().도서삭제( 도서이름 );
+		if(a) {
+			System.out.println("삭제했습니다");
+		}else {
+			System.out.println();
+		}
 	}
 
 	// 도서 대여
-	String 도서대여() {}
+	String 도서대여() {
+		
+	}
 	// 도서 반납
 	String 도서반납() {}
 	
