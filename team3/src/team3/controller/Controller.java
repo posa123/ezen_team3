@@ -19,8 +19,7 @@ public class Controller {
 		BookDto BookDto = new BookDto( 책이름 , 작가 , 출판사 );
 		for(int i=0; i < BookDao.BookList.length; i++) {
 			if(BookDao.BookList[i]==null) {
-				BookDao.BookList[i] = BookDto; 
-				System.out.println("도서 등록 했습니다.");
+				BookDao.BookList[i] = BookDto;
 				 return true;
 			}//if e
 		}//for e
@@ -32,7 +31,6 @@ public class Controller {
 			if(BookDao.BookList[i] != null &&
 					BookDao.BookList[i].get책이름().equals(책이름))
 				BookDao.BookList[i] = null;
-				System.out.println("삭제 완료 했습니다.");
 				return true;
 		}//for e
 		
