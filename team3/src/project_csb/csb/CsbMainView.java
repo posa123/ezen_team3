@@ -1,9 +1,10 @@
 package project_csb.csb;
 
+import project_csb.interfaceSet.AddScInt;
 import project_csb.interfaceSet.MainInterface;
 
 // 무인택배함 메인 페이지
-public class CsbMainView implements MainInterface{
+public class CsbMainView implements AddScInt{
 	// 싱글톤
 	private static CsbMainView csbMainPage = new CsbMainView();
 	private CsbMainView() {}

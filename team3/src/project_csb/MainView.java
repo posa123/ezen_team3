@@ -1,9 +1,10 @@
 package project_csb;
 
-import project_csb.csb.user.view.View;
+import project_csb.interfaceSet.AddScInt;
 import project_csb.interfaceSet.MainInterface;
+
 // 메인 화면
-public class MainView implements MainInterface{
+public class MainView implements AddScInt{
 	// 싱글톤
 	private static MainView mainView = new MainView();
 	private MainView() {}

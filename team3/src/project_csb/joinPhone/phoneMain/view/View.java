@@ -1,9 +1,9 @@
 package project_csb.joinPhone.phoneMain.view;
 
-import project_csb.interfaceSet.MainInterface;
+import project_csb.interfaceSet.AddScNext;
 
 // 핸드폰 메인화면 view
-public class View implements MainInterface{
+public class View implements AddScNext{
 	// 싱글톤
 	private static View view = new View();
 	private View() {}
@@ -13,6 +13,9 @@ public class View implements MainInterface{
 	public void OutPutFront() {	
 		System.out.print("\n\n전화번호 입력"); 
 		
+		//String phoneNumber = scannerValue();
+		
 		//만약 전화번호가 기사 전화번호라면 기사 view 사용자 전화번호라면 사용자 view		
+		
 	}
 }

@@ -11,6 +11,6 @@ public class View implements MainInterface{
 	
 	@Override
 	public void OutPutFront() {
-		System.out.println("\n\n기사 view 실행");
+		System.out.println("\n\n사용자 view 실행");
 	}
 }
