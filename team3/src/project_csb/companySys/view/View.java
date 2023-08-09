@@ -1,6 +1,6 @@
 package project_csb.companySys.view;
 
-import project_csb.newInterface.MainInterface;
+import project_csb.interfaceSet.MainInterface;
 
 //회사 시스템 view
 public class View implements MainInterface{
