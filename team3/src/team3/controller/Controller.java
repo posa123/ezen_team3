@@ -15,7 +15,7 @@ public class Controller {
 	
 	public static Controller getIController() {return control;}
 	
-	boolean 도서등록( String 책이름 , String 작가 , String 출판사) {
+	public boolean 도서등록( String 책이름 , String 작가 , String 출판사) {
 		BookDto BookDto = new BookDto( 책이름 , 작가 , 출판사 );
 		for(int i=0; i < BookDao.BookList.length; i++) {
 			if(BookDao.BookList[i]==null) {
@@ -26,7 +26,7 @@ public class Controller {
 		return false;
 	}//boolean 도서등록 e
 	
-	boolean 도서등록삭제(String 책이름) {
+	public boolean 도서등록삭제(String 책이름) {
 		for(int i=0; i<BookDao.BookList.length; i++) {
 			if(BookDao.BookList[i] != null &&
 					BookDao.BookList[i].get책이름().equals(책이름))
@@ -37,7 +37,7 @@ public class Controller {
 		return false;
 	}//boolean 도서등록삭제 e
 
-	boolean 도서대여(String 책이름) {
+	public boolean 도서대여(String 책이름) {
 		for(int i=0; i<BookDao.BookList.length; i++) {
 			if(BookDao.BookList[i] != null &&
 					BookDao.BookList[i].get책이름().equals(책이름))
