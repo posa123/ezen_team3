@@ -7,10 +7,10 @@ public class View implements MainInterface{
 	// 싱글톤
 	private static View view = new View();
 	private View() {}
-	public static View getInstance() {return view;}	
+	public static View getInstance() {return view;}
 	
 	@Override
-	public void mainPage() {
-		System.out.println("실행");
+	public void OutPutFront() {
+		System.out.println("companySys 실행");
 	}
 }
