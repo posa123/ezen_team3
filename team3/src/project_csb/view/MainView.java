@@ -1,12 +1,11 @@
 package project_csb.view;
 
-
 import project_csb.interfaceSet.AddScInt;
 import project_csb.interfaceSet.MainInterface;
 import project_csb.interfaceSet.ViewList;
 
 // 메인 화면
-public class MainView implements AddScInt{
+public class MainView implements AddScInt {
 	// 싱글톤
 	private static MainView mainView = new MainView();
 	private MainView() {}
@@ -17,7 +16,8 @@ public class MainView implements AddScInt{
 	@Override
 	public void OutPutFront() {
 		
-		while(true) {			
+		while(true) {		
+			 
 		      System.out.println("\n\n=========메인 페이지==========");
 		      System.out.print("1.회사 시스템 2.핸드폰 3.무인택배함");
 		      // scannerValue()는 인터페이스의 디폴트 메소드
