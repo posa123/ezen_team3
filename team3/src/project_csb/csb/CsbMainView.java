@@ -2,6 +2,7 @@ package project_csb.csb;
 
 import project_csb.interfaceSet.AddScInt;
 import project_csb.interfaceSet.MainInterface;
+import project_csb.interfaceSet.ViewList;
 
 // 무인택배함 메인 페이지
 public class CsbMainView implements AddScInt{
@@ -17,24 +18,12 @@ public class CsbMainView implements AddScInt{
 		while(true) {
 		      System.out.println("\n\n======= 환영합니다.==========");
 		      System.out.print("1.물품등록 2.물품찾기 3.불편접수게시판 4.뒤로가기");
-				int ch = scannerValue();
+				int ch = scannerValue() + 2;
+				// 4입력시 return
+				if(ch == 6) return;
 				
-				switch (ch) {
-				// 기사view
-				case 1:
-					mainFront = project_csb.csb.user.view.View.getInstance();
-					break;
-				// 사용자 view
-				case 2:
-					mainFront = project_csb.csb.user.view.View.getInstance();
-					break;
-				// 불편게시판 view
-				case 3:
-					mainFront = project_csb.csb.board.view.View.getInstance();
-					break;
-				case 4:
-					return;
-				}
+				mainFront = ViewList.getInstance().arr.get(ch);
+							
 				mainFront.OutPutFront();
 		}
 	}

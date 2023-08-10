@@ -3,6 +3,7 @@ package project_csb;
 
 import project_csb.interfaceSet.AddScInt;
 import project_csb.interfaceSet.MainInterface;
+import project_csb.interfaceSet.ViewList;
 
 // 메인 화면
 public class MainView implements AddScInt{
@@ -19,22 +20,11 @@ public class MainView implements AddScInt{
 		while(true) {			
 		      System.out.println("\n\n=========메인 페이지==========");
 		      System.out.print("1.회사 시스템 2.핸드폰 3.무인택배함");
-		      
-		      int ch = scannerValue();
-		      
-		      switch ( ch ) {
-		      // 회사시스템 view
-		      case 1 :
-		    	  mainFront = project_csb.companySys.view.View.getInstance();
-		         break;
-		      // 핸드폰 메인 view
-		      case 2 :
-		    	  mainFront = project_csb.joinPhone.phoneMain.view.View.getInstance();
-		    	  break;
-		      // 무인택배함 메인 view
-		      case 3 : 
-		    	  mainFront = project_csb.csb.CsbMainView.getInstance();		    	 
-		      }		      
+		      // scannerValue()는 인터페이스의 디폴트 메소드
+		      int ch = scannerValue()-1;
+		      // ViewList 클래스에서 구현 객체 배열 확인 가능	   		    
+		      mainFront = ViewList.getInstance().arr.get(ch);
+		     		       	 	      	      
 		      mainFront.OutPutFront();	    	 		      		   
 		}         
 	}	
