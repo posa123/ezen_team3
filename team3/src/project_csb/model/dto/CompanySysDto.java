@@ -1,5 +1,6 @@
 package project_csb.model.dto;
 //회사 시스템 dto
+
 public class CompanySysDto {
 
 	// 송장번호
@@ -72,6 +73,6 @@ public class CompanySysDto {
 	public void setDeliveryStatus(boolean deliveryStatus) {
 		DeliveryStatus = deliveryStatus;
 	}
-	
+
 	
 }
