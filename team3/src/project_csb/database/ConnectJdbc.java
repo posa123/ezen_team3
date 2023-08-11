@@ -47,7 +47,14 @@ boxRegistration()
   	boxRegistUpdate()
  배송 건 삭제 메소드
  	boxRegistDelete()
- 	
+ 
+ dao단-----------------
+ 배송 현황(관리하기) 메소드
+boxRegistration()
+ 배송 건 수정 메소드
+  	boxRegistUpdate()
+ 배송 건 삭제 메소드
+ 	boxRegistDelete()
  	
  */
 
