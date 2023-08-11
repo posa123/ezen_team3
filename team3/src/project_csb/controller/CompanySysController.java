@@ -1,6 +1,7 @@
 package project_csb.controller;
 
 import project_csb.model.dao.CompanySysDao;
+import project_csb.model.dto.CompanySysDto;
 
 //회사 시스템 컨트롤러
 public class CompanySysController {
@@ -8,10 +9,20 @@ public class CompanySysController {
 		private static CompanySysController controller = new CompanySysController();
 		private CompanySysController() {}
 		public static CompanySysController getInstance() {return controller;}
+
 		
 		// 1. 배송 등록하기 메소드
-		public boolean boxRegistration() {
-			CompanySysDao.getInstance().boxRegistration();
+		public boolean boxRegistration(int bitem, int barticle, String userPhone) {
+			
+			// dto 송장번호 , 물건코드 , 기사코드 , 유저핸드폰번호 , 배송상태 를 등록함 
+			// boolean deliveryStatus 는 매개변수에 선언할필요가없다 sql설계과정에서 default true 기본값으로 true를 주었기때문에 
+			CompanySysDto companySysDto =
+						new CompanySysDto(madeInvoiceNumber() , bitem , barticle , userPhone);
+			
+			//  dao로 보낸다
+			boolean result = CompanySysDao.getInstance().boxRegistration(companySysDto);		
+			
+			return	CompanySysDao.getInstance().boxRegistration(companySysDto);
 			
 			return false;
 		}
@@ -22,5 +33,11 @@ public class CompanySysController {
 			
 			return false;
 		}
-		
+		// 송장번호 생성 메소드
+	      public int madeInvoiceNumber() {
+	         return (int)((Math.random() * 89999999) + 10000000);      
+	      }
+
+	
+
 }
