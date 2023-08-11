@@ -18,7 +18,7 @@ public class CsbMainView implements AddScInt{
 		while(true) {
 		      System.out.println("\n\n======= 환영합니다.==========");
 		      System.out.print("1.물품등록 2.물품찾기 3.불편접수게시판 4.뒤로가기");
-				int ch = scannerValue() + 2;
+				int ch = scannerInt() + 2;
 				// 4입력시 return
 				if(ch == 6) return;
 				
