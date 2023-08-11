@@ -15,13 +15,14 @@ public class CompanySysDao extends ConnectJdbc{
 	// 배송 등록하기
 	public boolean boxRegistration( CompanySysDto dto ) {
 		try {
-			String sql = "insert into Delivery_status( bitem , barticle , Customer_phone_numbe ) values('?' , '?' , '?'); ";
+			String sql = "insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_numbe ) values( ? , ? , ? , ? ); ";
 			ps = conn.prepareStatement(sql);
+			ps.setInt(1, dto.getInvoiceNumber());
 			ps.setInt(2,dto.getBitem()); // 물건코드
 			ps.setInt(3, dto.getBarticle()); // 기사코드
 			ps.setString(4, dto.getUserPhone());// 고객전화번호
 			int row = ps.executeUpdate();
-			if( row==1 )return true;
+			if( row==1 ) return true;
 		} catch (Exception e) {System.out.println(e);}
 		return false; // 실패
 	}
