@@ -7,4 +7,5 @@ public class CompanySysController {
 		private static CompanySysController controller = new CompanySysController();
 		private CompanySysController() {}
 		public static CompanySysController getInstance() {return controller;}
+	
 }
