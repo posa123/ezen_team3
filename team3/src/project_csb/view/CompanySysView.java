@@ -36,14 +36,23 @@ public class CompanySysView implements AddScInt , AddScNext {
 					else {System.out.println("오류) 배송 등록하기 실패");}
 				}
 				else if( ch == 2){	//배송 관리하기 실행
-					System.out.println(" ------- Delivery Management ------- ");
-					ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxManagement();
-					for(int i = 0; i < dto.size(); i++) {
-						CompanySysDto dto = dto.get(i);	// i번째의 객체를 호출
-						System.out.println("%-10s %-10s %-10s %-10s \n",
-								dto.Invoice_number, dto.bitem, dto.barticle, dto.Customer_phone_numbe,dto.Delivery_status);
-				}
-				
+					while(true) {
+						System.out.println(" ------- Delivery Management ------- ");
+						System.out.println("1.배송현황 2.배송 건 수정 3. 배송 건 삭제");	int ch2 = scannerInt();
+						if( ch2 == 1 ) {
+						ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxManagement();
+						
+						for(int i = 0; i < dto.size(); i++) {
+							CompanySysDto tmpDto = dto.get(i);	// i번째의 객체를 호출
+							System.out.printf("%-10s %-10s %-10s %-10s \n",
+									tmpDto.getInvoiceNumber(), tmpDto.getBitem()
+									, tmpDto.getBarticle(), tmpDto.getInvoiceNumber()
+									,tmpDto.isDeliveryStatus());
+							}
+						}else if( ch2 == 2) {}
+						}else if( ch2 == 2) {}
+						}else if( ch2 == 2) {}
+					}	
 				}
 			}catch (Exception e) {
 				System.out.println("경고) 잘못된 입력입니다. ");
