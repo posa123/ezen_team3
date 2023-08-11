@@ -1,5 +1,7 @@
 package project_csb.controller;
 
+import java.util.ArrayList;
+
 import project_csb.model.dao.CompanySysDao;
 import project_csb.model.dto.CompanySysDto;
 
@@ -19,20 +21,18 @@ public class CompanySysController {
 			CompanySysDto companySysDto =
 						new CompanySysDto(madeInvoiceNumber() , bitem , barticle , userPhone);
 			
-			//  dao로 보낸다
-			boolean result = CompanySysDao.getInstance().boxRegistration(companySysDto);		
-			
+			//  dao로 보낸다							
 			return	CompanySysDao.getInstance().boxRegistration(companySysDto);
 			
-			return false;
+	
 		}
 		
 		
 		// 2. 배송 관리현황 [ 전체배송출력]
-		public boolean boxRegistration() {
+		public ArrayList<CompanySysDto> boxShipping() {
 			// dto에 송장번호 , 물건코드 , 유저핸드폰 
 			
-			return false;
+			return null;
 		}
 		// 3. 배송  수정 [ 선택한 배송 수정 ]
 		public boolean boxRegistUpdate() {
