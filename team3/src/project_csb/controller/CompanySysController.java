@@ -27,9 +27,20 @@ public class CompanySysController {
 			return false;
 		}
 		
-		// 2. 배송 관리하기 메소드 
-		public boolean boxManagement() {
+		
+		// 2. 배송 관리현황 [ 전체배송출력]
+		public boolean boxRegistration() {
+			// dto에 송장번호 , 물건코드 , 유저핸드폰 
 			
+			return false;
+		}
+		// 3. 배송  수정 [ 선택한 배송 수정 ]
+		public boolean boxRegistUpdate() {
+			
+			return false;
+		}
+		// 3. 배송 삭제 [ 선택한 배송 삭제 ]
+		public boolean boxRegistDelete() {
 			
 			return false;
 		}
