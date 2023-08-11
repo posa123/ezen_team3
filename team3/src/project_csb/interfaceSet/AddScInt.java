@@ -5,7 +5,7 @@ import java.util.Scanner;
 public interface AddScInt extends MainInterface{
 	
 		// 입력 객체 디폴트 메소드
-	   public default int scannerValue() {		   
+	   public default int scannerInt() {		   
 		   Scanner sc = new Scanner(System.in);
 		   try {	   
 			   int value = sc.nextInt();

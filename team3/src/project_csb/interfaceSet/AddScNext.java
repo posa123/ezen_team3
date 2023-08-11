@@ -5,7 +5,7 @@ import java.util.Scanner;
 public interface AddScNext extends MainInterface{
 	
 		// 입력 객체 디폴트 메소드
-	   public default String scannerValue() {
+	   public default String scannerNext() {
 		   
 		   Scanner sc = new Scanner(System.in);
 		   

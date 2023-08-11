@@ -1,6 +1,7 @@
 package project_csb.model.dto;
 //회사 시스템 dto
 public class CompanySysDto {
+<<<<<<< HEAD
 	// 송장번호
 	private int invoiceNumber;
 	// 물건코드
@@ -72,5 +73,7 @@ public class CompanySysDto {
 		DeliveryStatus = deliveryStatus;
 	}
 	
+=======
+>>>>>>> branch '이성호' of https://github.com/posa123/ezen_team3
 	
 }
