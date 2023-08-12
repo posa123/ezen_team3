@@ -61,7 +61,8 @@ public class CompanySysDao extends ConnectJdbc{
 			String sql = "update Delivery_status set Invoice_number =? , bitem = ? , barticle = ? , Customer_phone_numbe = ? , Delivery_status = ? where line_number = ?";
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, dto.getLine_number()); // 행번호 
+
+			ps.setInt(1, dto.getLineNumber()); // 행번호 
 			ps.setInt(2, dto.getInvoiceNumber()); // 송장번호 
 			ps.setInt(3,dto.getBitem()); // 물건코드
 			ps.setInt(4, dto.getBarticle()); // 기사코드

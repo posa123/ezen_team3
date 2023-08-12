@@ -30,12 +30,21 @@ public class CompanySysController {
 		return CompanySysDao.getInstance().boxManagement();
 	}
 	
-	// 3. 배송  수정 [ 선택한 배송 수정 ] // bitem = 수정할 물건의 식별[누구를 식별할껀가?] / barticle = 물건등록을요청한 기사와 물건코드가 일치할경우 [유효성검사]
+	// 3. 배송  수정 [ 선택한 배송 수정 ] // bitem = 수정할 물건의 식별[누구를 식별할껀가?] / barticle = 물건등록을요청한 기사와 물건코드가 일치할경우 [유효성검사]	
 	public int boxRegistUpdate(int line_number , int bitem , int barticle , String userPhone) {
 		// 1. 유효성 검사
 		if(bitem == CompanySysDao.getInstance().boxRegistration()) {return 1;}
 		
 		return 1;
+	}
+	public boolean boxRegistUpdate( int bitem, int barticle, String userPhone ) {
+		
+	}
+	public boolean boxRegistUpdate(int barticle, String userPhone) {
+		
+	}
+	public boolean boxRegistUpdate(String userPhone) {
+		
 	}
 	// 4. 배송 삭제 [ 선택한 배송 삭제 ]
 	public boolean boxRegistDelete() {

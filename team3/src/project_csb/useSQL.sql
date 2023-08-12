@@ -54,8 +54,8 @@ select * from bulletin_board;
 /* 6. 배송 현황 테이블 */
 drop table if exists Delivery_status;
 create table Delivery_status ( 
-	line_number	int auto_increment   ,					-- 행번호 , 자동부여 			
-	Invoice_number varchar(30) not null,  					-- 송장번호
+	lineNumber	int auto_increment   ,					-- 행번호 , 자동부여 				-- 행번호 , 자동부여 			
+	InvoiceNumber varchar(30) not null,  					-- 송장번호					-- 송장번호
     bitem varchar(20) not null, 							-- 물건코드
     barticle varchar(30) not null ,							-- 기사코드
     Customer_phone_numbe varchar(20) not null, 				-- 고객전화번호

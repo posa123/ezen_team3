@@ -4,7 +4,7 @@ package project_csb.model.dto;
 public class CompanySysDto {
 	
 	// 행번호 
-	private int line_number; 
+	private int lineNumber; 
 	// 송장번호
 	private int invoiceNumber;
 	// 물건코드
@@ -28,7 +28,7 @@ public class CompanySysDto {
 	// 풀 생성자
 	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone,boolean deliveryStatus) {
 		super();
-		this.line_number = line_number;
+		this.lineNumber = line_number;
 		this.invoiceNumber = invoiceNumber;
 		this.bitem = bitem;
 		this.barticle = barticle;
@@ -38,7 +38,7 @@ public class CompanySysDto {
 	// 수정시 사용되는 생성자 
 	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone) {
 		super();
-		this.line_number = line_number;
+		this.lineNumber = line_number;
 		this.invoiceNumber = invoiceNumber;
 		this.bitem = bitem;
 		this.barticle = barticle;
@@ -46,13 +46,13 @@ public class CompanySysDto {
 	}
 	
 	// getter and setter
-	public int getLine_number() {
-		return line_number;
+	public int getLineNumber() {
+		return lineNumber;
 	}
 
 
-	public void setLine_number(int line_number) {
-		this.line_number = line_number;
+	public void setLineNumber(int line_number) {
+		this.lineNumber = line_number;
 	}
 
 	public int getInvoiceNumber() {
@@ -98,7 +98,7 @@ public class CompanySysDto {
 	// to string 
 	@Override
 	public String toString() {
-		return "CompanySysDto [line_number=" + line_number + ", invoiceNumber=" + invoiceNumber + ", bitem=" + bitem
+		return "CompanySysDto [line_number=" + lineNumber + ", invoiceNumber=" + invoiceNumber + ", bitem=" + bitem
 				+ ", barticle=" + barticle + ", userPhone=" + userPhone + ", DeliveryStatus=" + DeliveryStatus + "]";
 	}
 	
