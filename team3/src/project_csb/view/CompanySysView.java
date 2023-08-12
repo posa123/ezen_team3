@@ -118,6 +118,7 @@ public class CompanySysView implements MainInterface {
 	// 배송 수정하기 메소드
 	public void boxRegistUpdate() {
 		
+		
 		while(true) {
 			try {
 				System.out.print("\n\n========= 현황 수정 =========="); 	
@@ -164,6 +165,7 @@ public class CompanySysView implements MainInterface {
 	
 	// 배송 삭제하기 메소드
 	public void boxRegistDelete() {
+		
 		System.out.print("\n\n========= 현황 삭제하기 ==========");
 		System.out.print("[삭제할 건 번호를 입력해주세요]"); int lineNumber = sc.nextInt();
 		

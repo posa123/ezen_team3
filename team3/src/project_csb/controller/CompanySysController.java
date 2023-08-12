@@ -29,22 +29,35 @@ public class CompanySysController {
 		// boxManagement();dao메소드를 return 값으로 view에게 보낸다 
 		return CompanySysDao.getInstance().boxManagement();
 	}
-
-	// 3. 배송  수정 [ 선택한 배송 수정 ] // bitem = 수정할 물건의 식별[누구를 식별할껀가?] / barticle = 물건등록을요청한 기사와 물건코드가 일치할경우 [유효성검사]
-	public int boxRegistUpdate(int lineNumber , int bitem, int barticle, String userPhone) {
+	
+	// 3. 배송  수정 [ 선택한 배송 수정 ] // bitem = 수정할 물건의 식별[누구를 식별할껀가?] / barticle = 물건등록을요청한 기사와 물건코드가 일치할경우 [유효성검사]	
+	//  line_number 는 수정하는애가아니고 따로 식별
+	public boolean boxRegistUpdate(int lineNumber , int Invoice_number , int bitem , int barticle , String userPhone) {
+		
+		CompanySysDto companySysDto = new CompanySysDto();
+		
 		// 1. 유효성 검사
-		if(bitem == CompanySysDao.getInstance().boxRegistration()) {return 1;}		
-		return 1;
-	}
-	public boolean boxRegistUpdate( int bitem, int barticle, String userPhone ) {
+			// set : 값을 설정할때
+		if(Invoice_number != 0) { 
+			companySysDto.setInvoiceNumber(Invoice_number);
 		
-	}
-	public boolean boxRegistUpdate(int barticle, String userPhone) {
+		}else if(bitem != 0) {
+			companySysDto.setBitem(bitem);
+			
+		}else if(barticle != 0) {
+			companySysDto.setBarticle(barticle);
+			
+		}else if(userPhone != null) {
+			companySysDto.setUserPhone(userPhone);
+			
+		}
+		// dao로 포장한 값을 dto에게 보낸다 
+		boolean result = CompanySysDao.getInstance().boxRegistUpdate(companySysDto);
 		
+		return false;
 	}
-	public boolean boxRegistUpdate(String userPhone) {
-		
-	}
+	
+	
 	// 4. 배송 삭제 [ 선택한 배송 삭제 ]
 	public boolean boxRegistDelete() {
 		
@@ -55,7 +68,5 @@ public class CompanySysController {
       public int madeInvoiceNumber() {
          return (int)((Math.random() * 89999999) + 10000000);      
       }
-
-	
 
 }

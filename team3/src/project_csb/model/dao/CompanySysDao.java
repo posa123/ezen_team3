@@ -82,12 +82,19 @@ public class CompanySysDao extends ConnectJdbc{
 			}
 			
 			// "update Delivery_status set ? = ?  where line_number = ?";	
+<<<<<<< HEAD
 				
 				// 1. sql 작성한다
 			String sql = "update Delivery_status set ? = ?  where line_number = ? ";
 										
+=======
+			// 1. sql 작성한다
+				// where Invoice_number = ? where에 송장번호로 식별맞나요??.... 송장번호가 일치했을때 수정가능하다??? 맞을까요??...
+			String sql = "update Delivery_status set Invoice_number =? , bitem = ? , barticle = ? , Customer_phone_numbe = ? , Delivery_status = ? where line_number = ?";
+>>>>>>> branch 'main' of https://github.com/posa123/ezen_team3
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
+
 			ps.setInt(1, dto.getLineNumber()); // 행번호 
 			ps.setInt(2, dto.getInvoiceNumber()); // 송장번호 
 			ps.setInt(3,dto.getBitem()); // 물건코드

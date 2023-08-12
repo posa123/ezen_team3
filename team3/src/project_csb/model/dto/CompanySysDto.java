@@ -25,6 +25,11 @@ public class CompanySysDto {
 		this.barticle = barticle;
 		this.userPhone = userPhone;
 	}
+	
+	
+	
+	
+
 	// 풀 생성자
 	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, int userPhone,boolean deliveryStatus) {
 		super();
@@ -50,7 +55,6 @@ public class CompanySysDto {
 		return lineNumber;
 	}
 
-	
 
 	public void setLineNumber(int line_number) {
 		this.lineNumber = line_number;
@@ -102,10 +106,5 @@ public class CompanySysDto {
 		return "CompanySysDto [line_number=" + lineNumber + ", invoiceNumber=" + invoiceNumber + ", bitem=" + bitem
 				+ ", barticle=" + barticle + ", userPhone=" + userPhone + ", DeliveryStatus=" + DeliveryStatus + "]";
 	}
-	
-	
-	
-	
-	
 	
 }

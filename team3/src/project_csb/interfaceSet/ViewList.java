@@ -18,7 +18,6 @@ public class ViewList {
 			project_csb.view.RiderView.getInstance() ,					// 	-기사 		view
 			project_csb.view.UserView.getInstance() ,					// 	-사용자		view
 			project_csb.view.BoardView.getInstance() 					//	-게시판		view
-			
+
 		));// ArrayList
-	
 }
