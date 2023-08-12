@@ -16,13 +16,13 @@ public class CompanySysDao extends ConnectJdbc{
 	public boolean boxRegistration( CompanySysDto dto ) {
 		try {
 			// 1. SQL 작성한다.
-			String sql = "insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_numbe ) values( ? , ? , ? , ? ); ";
+			String sql = "insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( ? , ? , ? , ? ); ";
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, dto.getInvoiceNumber()); // 송장번호 
 			ps.setInt(2,dto.getBitem()); // 물건코드
 			ps.setInt(3, dto.getBarticle()); // 기사코드
-			ps.setInt(4, dto.getUserPhone());// 고객전화번호
+			ps.setString(4, dto.getUserPhone());// 고객전화번호
 			int row = ps.executeUpdate();
 			if( row==1 ) return true;
 		} catch (Exception e) {System.out.println(e);}
@@ -42,8 +42,9 @@ public class CompanySysDao extends ConnectJdbc{
 				// [ 레코드 개수만큼 반복 ]
 				// 레코드 1개 마다 1개의 DTO 변환
 				CompanySysDto dto = new CompanySysDto(
+					rs.getInt(1) ,
 					rs.getInt(2) , rs.getInt(3) ,
-					rs.getInt(4) , rs.getInt(5)
+					rs.getInt(4) , rs.getString(5)
 				);
 				// 변환된 Dto 를 리스트객체에 담는다  
 				list.add(dto);
@@ -59,7 +60,7 @@ public class CompanySysDao extends ConnectJdbc{
 			// 업데이트 위치
 			String spot = "";
 			int value = 0;
-			
+			String phoneValue = null;
 			//송장번호 업데이트
 			if(dto.getInvoiceNumber() != 0) {
 				spot = "InvoiceNumber";
@@ -76,17 +77,23 @@ public class CompanySysDao extends ConnectJdbc{
 				value = dto.getBitem();
 			}						
 			//고객핸드폰 업데이트
-			else if(dto.getUserPhone() != 0) {
+			else if(dto.getUserPhone() != null) {
 				spot = "Customer_phone_numbe";
-				value = dto.getUserPhone();
+				phoneValue = dto.getUserPhone();
 				
-			}									
+			}			
+			System.out.println(dto.getLineNumber());
 				// 1. sql 작성한다
-			String sql = "update Delivery_status set ? = ?  where line_number = ? ";													
+			String sql = "update Delivery_status set ? = ?  where lineNumber = ?";													
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, spot); // 행번호 
-			ps.setInt(2, value); // 송장번호 
+			
+			if(phoneValue != null) 
+				ps.setString(2, phoneValue); // 송장번호 
+			else 
+				ps.setInt(2, value); // 송장번호 
+						
 			ps.setInt(3, dto.getLineNumber()); // 행번호			
 			// row - 유효성 검사를 통해 레코드값이 있는지 없는지 한줄이라도 있으면 성공 
 			int row = ps.executeUpdate();
