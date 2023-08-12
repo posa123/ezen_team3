@@ -58,17 +58,11 @@ public class CompanySysDao extends ConnectJdbc{
 		try {
 			// 1. sql 작성한다
 				// where Invoice_number = ? where에 송장번호로 식별맞나요??.... 송장번호가 일치했을때 수정가능하다??? 맞을까요??...
-<<<<<<< HEAD
 			String sql = "update Delivery_status set Invoice_number =? , bitem = ? , barticle = ? , Customer_phone_numbe = ? , Delivery_status = ? where line_number = ?";
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, dto.getLine_number()); // 행번호 
-=======
-			String sql = "update Delivery_status set InvoiceNumber = ? , bitem = ? , barticle = ? , Customer_phone_numbe = ? , Delivery_status = ? where line_number = ?";
-			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
-			ps = conn.prepareStatement(sql);
+
 			ps.setInt(1, dto.getLineNumber()); // 행번호 
->>>>>>> branch '김근배' of https://github.com/posa123/ezen_team3
 			ps.setInt(2, dto.getInvoiceNumber()); // 송장번호 
 			ps.setInt(3,dto.getBitem()); // 물건코드
 			ps.setInt(4, dto.getBarticle()); // 기사코드
