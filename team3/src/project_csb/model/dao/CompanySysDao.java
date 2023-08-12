@@ -54,8 +54,21 @@ public class CompanySysDao extends ConnectJdbc{
 	
 	
 	// 3. 배송 수정 [ 선택한 배송 수정 ] ( 인수 : line_number , InvoiceNumber , Bitem , Barticle , UserPhone )
-	public boolean boxRegistUpdate(CompanySysDto dto) {
+	public boolean boxRegistUpdate( CompanySysDto dto ) {
 		try {
+			//송장번호 업데이트
+			if(dto.getInvoiceNumber() != 0) 
+			
+			//기사코드 업데이트
+			else if(dto.getBarticle() != 0)
+				
+			//물건코드 업데이트
+			else if(dto.getBitem() != 0)
+				
+			//고객핸드폰 업데이트
+			else if(dto.getUserPhone() != null)
+			
+			// "update Delivery_status set ? = ?  where line_number = ?";	
 			// 1. sql 작성한다
 				// where Invoice_number = ? where에 송장번호로 식별맞나요??.... 송장번호가 일치했을때 수정가능하다??? 맞을까요??...
 			String sql = "update Delivery_status set Invoice_number =? , bitem = ? , barticle = ? , Customer_phone_numbe = ? , Delivery_status = ? where line_number = ?";
@@ -90,5 +103,8 @@ public class CompanySysDao extends ConnectJdbc{
 		
 		return false; // DB 오류 또는 수정된 레코드가 0 이면 실패 
 	}
+	
+	
+	
 	
 }
