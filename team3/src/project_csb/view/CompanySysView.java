@@ -25,6 +25,7 @@ public class CompanySysView implements MainInterface {
 	public void OutPutFront() {
 
 		while (true) {// 회사시스템 실행
+			System.out.println("\n\n=============== 시스템 ==============");
 			System.out.print("1.배송 등록하기 2.배송 관리 3.뒤로가기 선택>>");
 			try {
 				int ch = sc.nextInt();
@@ -55,7 +56,7 @@ public class CompanySysView implements MainInterface {
 	public void deliveryManegement() {
 
 		while (true) {
-			System.out.println(" ------- Delivery Management ------- ");
+			System.out.println(" \n\n------- Delivery Management ------- ");
 			System.out.println("1.배송현황 2.배송 건 수정 3.배송 건 삭제 4.뒤로가기");
 			try {
 				int ch2 = sc.nextInt();
@@ -89,10 +90,10 @@ public class CompanySysView implements MainInterface {
 
 	// 배송 등록하기 메소드
 	public void boxRegistration() {
-		System.out.println(" ------- Shipping registration ------- ");
+		System.out.println(" \n\n------- Shipping registration ------- ");
 		System.out.print("물건코드 입력 : "); int bitem = sc.nextInt();		
 		System.out.print("기사코드 입력 : "); int barticle = sc.nextInt();		
-		System.out.print("고객 전화번호 입력 : "); int Customer_phone_numbe = sc.nextInt();
+		System.out.print("고객 전화번호 입력 : "); String Customer_phone_numbe = sc.next();
 		// 컨트롤러 메소드 호출 결과
 		boolean result = CompanySysController.getInstance().boxRegistration(
 											bitem, barticle, Customer_phone_numbe);		
@@ -107,11 +108,14 @@ public class CompanySysView implements MainInterface {
 	// 배송 현황출력 메소드
 	public void boxShipping() {
 		ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxShipping();
-
+		System.out.printf("%-8s %-8s %-8s %-8s %-8s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.println("=========================================");
 		for (int i = 0; i < dto.size(); i++) {
 			CompanySysDto tmpDto = dto.get(i); // i번째의 객체를 호출
-			System.out.printf("%-10s %-10s %-10s %-10s \n", tmpDto.getInvoiceNumber(), tmpDto.getBitem(),
-					tmpDto.getBarticle(), tmpDto.getInvoiceNumber(), tmpDto.isDeliveryStatus());
+			System.out.printf("%-10s %-10s %-10s %-10s %-11s %-10s \n", 
+					tmpDto.getLineNumber() , tmpDto.getInvoiceNumber(),
+					tmpDto.getBitem() , tmpDto.getBarticle(), (tmpDto.getUserPhone()) , 
+					(tmpDto.isDeliveryStatus() == false ? "배송 중" : "배송 완료"));
 		}
 	}
 
@@ -121,12 +125,12 @@ public class CompanySysView implements MainInterface {
 		
 		while(true) {
 			try {
-				System.out.print("\n\n========= 현황 수정 =========="); 	
+				System.out.println("\n\n========= 현황 수정 =========="); 	
 				System.out.print("[수정할 건 번호를 입력해주세요]"); int lineNumber  = sc.nextInt();
 								
-				System.out.print("\n\n======수정하실 항목을 선택해주세요=====");
+				System.out.println("\n\n======수정하실 항목을 선택해주세요=====");
 				System.out.print("1.송장번호 2.물건코드 3.기사코드 4.고객 전화번호 5.뒤로가기 선택>>");
-				int invoiceNumber = 0; int bitem = 0; int barticle = 0; int userPhone = 0;
+				int invoiceNumber = 0; int bitem = 0; int barticle = 0; String userPhone = null;
 				
 				int ch = sc.nextInt();
 				
@@ -141,7 +145,7 @@ public class CompanySysView implements MainInterface {
 						System.out.println("[수정하실 기사코드를 입력해주세요]"); barticle = sc.nextInt();
 						break;
 					case 4 :
-						System.out.println("[수정하실 고객 전화번호를 입력해주세요]"); userPhone = sc.nextInt();
+						System.out.println("[수정하실 고객 전화번호를 입력해주세요]"); userPhone = sc.next();
 						break;
 					case 5 :
 						break;											
@@ -165,7 +169,7 @@ public class CompanySysView implements MainInterface {
 	// 배송 삭제하기 메소드
 	public void boxRegistDelete() {
 		
-		System.out.print("\n\n========= 현황 삭제하기 ==========");
+		System.out.println("\n\n========= 현황 삭제하기 ==========");
 		System.out.print("[삭제할 건 번호를 입력해주세요]"); int lineNumber = sc.nextInt();
 		
 		boolean result = CompanySysController.getInstance().boxRegistDelete( lineNumber );

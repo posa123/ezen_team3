@@ -12,13 +12,13 @@ public class CompanySysDto {
 	// 기사코드
 	private int barticle;
 	// 유저핸드폰번호
-	private int userPhone;
+	private String userPhone;
 	// 배송상태(기본값 true)
 	private boolean DeliveryStatus;
 	// 기본생성자
 	public CompanySysDto() {}
 	
-	public CompanySysDto(int invoiceNumber, int bitem, int barticle, int userPhone) {
+	public CompanySysDto(int invoiceNumber, int bitem, int barticle, String userPhone) {
 		super();
 		this.invoiceNumber = invoiceNumber;
 		this.bitem = bitem;
@@ -26,7 +26,7 @@ public class CompanySysDto {
 		this.userPhone = userPhone;
 	}
 	// 풀 생성자
-	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, int userPhone,boolean deliveryStatus) {
+	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone,boolean deliveryStatus) {
 		super();
 		this.lineNumber = line_number;
 		this.invoiceNumber = invoiceNumber;
@@ -36,7 +36,7 @@ public class CompanySysDto {
 		DeliveryStatus = deliveryStatus;
 	}
 	// 수정시 사용되는 생성자 
-	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, int userPhone) {
+	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone) {
 		super();
 		this.lineNumber = line_number;
 		this.invoiceNumber = invoiceNumber;
@@ -79,11 +79,11 @@ public class CompanySysDto {
 		this.barticle = barticle;
 	}
 
-	public int getUserPhone() {
+	public String getUserPhone() {
 		return userPhone;
 	}
 
-	public void setUserPhone(int userPhone) {
+	public void setUserPhone(String userPhone) {
 		this.userPhone = userPhone;
 	}
 
