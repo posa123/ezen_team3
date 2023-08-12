@@ -29,9 +29,9 @@ public class CompanySysController {
 		// boxManagement();dao메소드를 return 값으로 view에게 보낸다 
 		return CompanySysDao.getInstance().boxManagement();
 	}
-
+	
 	// 3. 배송  수정 [ 선택한 배송 수정 ] // bitem = 수정할 물건의 식별[누구를 식별할껀가?] / barticle = 물건등록을요청한 기사와 물건코드가 일치할경우 [유효성검사]
-	public int boxRegistUpdate(int line_number , int bitem, int barticle, String userPhone) {
+	public int boxRegistUpdate(int line_number , int bitem , int barticle , String userPhone) {
 		// 1. 유효성 검사
 		if(bitem == CompanySysDao.getInstance().boxRegistration()) {return 1;}
 		
@@ -47,7 +47,5 @@ public class CompanySysController {
       public int madeInvoiceNumber() {
          return (int)((Math.random() * 89999999) + 10000000);      
       }
-
-	
 
 }

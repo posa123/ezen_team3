@@ -103,9 +103,4 @@ public class CompanySysDto {
 				+ ", barticle=" + barticle + ", userPhone=" + userPhone + ", DeliveryStatus=" + DeliveryStatus + "]";
 	}
 	
-	
-	
-	
-	
-	
 }
