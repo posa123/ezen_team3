@@ -50,7 +50,6 @@ public class CompanySysDto {
 		return line_number;
 	}
 
-	
 
 	public void setLine_number(int line_number) {
 		this.line_number = line_number;

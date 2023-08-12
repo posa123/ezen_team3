@@ -39,7 +39,6 @@ public class CompanySysController {
 	}
 	// 4. 배송 삭제 [ 선택한 배송 삭제 ]
 	public boolean boxRegistDelete() {
-		
 		return false;
 	}
 	
