@@ -58,7 +58,7 @@ create table Delivery_status (
 	InvoiceNumber varchar(30) not null,  					-- 송장번호
     bitem varchar(20) not null, 							-- 물건코드
     barticle varchar(30) not null ,							-- 기사코드
-    Customer_phone_numbe varchar(20) not null, 				-- 고객전화번호
+    Customer_phone_numbe int not null, 				-- 고객전화번호
     Delivery_status boolean default true not null,				-- 배송상태
     primary key(line_number) ,
     primary key(Customer_phone_numbe) ,
@@ -70,7 +70,7 @@ select * from Delivery_status;
 drop table if exists texting;
 /* 7. 문자 테이블 */
 create table texting (
-	Customer_phone_numbe varchar(20) , 			   -- 고객전화번호
+	Customer_phone_numbe int , 			   -- 고객전화번호
     bnumber mediumint unique not null, 			   -- 함번호
     foreign key(Customer_phone_numbe) references Delivery_status(Customer_phone_numbe) on delete no action on update cascade,
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
@@ -137,8 +137,8 @@ insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_p
 insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121' , '2023-08-08 12:00:00' );
 
 # 6. 배송 현황 레코드 
-insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_numbe , Delivery_status ) values('20230808170001' , '33332222' , '230808100' , '010-3333-2222', true );
-insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_numbe , Delivery_status ) values('20230808170002' , '33335555' , '2308101' , '010-2222-5555' ,true);
+insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_numbe , Delivery_status ) values('20230808170001' , '33332222' , '230808100' , 01033332222, true );
+insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_numbe , Delivery_status ) values('20230808170002' , '33335555' , '2308101' , 01022225555 ,true);
        
 # 7. 문자  레코드         
 insert into texting ( Customer_phone_numbe , bnumber) values( '010-3333-2222' , 1);
