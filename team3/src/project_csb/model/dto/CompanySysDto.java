@@ -25,6 +25,11 @@ public class CompanySysDto {
 		this.barticle = barticle;
 		this.userPhone = userPhone;
 	}
+	
+	
+	
+	
+
 	// 풀 생성자
 	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone,boolean deliveryStatus) {
 		super();
