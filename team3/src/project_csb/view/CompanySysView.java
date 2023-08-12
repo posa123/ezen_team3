@@ -92,7 +92,7 @@ public class CompanySysView implements MainInterface {
 		System.out.println(" ------- Shipping registration ------- ");
 		System.out.print("물건코드 입력 : "); int bitem = sc.nextInt();		
 		System.out.print("기사코드 입력 : "); int barticle = sc.nextInt();		
-		System.out.print("고객 전화번호 입력 : "); String Customer_phone_numbe = sc.next();
+		System.out.print("고객 전화번호 입력 : "); int Customer_phone_numbe = sc.nextInt();
 		// 컨트롤러 메소드 호출 결과
 		boolean result = CompanySysController.getInstance().boxRegistration(
 											bitem, barticle, Customer_phone_numbe);		
@@ -126,7 +126,7 @@ public class CompanySysView implements MainInterface {
 								
 				System.out.print("\n\n======수정하실 항목을 선택해주세요=====");
 				System.out.print("1.송장번호 2.물건코드 3.기사코드 4.고객 전화번호 5.뒤로가기 선택>>");
-				int invoiceNumber = 0; int bitem = 0; int barticle = 0; String userPhone = null;
+				int invoiceNumber = 0; int bitem = 0; int barticle = 0; int userPhone = 0;
 				
 				int ch = sc.nextInt();
 				
@@ -141,7 +141,7 @@ public class CompanySysView implements MainInterface {
 						System.out.println("[수정하실 기사코드를 입력해주세요]"); barticle = sc.nextInt();
 						break;
 					case 4 :
-						System.out.println("[수정하실 고객 전화번호를 입력해주세요]"); userPhone = sc.next();
+						System.out.println("[수정하실 고객 전화번호를 입력해주세요]"); userPhone = sc.nextInt();
 						break;
 					case 5 :
 						break;											
@@ -159,8 +159,7 @@ public class CompanySysView implements MainInterface {
 				System.out.println("[숫자만 입력가능합니다.]");
 				sc=new Scanner(System.in);} 
 			catch (Exception e) {	System.out.println(e);break;}					
-		}
-		
+		}		
 	}	
 	
 	// 배송 삭제하기 메소드
@@ -170,6 +169,8 @@ public class CompanySysView implements MainInterface {
 		System.out.print("[삭제할 건 번호를 입력해주세요]"); int lineNumber = sc.nextInt();
 		
 		boolean result = CompanySysController.getInstance().boxRegistDelete( lineNumber );
+		if(result)System.out.println("[삭제 성공]");
+		else System.out.println("[삭제 실패]");
 		
 	}
 }
