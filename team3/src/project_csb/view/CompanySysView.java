@@ -110,7 +110,7 @@ public class CompanySysView implements MainInterface {
 
 	// 배송 수정하기 메소드
 	public void boxRegistUpdate() {
-
+		
 	}
 
 	// 배송 삭제하기 메소드

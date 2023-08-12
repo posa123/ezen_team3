@@ -9,34 +9,34 @@ use sqldb7web;
 create table anmdtable( 
     bnumber mediumint unique not null,    -- 함번호 
     bsituation varchar(2) not null,       -- 보관상태   
-    bpw int ,            -- 비밀번호 네자리수 유효성 검사 필요
+    bpw varchar(20) ,           		  -- 비밀번호
     primary key(bnumber)
     );             
 select * from anmdtable;
 # 2. 물건 테이블
 create table objecttable( 
-    bitem int not null unique,        -- 물건코드 
-    bname varchar(10) not null,          -- 물건이름
-    bsituation varchar(2) not null ,    -- 보관상태
+    bitem  varchar(20) not null unique , -- 물건코드 
+    bname varchar(10) not null,       	 -- 물건이름
+    bsituation varchar(2) not null , 	 -- 보관상태
     primary key(bitem) 
     );    
 select * from objecttable;
 # 3. 택배함보관내역 테이블
 drop table if exists archistable; 
 create table archistable( 
-    cnumer Smallint not null auto_increment ,             -- 번호 
-    bnumber mediumint  ,          -- 함번호  
-    storagedate datetime default now() ,      -- 보관일시 
-    visitdate datetime ,      -- 찾아간일시 
+    cnumer Smallint not null,          	-- 번호 
+    bnumber mediumint unique not null ,       	-- 함번호  
+    storagedate datetime default now() not null,      -- 보관일시 
+    visitdate datetime ,		-- 찾아간일시 
     primary key(cnumer) , 
     foreign key(bnumber)  references anmdtable(bnumber) on update cascade on delete set null
     );      
 select * from archistable;
 # 4. 택배기사 테이블 
 create table couriertale( 
-    barticle int not null unique,      -- 기사코드
+    barticle varchar(30) not null unique,      -- 기사코드
     barname varchar(5) not null,        -- 기사이름 
-    barphone varchar(20) not null unique,      -- 기사전화번호
+    barphone varchar(20) not null unique,		-- 기사전화번호
     primary key(barticle)
     );      
 select * from couriertale; 
@@ -44,22 +44,23 @@ select * from couriertale;
 /* 5. 게시판 테이블 */
 drop table if exists bulletin_board;
 create table bulletin_board (
-   Post_number smallint auto_increment not null ,         -- 게시물번호
-    Post_title varchar(15) not null,            -- 게시물제목
-    Content_Posts longtext not null,          -- 게시물내용
-    Writer_phone_number varchar(20) not null,   -- 작성자전화번호
-    Date_Created datetime default now() ,      --  작성 일시
-    primary key(Post_number)
+	Post_number smallint auto_increment not null ,			-- 게시물번호
+    Post_title varchar(15) not null,				-- 게시물제목
+    Content_Posts longtext not null, 			-- 게시물내용
+    Writer_phone_number varchar(20) not null,	-- 작성자전화번호
+    Date_Created datetime default now()		--  작성 일시
     );
 select * from bulletin_board;
 /* 6. 배송 현황 테이블 */
 drop table if exists Delivery_status;
 create table Delivery_status ( 
-    Invoice_number int ,                 -- 송장번호
-    bitem int not null,                      -- 물건코드
-    barticle int not null ,                     -- 기사코드
-    Customer_phone_numbe varchar(20) not null,             -- 고객전화번호
-    Delivery_status boolean default true not null,            -- 배송상태
+	line_number	int auto_increment   ,					-- 행번호 , 자동부여 			
+	Invoice_number varchar(30) not null,  					-- 송장번호
+    bitem varchar(20) not null, 							-- 물건코드
+    barticle varchar(30) not null ,							-- 기사코드
+    Customer_phone_numbe varchar(20) not null, 				-- 고객전화번호
+    Delivery_status boolean default true not null,				-- 배송상태
+    primary key(line_number) ,
     primary key(Customer_phone_numbe) ,
     foreign key(bitem) references objecttable(bitem) on update cascade on delete set null,
     foreign key(barticle) references couriertale(barticle) on update cascade on delete set null
@@ -69,11 +70,11 @@ select * from Delivery_status;
 drop table if exists texting;
 /* 7. 문자 테이블 */
 create table texting (
-	Customer_phone_numbe varchar(20) ,             -- 고객전화번호
-    bnumber mediumint unique not null,             -- 함번호
+	Customer_phone_numbe varchar(20) , 			   -- 고객전화번호
+    bnumber mediumint unique not null, 			   -- 함번호
     foreign key(Customer_phone_numbe) references Delivery_status(Customer_phone_numbe) on delete no action on update cascade,
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
-    );   
+    );	
 select * from texting;
 
 # 1. 무인택배함 테이블 레코드 
@@ -143,8 +144,11 @@ insert into Delivery_status( Invoice_number , bitem , barticle , Customer_phone_
 insert into texting ( Customer_phone_numbe , bnumber) values( '010-3333-2222' , 1);
 insert into texting ( Customer_phone_numbe , bnumber) values( '010-2222-5555' , 2);
 
+# 배달현황 테이블 수정 
+update Delivery_status set Invoice_number = ? , bitem = ? , barticle = ? , Customer_phone_numbe = ? , Delivery_status = ? where line_number = ?;
 
-
+# 배달현황 테이블 삭제 
+delete from Delivery_status where line_number = ? ;
 
 
 
