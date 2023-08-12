@@ -1,6 +1,7 @@
 package project_csb.view;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import project_csb.controller.CompanySysController;
 import project_csb.interfaceSet.MainInterface;
@@ -33,8 +34,7 @@ public class CompanySysView implements MainInterface {
 						boxRegistration();
 						break;
 					// 배송 관리하기 실행
-					case 2:
-						
+					case 2:						
 						deliveryManegement();
 						break;
 					// 뒤로가기
@@ -42,7 +42,11 @@ public class CompanySysView implements MainInterface {
 						return;
 						
 				}// switch e
-			} catch (Exception e) {	System.out.println(e);}
+			}
+			catch(InputMismatchException e) {
+				System.out.println("[숫자만 입력가능합니다.]");
+				sc=new Scanner(System.in);} 
+			catch (Exception e) {	System.out.println(e);break;}			
 		} // while e
 		
 	}//회사시스템 메인 화면 끝
@@ -74,8 +78,11 @@ public class CompanySysView implements MainInterface {
 
 				}// switch e
 
-			} catch (Exception e) {	System.out.println(e);	}
-			
+			} 
+			catch(InputMismatchException e) {
+				System.out.println("[숫자만 입력가능합니다.]");
+				sc=new Scanner(System.in);} 
+			catch (Exception e) {	System.out.println(e);break;}			
 		} // while
 		
 	}// deliveryManegement e
@@ -110,7 +117,46 @@ public class CompanySysView implements MainInterface {
 
 	// 배송 수정하기 메소드
 	public void boxRegistUpdate() {
-
+		
+		while(true) {
+			try {
+				System.out.print("========= 현황 수정 =========="); 	
+				System.out.print("[수정할 건 번호를 입력해주세요]"); int lineNumber  = sc.nextInt();
+								
+				System.out.print("======수정하실 항목을 선택해주세요=====");
+				System.out.print("1.송장번호 2.물건코드 3.기사코드 4.고객 전화번호 5.수정 마치기");
+				int invoiceNumber = 0; int bitem = 0; int barticle = 0; String userPhone = null;
+				
+				int ch = sc.nextInt();
+				if( ch == 1 ) {
+					System.out.print("[수정하실 송장번호를 입력해주세요]"); invoiceNumber = sc.nextInt();
+				}
+				
+				System.out.print("[수정하실 물건코드를 입력해주세요]"); 
+				System.out.println("[수정하실 기사코드를 입력해주세요]");
+				System.out.println("[수정하실 고객 전화번호를 입력해주세요]"); 
+				if( ch == 5) {
+					
+					if( invoiceNumber != 0 && bitem != 0 && barticle != 0 && userPhone.equals(null) ) {
+					    CompanySysController.getInstance().boxRegistUpdate(lineNumber, bitem, barticle, userPhone);
+					}else if( invoiceNumber == 0 && bitem != 0 && barticle != 0 && userPhone.equals(null) ){
+						CompanySysController.getInstance().boxRegistUpdate( bitem, barticle, userPhone);
+					}else if(invoiceNumber == 0 && bitem == 0 && barticle != 0 && userPhone.equals(null)) {
+						CompanySysController.getInstance().boxRegistUpdate( barticle, userPhone);
+					}
+					
+					
+				}
+				
+			}
+			catch(Exception e){
+				System.out.println(e);
+			}
+			
+			
+			
+		}
+		
 	}
 
 	// 배송 삭제하기 메소드
