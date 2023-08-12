@@ -11,7 +11,7 @@ public class PhoneMainView implements MainInterface{
 		
 	@Override
 	public void OutPutFront() {	
-		System.out.print("\n\n전화번호 입력"); 
+		System.out.print("\n\n전화번호 입력 : "); 
 		
 		//String phoneNumber = scannerValue();
 		
