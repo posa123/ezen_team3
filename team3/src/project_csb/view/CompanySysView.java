@@ -162,6 +162,6 @@ public class CompanySysView implements MainInterface {
 
 	// 배송 삭제하기 메소드
 	public void boxRegistDelete() {
-
+		
 	}
 }
