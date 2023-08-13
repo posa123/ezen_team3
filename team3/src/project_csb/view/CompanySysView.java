@@ -154,15 +154,18 @@ public class CompanySysView implements MainInterface {
 				boolean result = CompanySysController.getInstance().boxRegistUpdate ( 
 							lineNumber , invoiceNumber  ,  bitem  ,  barticle ,  userPhone );	
 				
-				if(result)
-					System.out.println("[수정 완료되었습니다]");
-				else
+				if(result) 
+					System.out.println("[수정 완료되었습니다]");				
+				else 
 					System.out.println("[수정 실패했습니다]");
+														
 			}
 			catch(InputMismatchException e) {
-				System.out.println("[숫자만 입력가능합니다.]");
+				System.out.println("[잘못 입력하셨습니다.]");
 				sc=new Scanner(System.in);} 
-			catch (Exception e) {	System.out.println(e);break;}					
+			catch (Exception e) {	System.out.println(e);break;}	
+			//끝내기
+			break;
 		}		
 	}	
 	
