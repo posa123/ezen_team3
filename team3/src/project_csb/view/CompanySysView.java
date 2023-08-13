@@ -44,9 +44,11 @@ public class CompanySysView implements MainInterface {
 						
 				}// switch e
 			}
+			// 입력 타입이 정수가 아닌 다른 타입이라면
 			catch(InputMismatchException e) {
-				System.out.println("[숫자만 입력가능합니다.]");
+				System.out.println("[잘못 입력하셨습니다.]");
 				sc=new Scanner(System.in);} 
+			//그 외
 			catch (Exception e) {	System.out.println(e);break;}			
 		} // while e
 		
@@ -80,8 +82,9 @@ public class CompanySysView implements MainInterface {
 				}// switch e
 
 			} 
+			// 입력 타입이 정수가 아닌 다른 타입이라면
 			catch(InputMismatchException e) {
-				System.out.println("[숫자만 입력가능합니다.]");
+				System.out.println("[잘못 입력하셨습니다.]");
 				sc=new Scanner(System.in);} 
 			catch (Exception e) {	System.out.println(e);break;}			
 		} // while
@@ -93,7 +96,7 @@ public class CompanySysView implements MainInterface {
 		System.out.println(" \n\n------- Shipping registration ------- ");
 		System.out.print("물건코드 입력 : "); int bitem = sc.nextInt();		
 		System.out.print("기사코드 입력 : "); int barticle = sc.nextInt();		
-		System.out.print("고객 전화번호 입력 : "); String Customer_phone_numbe = sc.next();
+		System.out.print("[ '-' 제외 ]고객 전화번호 입력 : "); String Customer_phone_numbe = sc.next();
 		// 컨트롤러 메소드 호출 결과
 		boolean result = CompanySysController.getInstance().boxRegistration(
 											bitem, barticle, Customer_phone_numbe);		
@@ -101,7 +104,7 @@ public class CompanySysView implements MainInterface {
 		if(result) 
 			System.out.println("안내) 배송 등록하기 완료");
 		 else 
-			System.out.println("오류) 배송 등록하기 실패");
+			System.out.println("안내) 배송 등록하기 실패");
 		
 	}//boxRegistration() e
 
