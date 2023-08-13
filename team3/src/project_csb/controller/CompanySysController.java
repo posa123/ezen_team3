@@ -20,7 +20,18 @@ public class CompanySysController {
 		// boolean deliveryStatus 는 매개변수에 선언할필요가없다 sql설계과정에서 default true 기본값으로 true를 주었기때문에 
 		CompanySysDto companySysDto =
 					new CompanySysDto(madeInvoiceNumber() , bitem , barticle , Customer_phone_numbe);
+		// 유효성 검사
+			// 1. 전화번호에 -가 포함 되어있다면 false
+		if(companySysDto.getUserPhone().contains("-") )return false;
+			// 2. 전화번호에 앞 세개의 문자가 010이 아니라면 false
+		if(!"010".equals(				
+				""+companySysDto.getUserPhone().charAt(0) + 
+					companySysDto.getUserPhone().charAt(1) +
+						companySysDto.getUserPhone().charAt(2))				
+				) return false;
+			
 		
+				 
 		//  dao로 보낸다							
 		return	CompanySysDao.getInstance().boxRegistration(companySysDto);
 	}
