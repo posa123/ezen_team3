@@ -96,7 +96,7 @@ public class CompanySysView implements MainInterface {
 		System.out.println(" \n\n------- Shipping registration ------- ");
 		System.out.print("물건코드 입력 : "); int bitem = sc.nextInt();		
 		System.out.print("기사코드 입력 : "); int barticle = sc.nextInt();		
-		System.out.print("[ '-' 제외 ]고객 전화번호 입력 : "); String Customer_phone_numbe = sc.next();
+		System.out.print("고객 전화번호 입력( '-' 제외 ) : "); String Customer_phone_numbe = sc.next();
 		// 컨트롤러 메소드 호출 결과
 		boolean result = CompanySysController.getInstance().boxRegistration(
 											bitem, barticle, Customer_phone_numbe);		
@@ -148,7 +148,7 @@ public class CompanySysView implements MainInterface {
 						System.out.println("[수정하실 기사코드를 입력해주세요]"); barticle = sc.nextInt();
 						break;
 					case 4 :
-						System.out.println("[수정하실 고객 전화번호를 입력해주세요]"); userPhone = sc.next();
+						System.out.println("[수정하실 고객 전화번호를 입력해주세요]( '-' 제외 )"); userPhone = sc.next();
 						break;
 					case 5 :
 						break;											

@@ -21,9 +21,11 @@ public class CompanySysController {
 		CompanySysDto companySysDto =
 					new CompanySysDto(madeInvoiceNumber() , bitem , barticle , Customer_phone_numbe);
 		// 유효성 검사
-			// 1. 전화번호에 -가 포함 되어있다면 false
+			// 1. 전화번호가 11자리가 아니라면 false
+		if(companySysDto.getUserPhone().length() != 11)return false;
+			// 2. 전화번호에 -가 포함 되어있다면 false
 		if(companySysDto.getUserPhone().contains("-") )return false;
-			// 2. 전화번호에 앞 세개의 문자가 010이 아니라면 false
+			// 3. 전화번호에 앞 세개의 문자가 010이 아니라면 false
 		if(!"010".equals(				
 				""+companySysDto.getUserPhone().charAt(0) + 
 					companySysDto.getUserPhone().charAt(1) +
@@ -58,8 +60,21 @@ public class CompanySysController {
 		else if(barticle != 0) 
 			companySysDto.setBarticle(barticle);
 		
-		else if(userPhone != null) 
-			companySysDto.setUserPhone(userPhone);		
+		else if(userPhone != null) {
+			// 전화번호 유효성 검사
+				// 1. 전화번호가 11자리가 아니라면 false
+				if(userPhone.length() != 11)return false;
+					// 2. 전화번호에 -가 포함 되어있다면 false
+				if(userPhone.contains("-") )return false;
+					// 3. 전화번호에 앞 세개의 문자가 010이 아니라면 false
+				if(!"010".equals(				
+						""+ userPhone.charAt(0) + 
+								userPhone.charAt(1) +
+									userPhone.charAt(2))				
+								) return false;
+				companySysDto.setUserPhone(userPhone);
+		}
+					
 		
 		// dto로 포장한 값을 dao에게 보낸다 (companySysDto)
 		// dao에서 반환된 true/false 값을 view에게 보낸다 		 		
