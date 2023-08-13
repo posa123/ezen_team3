@@ -79,22 +79,21 @@ public class CompanySysDao extends ConnectJdbc{
 			//고객핸드폰 업데이트
 			else if(dto.getUserPhone() != null) {
 				spot = "Customer_phone_numbe";
-				phoneValue = dto.getUserPhone();
-				
-			}			
-			System.out.println(dto.getLineNumber());
-				// 1. sql 작성한다
-			String sql = "update Delivery_status set ? = ?  where lineNumber = ?";													
+				phoneValue = dto.getUserPhone();				
+			}				
+			// 1. sql 작성한다
+			String sql = "update Delivery_status set spot = ?  where lineNumber = ?";	
+			// spot을 미리 작성해둔 컬럼명으로 대체.
+			sql = sql.replace("spot", spot);
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, spot); // 행번호 
 			
 			if(phoneValue != null) 
-				ps.setString(2, phoneValue); // 송장번호 
+				ps.setString(1, phoneValue); // 고객 휴대폰
 			else 
-				ps.setInt(2, value); // 송장번호 
+				ps.setInt(1, value); // 고객 휴대폰
 						
-			ps.setInt(3, dto.getLineNumber()); // 행번호			
+			ps.setInt(2, dto.getLineNumber()); // 행번호			
 			// row - 유효성 검사를 통해 레코드값이 있는지 없는지 한줄이라도 있으면 성공 
 			int row = ps.executeUpdate();
 			if( row == 1 ) return true;
