@@ -1,4 +1,4 @@
-package project_csb.interfaceSet;
+package project_csb.utilSet;
 
 public class ExtraUtil {
 	private static ExtraUtil phoneNumberCheck = new ExtraUtil();

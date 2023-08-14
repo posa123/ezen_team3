@@ -1,6 +1,6 @@
 package project_csb.view;
 
-import project_csb.interfaceSet.MainInterface;
+import project_csb.utilSet.MainInterface;
 
 //기사 view
 public class RiderView implements MainInterface{

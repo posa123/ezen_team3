@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import project_csb.controller.CompanySysController;
-import project_csb.interfaceSet.MainInterface;
 import project_csb.model.dto.CompanySysDto;
+import project_csb.utilSet.MainInterface;
 
 //회사 시스템 view
 public class CompanySysView implements MainInterface {

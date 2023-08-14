@@ -2,8 +2,10 @@ package project_csb.view;
 
 import java.util.Scanner;
 
+import project_csb.utilSet.MainInterface;
+
 //기사 핸드폰 view
-public class RiderPhoneView {
+public class RiderPhoneView implements MainInterface{
 	// 싱글톤
 	private static RiderPhoneView view = new RiderPhoneView();
 	private RiderPhoneView() {}
@@ -12,7 +14,8 @@ public class RiderPhoneView {
 	private Scanner sc = new Scanner(System.in);
 	
 	// 1. 기사 휴대폰 메뉴/기능 
-	public void RiderSystem() {
+	@Override
+	public void OutPutFront() {
 		System.out.println("\n\n ------------------ 기사 시스템 ----------------- ");
 		System.out.println("1.할당된 배달건확인 2.배달 현황수정");
 		int ch = sc.nextInt();

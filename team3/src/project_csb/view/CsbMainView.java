@@ -2,8 +2,8 @@ package project_csb.view;
 
 import java.util.Scanner;
 
-import project_csb.interfaceSet.MainInterface;
-import project_csb.interfaceSet.ViewList;
+import project_csb.utilSet.MainInterface;
+import project_csb.utilSet.ViewList;
 
 // 무인택배함 메인 페이지
 public class CsbMainView implements MainInterface{

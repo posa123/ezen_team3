@@ -45,7 +45,7 @@ public class RiderPhoneDao extends ConnectJdbc{
 			if(rs.next()) {
 				barticle = rs.getInt(1);
 			}
-		} catch (Exception e) {System.out.println(e);}
+		} catch (Exception e) {System.out.println("1" +e);}
 		try {
 			String sql = "select * from Delivery_status where barticle = " +barticle;
 			ps = conn.prepareStatement(sql);
@@ -54,7 +54,7 @@ public class RiderPhoneDao extends ConnectJdbc{
 				RiderPhoneDto dto = new RiderPhoneDto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getBoolean(6));
 				list.add(dto);
 			}	
-		} catch (Exception e) {System.out.println(e);}
+		} catch (Exception e) {System.out.println("2" + e);}
 		return list;
 	}
 }

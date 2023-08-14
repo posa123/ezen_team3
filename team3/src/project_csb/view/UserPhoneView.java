@@ -2,7 +2,7 @@ package project_csb.view;
 
 import java.util.Scanner;
 
-import project_csb.interfaceSet.MainInterface;
+import project_csb.utilSet.MainInterface;
 
 // 유저 핸드폰 화면
 public class UserPhoneView implements MainInterface{

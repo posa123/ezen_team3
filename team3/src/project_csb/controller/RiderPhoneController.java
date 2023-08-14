@@ -26,7 +26,7 @@ public class RiderPhoneController {
 	
 	// 자신에게 할당된 배달건 확인
 	public ArrayList<RiderPhoneDto> boxRegistList(){
-		return RiderPhoneDao.getInstance().boxRegistList( PhoneMainController.getInstance().getPhoneSession());
+		return RiderPhoneDao.getInstance().boxRegistList( MainPhoneController.getInstance().getPhoneSession());
 	}
 	
 }

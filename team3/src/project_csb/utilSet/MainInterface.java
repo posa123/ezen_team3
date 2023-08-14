@@ -1,4 +1,4 @@
-package project_csb.interfaceSet;
+package project_csb.utilSet;
 
 public interface MainInterface {
      

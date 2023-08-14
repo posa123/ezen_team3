@@ -1,6 +1,6 @@
 package project_csb.view;
 
-import project_csb.interfaceSet.MainInterface;
+import project_csb.utilSet.MainInterface;
 
 // 사용자 view
 public class UserView implements MainInterface{

@@ -2,9 +2,9 @@ package project_csb.controller;
 
 import java.util.ArrayList;
 
-import project_csb.interfaceSet.ExtraUtil;
 import project_csb.model.dao.CompanySysDao;
 import project_csb.model.dto.CompanySysDto;
+import project_csb.utilSet.ExtraUtil;
 
 //회사 시스템 컨트롤러
 public class CompanySysController {
