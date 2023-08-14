@@ -6,4 +6,8 @@ public class RiderPhoneController {
 	private static RiderPhoneController controller = new RiderPhoneController();
 	private RiderPhoneController() {}
 	public static RiderPhoneController getInstance() {return controller;}
+	
+	
+	public 
+	
 }
