@@ -1,6 +1,6 @@
 package project_csb.model.dto;
 // 유저핸드폰 dto
-public class UserPhoneDto {
+public class UserPhoneDto{
 	
 	// 함번호
 	private int bnumber;
