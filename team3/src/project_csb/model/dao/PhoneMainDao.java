@@ -12,6 +12,17 @@ public class PhoneMainDao extends ConnectJdbc{
 	// 기사 판단 메소드
 	public boolean isRiderPhone( String phoneSession ) {
 		
+		try {
+			String sql = "select barphone from couriertale where barphone = ?";		
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) 
+				return true;
+			else
+				return false;
+		}catch(Exception e) {
+			System.out.println(e);
+		}
 		return false;
 	}
 }

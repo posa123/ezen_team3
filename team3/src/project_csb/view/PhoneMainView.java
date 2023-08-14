@@ -3,7 +3,7 @@ package project_csb.view;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import project_csb.controller.PhoneMainController;
+import project_csb.controller.MainPhoneView;
 import project_csb.interfaceSet.MainInterface;
 import project_csb.interfaceSet.ViewList;
 
@@ -22,9 +22,16 @@ public class PhoneMainView implements MainInterface{
 			
 		
 		System.out.print("\n\n전화번호 입력( '-' 제외 : "); String phoneNumber = sc.next();
-		
-		PhoneMainController.getInstance().setPhoneSession(phoneNumber);
+		// 세션등록 메소드
+		if(MainPhoneView.getInstance().setPhoneSession(phoneNumber) == false) {
+			System.out.println("입력 실패");		
+			return;
+		}
+			
+	
+			
 		while(true) {
+		
 			System.out.print("1.기사 핸드폰 열기 2.사용자 핸드폰 열기 3.뒤로가기 선택>>");
 			
 			int ch = sc.nextInt();
@@ -32,7 +39,7 @@ public class PhoneMainView implements MainInterface{
 			switch(ch) {
 			case 1:
 				// 컨트롤러의 기사 판단 메소드
-				if(PhoneMainController.getInstance().isRiderPhone()) 
+				if(MainPhoneView.getInstance().isRiderPhone()) 
 					RiderPhoneView.getInstance().OutPutFront();
 				else
 					System.out.println("기사 휴대폰이 아닙니다.");				
@@ -43,7 +50,7 @@ public class PhoneMainView implements MainInterface{
 				break;
 			//뒤로가기
 			case 3:
-				PhoneMainController.getInstance().setPhoneSession(null);
+				MainPhoneView.getInstance().setPhoneSession(null);
 				break;
 			}
 		}

@@ -2,7 +2,7 @@ package project_csb.controller;
 
 import java.util.ArrayList;
 
-import project_csb.interfaceSet.PhoneNumberCheck;
+import project_csb.interfaceSet.ExtraUtil;
 import project_csb.model.dao.CompanySysDao;
 import project_csb.model.dto.CompanySysDto;
 
@@ -20,10 +20,10 @@ public class CompanySysController {
 		// dto 송장번호 , 물건코드 , 기사코드 , 유저핸드폰번호 , 배송상태 를 등록함 
 		// boolean deliveryStatus 는 매개변수에 선언할필요가없다 sql설계과정에서 default true 기본값으로 true를 주었기때문에 
 		CompanySysDto companySysDto =
-					new CompanySysDto(madeInvoiceNumber() , bitem , barticle , Customer_phone_numbe);
+					new CompanySysDto( ExtraUtil.getInstance().madeInvoiceNumber() , bitem , barticle , Customer_phone_numbe);
 		
 		// 유효성 검사
-			if(PhoneNumberCheck.getInstance().phoneNumberCheck(companySysDto.getUserPhone()))
+			if(ExtraUtil.getInstance().phoneNumberCheck(companySysDto.getUserPhone()))
 				return false;
 						 
 		//  dao로 보낸다							
@@ -40,6 +40,7 @@ public class CompanySysController {
 	public boolean boxRegistUpdate(int lineNumber , int Invoice_number , int bitem , int barticle , String userPhone) {
 		
 		CompanySysDto companySysDto = new CompanySysDto();
+		// 행번호 set
 		companySysDto.setLineNumber(lineNumber);
 		// 1. 유효성 검사
 			// set : 값을 설정할때
@@ -53,7 +54,7 @@ public class CompanySysController {
 			companySysDto.setBarticle(barticle);
 		
 		else if(userPhone != null) {
-			if(PhoneNumberCheck.getInstance().phoneNumberCheck(userPhone))
+			if(ExtraUtil.getInstance().phoneNumberCheck(userPhone))
 				return false;
 				companySysDto.setUserPhone(userPhone);
 		}
@@ -72,9 +73,5 @@ public class CompanySysController {
 		return CompanySysDao.getInstance().boxRegistDelete(lineNumber);
 	}
 	
-	// 송장번호 생성 메소드
-      public int madeInvoiceNumber() {
-         return (int)((Math.random() * 89999999) + 10000000);      
-      }
 
 }

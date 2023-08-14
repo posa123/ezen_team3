@@ -15,7 +15,7 @@ create table anmdtable(
 select * from anmdtable;
 # 2. 물건 테이블
 create table objecttable( 
-    bitem  int not null unique , -- 물건코드 
+    bitem  int not null unique , 		-- 물건코드 
     bname varchar(20) not null,       	 -- 물건이름
     bsituation varchar(2) not null , 	 -- 보관상태
     primary key(bitem) 
@@ -24,18 +24,18 @@ select * from objecttable;
 # 3. 택배함보관내역 테이블
 drop table if exists archistable; 
 create table archistable( 
-    cnumer Smallint not null,          	-- 번호 
-    bnumber mediumint unique not null ,       	-- 함번호  
-    storagedate datetime default now() not null,      -- 보관일시 
-    visitdate datetime ,		-- 찾아간일시 
-    primary key(cnumer) , 
+    cnumer Smallint not null,          					-- 번호 
+    bnumber mediumint unique not null ,       			-- 함번호  
+    storagedate datetime default now() not null,    	-- 보관일시 
+    visitdate datetime ,								-- 찾아간일시 
+    primary key(cnumer) , 	
     foreign key(bnumber)  references anmdtable(bnumber) on update cascade
     );      
 select * from archistable;
 # 4. 택배기사 테이블 
 create table couriertale( 
-    barticle int not null unique,      -- 기사코드
-    barname varchar(5) not null,        -- 기사이름 
+    barticle int not null unique,     			 -- 기사코드
+    barname varchar(5) not null,        		-- 기사이름 
     barphone varchar(20) not null unique,		-- 기사전화번호
     primary key(barticle)
     );      
@@ -45,22 +45,22 @@ select * from couriertale;
 drop table if exists bulletin_board;
 create table bulletin_board (
 	Post_number smallint auto_increment not null ,			-- 게시물번호
-    Post_title varchar(15) not null,				-- 게시물제목
-    Content_Posts longtext not null, 			-- 게시물내용
-    Writer_phone_number varchar(20) not null,	-- 작성자전화번호
-    Date_Created datetime default now() ,		--  작성 일시
+    Post_title varchar(15) not null,						-- 게시물제목
+    Content_Posts longtext not null, 						-- 게시물내용
+    Writer_phone_number varchar(20) not null,				-- 작성자전화번호
+    Date_Created datetime default now() ,					--  작성 일시
     primary key(Post_number)
     );
 select * from bulletin_board;
 /* 6. 배송 현황 테이블 */
 drop table if exists Delivery_status;
 create table Delivery_status ( 
-	lineNumber	int auto_increment   ,					-- 행번호 , 자동부여 				-- 행번호 , 자동부여 			
-	InvoiceNumber int not null,  					-- 송장번호					-- 송장번호
-    bitem int not null, 							-- 물건코드
-    barticle int not null ,							-- 기사코드
+	lineNumber	int auto_increment   ,					-- 행번호 , 자동부여 						
+	InvoiceNumber int not null,  						-- 송장번호				
+    bitem int not null, 								-- 물건코드
+    barticle int not null ,								-- 기사코드
     Customer_phone_numbe bigint not null, 				-- 고객전화번호
-    delivery_status boolean default true not null,				-- 배송상태
+    delivery_status boolean default true not null,		-- 배송상태
     primary key(lineNumber) ,
     foreign key(bitem) references objecttable(bitem) on update cascade ,
     foreign key(barticle) references couriertale(barticle) on update cascade 
@@ -69,8 +69,8 @@ select * from Delivery_status;
 drop table if exists texting;
 /* 7. 문자 테이블 */
 create table texting (
-	Customer_phone_numbe int , 			   -- 고객전화번호
-    bnumber mediumint unique not null, 			   -- 함번호
+	Customer_phone_numbe int , 			  	 -- 고객전화번호
+    bnumber mediumint unique not null, 		 -- 함번호
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
     );	
 select * from texting;
@@ -114,21 +114,21 @@ insert into objecttable( bitem , bname , bsituation )   values(333355517 , '고�
  insert into archistable(cnumer , bnumber , storagedate , visitdate ) values( 3 , 3 ,  '2023-08-08 17:53:03' , '2023-08-09 08:00:03' );
  
  # 4. 택배기사 레코드 
-insert into couriertale(barticle , barname , barphone ) values(230808101 , '홍길동' , '010-1111-2222');
-insert into couriertale(barticle , barname , barphone ) values(230808102 , '유재석' , '010-1111-3333');
-insert into couriertale(barticle , barname , barphone ) values(230808103 , '강호동' , '010-1111-4444');
-insert into couriertale(barticle , barname , barphone ) values(230808104 , '신동엽' , '010-1111-5555');
-insert into couriertale(barticle , barname , barphone ) values(230808105 , '김근배' , '010-1111-6666');
-insert into couriertale(barticle , barname , barphone ) values(230808106, '정희락' , '010-1111-7777');
-insert into couriertale(barticle , barname , barphone ) values(230808107 , '한승우' , '010-1111-8888');
-insert into couriertale(barticle , barname , barphone ) values(230808108 , '김현수' , '010-1111-9999');
-insert into couriertale(barticle , barname , barphone ) values(230808109 , '이성호' , '010-2222-1111');
-insert into couriertale(barticle , barname , barphone ) values(230808110 , '김규리' , '010-2222-2222');
-insert into couriertale(barticle , barname , barphone ) values(230808111 , '고연진' , '010-2222-3333');
-insert into couriertale(barticle , barname , barphone ) values(230808112 , '황기준' , '010-2222-4444');
-insert into couriertale(barticle , barname , barphone ) values(230808113 , '김준희' , '010-2222-5555');
-insert into couriertale(barticle , barname , barphone ) values(230808114 , '이환희' , '010-2222-6666');
-insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , '010-2222-7777');
+insert into couriertale(barticle , barname , barphone ) values(230808101 , '홍길동' , 01011112222);
+insert into couriertale(barticle , barname , barphone ) values(230808102 , '유재석' , 01011113333);
+insert into couriertale(barticle , barname , barphone ) values(230808103 , '강호동' , 01011114444);
+insert into couriertale(barticle , barname , barphone ) values(230808104 , '신동엽' , 01011115555);
+insert into couriertale(barticle , barname , barphone ) values(230808105 , '김근배' , 01011116666);
+insert into couriertale(barticle , barname , barphone ) values(230808106, '정희락' , 01011117777);
+insert into couriertale(barticle , barname , barphone ) values(230808107 , '한승우' , 01011118888);
+insert into couriertale(barticle , barname , barphone ) values(230808108 , '김현수' , 01011119999);
+insert into couriertale(barticle , barname , barphone ) values(230808109 , '이성호' , 01022221111);
+insert into couriertale(barticle , barname , barphone ) values(230808110 , '김규리' , 01022222222);
+insert into couriertale(barticle , barname , barphone ) values(230808111 , '고연진' , 01022223333);
+insert into couriertale(barticle , barname , barphone ) values(230808112 , '황기준' , 01022224444);
+insert into couriertale(barticle , barname , barphone ) values(230808113 , '김준희' , 01022225555);
+insert into couriertale(barticle , barname , barphone ) values(230808114 , '이환희' , 01022226666);
+insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , 01022227777);
 
 #  5. 게시판 레코드 
 insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' , '2023-08-07 14:00:00' );
