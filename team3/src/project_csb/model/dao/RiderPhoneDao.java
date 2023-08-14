@@ -12,7 +12,28 @@ public class RiderPhoneDao extends ConnectJdbc{
 	private RiderPhoneDao() {}
 	public static RiderPhoneDao getInstance() {return dao;}	
 	
-	
+	// 배달현황 수정
+			// 물건코드로 식별할꺼기 때문에 컨트롤러에서 보낸 물건코드를 매게변수에 담는다
+		public boolean deliveryCorrection(int bitem) {
+			try{
+				// 1. SQL 작성한다 
+					// 수정할 배송현황 물건코드를 입력하고 배송상태를 수정한다 false로 
+				String sql = "update Delivery_status set Delivery_status = false where bitem = ?";
+				ps = conn.prepareStatement(sql);
+				// int로 선언된 물건코드 setter부르기 
+				ps.setInt(1, bitem);
+				int row = ps.executeUpdate(sql);
+				if( row == 1) {
+					return true;
+				}else {
+					return false;
+				}
+				
+			}catch (Exception e) {System.out.println(e);}
+			
+			return false;
+		}
+		
 	// 자신에게 할당된 배달건 확인
 	public ArrayList<RiderPhoneDto> boxRegistList( String phoneNumber ){
 		ArrayList<RiderPhoneDto> list = new  ArrayList<>();
