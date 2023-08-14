@@ -1,14 +1,14 @@
 package project_csb.controller;
 
-import project_csb.interfaceSet.PhoneNumberCheck;
+import project_csb.interfaceSet.ExtraUtil;
 import project_csb.model.dao.PhoneMainDao;
 
 //핸드폰 메인화면 controller
-public class PhoneMainController {
+public class MainPhoneView {
 	// 싱글톤
-	private static PhoneMainController controller = new PhoneMainController();
-	private PhoneMainController() {}
-	public static PhoneMainController getInstance() {return controller;}
+	private static MainPhoneView controller = new MainPhoneView();
+	private MainPhoneView() {}
+	public static MainPhoneView getInstance() {return controller;}
 	// 핸드폰세션
 	private String phoneSession = null;
 	// 핸드폰 세션 게터
@@ -16,7 +16,7 @@ public class PhoneMainController {
 	// 핸드폰 세션 등록
 	public boolean setPhoneSession( String phoneNumber ) {	
 		// 유효성 검사
-		if(PhoneNumberCheck.getInstance().phoneNumberCheck(phoneNumber)) {
+		if(ExtraUtil.getInstance().phoneNumberCheck(phoneNumber)) {
 			phoneSession = phoneNumber;
 			return true;
 		}

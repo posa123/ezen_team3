@@ -1,9 +1,9 @@
 package project_csb.interfaceSet;
 
-public class PhoneNumberCheck {
-	private static PhoneNumberCheck phoneNumberCheck = new PhoneNumberCheck();
-	private PhoneNumberCheck() {}
-	public static PhoneNumberCheck getInstance() {return phoneNumberCheck;}
+public class ExtraUtil {
+	private static ExtraUtil phoneNumberCheck = new ExtraUtil();
+	private ExtraUtil() {}
+	public static ExtraUtil getInstance() {return phoneNumberCheck;}
 	
 	
 	/*
@@ -29,5 +29,24 @@ public class PhoneNumberCheck {
 			
 			return true;
 	}
+	
+/*
+ 	===================================================================
+	 madeInvoiceNumber() 메소드는 	10000000부터 99999999까지의 난수를 생성합니다.
+*/	
+	// 송장번호 생성 메소드
+    public int madeInvoiceNumber() {
+       return (int)((Math.random() * 89999999) + 10000000);      
+    }
+    
+/*
+ 	===================================================================
+ 	certNumber() 메소드는 1000부터 9999까지의 난수를 생성합니다.
+*/
+    // 인증번호 생성 메소드
+ 	public int certNumber() {
+ 		int certNumber = (int)((Math.random() * 8999) + 1000 );
+ 		return certNumber;
+ 	}
 	
 }
