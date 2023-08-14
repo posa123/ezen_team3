@@ -1,6 +1,7 @@
 package project_csb.database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
@@ -16,17 +17,16 @@ public class ConnectJdbc {
 	public ConnectJdbc() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			
+			this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectCsb","root","0000");
 			System.out.println("연동성공");
 		}
 		
 		catch( Exception e) {
-			System.out.println("연동 실패 사유 : " + e);
+			System.out.println("연동 실패 : " + e);
 		}
 	}
-		
-	
 }
+
 
 /*
 view단 ----------
@@ -50,6 +50,8 @@ boxRegistration()
  	
  	
  */
+
+
 
 
 
