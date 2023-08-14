@@ -1,21 +1,60 @@
 package project_csb.view;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+import project_csb.controller.PhoneMainController;
 import project_csb.interfaceSet.MainInterface;
+import project_csb.interfaceSet.ViewList;
 
 // 핸드폰 메인화면 view
 public class PhoneMainView implements MainInterface{
 	// 싱글톤
 	private static PhoneMainView view = new PhoneMainView();
 	private PhoneMainView() {}
-	public static PhoneMainView getInstance() {return view;}	
-		
+	public static PhoneMainView getInstance() {return view;}
+	//입력객체
+	private Scanner sc = new Scanner(System.in);	
+
 	@Override
 	public void OutPutFront() {	
-		System.out.print("\n\n전화번호 입력 : "); 
+		try {
+			
 		
-		//String phoneNumber = scannerValue();
+		System.out.print("\n\n전화번호 입력( '-' 제외 : "); String phoneNumber = sc.next();
 		
-		//만약 전화번호가 기사 전화번호라면 기사 view 사용자 전화번호라면 사용자 view		
-		
+		PhoneMainController.getInstance().setPhoneSession(phoneNumber);
+		while(true) {
+			System.out.print("1.기사 핸드폰 열기 2.사용자 핸드폰 열기 3.뒤로가기 선택>>");
+			
+			int ch = sc.nextInt();
+			
+			switch(ch) {
+			case 1:
+				// 컨트롤러의 기사 판단 메소드
+				if(PhoneMainController.getInstance().isRiderPhone()) 
+					RiderPhoneView.getInstance().OutPutFront();
+				else
+					System.out.println("기사 휴대폰이 아닙니다.");				
+				break;
+			//사용자 핸드폰 열기
+			case 2:
+				UserPhoneView.getInstance().OutPutFront();
+				break;
+			//뒤로가기
+			case 3:
+				PhoneMainController.getInstance().setPhoneSession(null);
+				break;
+			}
+		}
+		// 입력 타입이 정수가 아닌 다른 타입이라면
+		}catch(InputMismatchException e) {
+			System.out.println("[잘못 입력하셨습니다.]");
+			sc=new Scanner(System.in);} 
+		// 그 외
+		catch(Exception e) {
+			System.out.println(e);
+			sc = new Scanner(System.in);
+		}
 	}
 }
