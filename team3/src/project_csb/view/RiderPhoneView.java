@@ -24,7 +24,6 @@ public class RiderPhoneView {
 	
 	// 2. 할단된 배달건확인 메소드
 	
-	
 	// 3. 배달현황 수정 메소드 
 	
 }// class e

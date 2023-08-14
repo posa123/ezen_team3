@@ -31,7 +31,6 @@ public class RiderPhoneDto {
 	}
 
 	// getter and setter
-	
 	public int getLineNumber() {
 		return lineNumber;
 	}
