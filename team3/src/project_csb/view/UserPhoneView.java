@@ -14,8 +14,8 @@ public class UserPhoneView implements MainInterface{
 	
 	@Override
 	public void OutPutFront() {
-		System.out.println("유저폰뷰 실행");
-		System.out.println("1. 배송조회 2. 문자확인하기   선택 > ");
+		System.out.println("---------------- UserPhone System ------------------------");
+		System.out.println("1.송장번호확인하기 2.배송상태확인하기  3.문자확인하기   선택 > ");
 		try {
 			int ch = sc.nextInt();
 			if( ch == 1 ) {
@@ -23,6 +23,8 @@ public class UserPhoneView implements MainInterface{
 			}
 			if( ch == 2 ) {
 				//문자확인 메소드 불러와야함!! 아직 안만듬
+			}if(ch == 3) {
+				
 			}
 			
 		}catch (Exception e) {
