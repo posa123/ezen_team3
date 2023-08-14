@@ -10,14 +10,11 @@ import project_csb.utilSet.MainInterface;
 //회사 시스템 view
 public class CompanySysView implements MainInterface {
 	// 싱글톤
-	private static CompanySysView view = new CompanySysView();
+	private static CompanySysView companySysView = new CompanySysView();
 
-	private CompanySysView() {
-	}
+	private CompanySysView() {}
 
-	public static CompanySysView getInstance() {
-		return view;
-	}
+	public static CompanySysView getInstance() {return companySysView;}
 
 	private Scanner sc = new Scanner(System.in);
 
@@ -59,7 +56,7 @@ public class CompanySysView implements MainInterface {
 
 		while (true) {
 			System.out.println(" \n\n------- Delivery Management ------- ");
-			System.out.println("1.배송현황 2.배송 건 수정 3.배송 건 삭제 4.뒤로가기");
+			System.out.println("1.배송현황 2.배송 건 수정 3.배송 건 삭제 4.뒤로가기 선택>>");
 			try {
 				int ch2 = sc.nextInt();
 				switch (ch2) {
@@ -111,8 +108,8 @@ public class CompanySysView implements MainInterface {
 	// 배송 현황출력 메소드
 	public void boxShipping() {
 		ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxShipping();
-		System.out.printf("%-8s %-8s %-8s %-8s %-8s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
-		System.out.println("=========================================");
+		System.out.printf("%-9s %-9s %-9s %-8s %-9s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.println("==================================================================");
 		for (int i = 0; i < dto.size(); i++) {
 			CompanySysDto tmpDto = dto.get(i); // i번째의 객체를 호출
 			System.out.printf("%-10s %-10s %-10s %-10s %-11s %-10s \n", 
@@ -151,7 +148,7 @@ public class CompanySysView implements MainInterface {
 						System.out.println("[수정하실 고객 전화번호를 입력해주세요]( '-' 제외 )"); userPhone = sc.next();
 						break;
 					case 5 :
-						break;											
+						return;											
 				}	
 				// 컨트롤러의 업데이트 메소드
 				boolean result = CompanySysController.getInstance().boxRegistUpdate ( 

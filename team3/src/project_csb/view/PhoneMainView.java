@@ -8,9 +8,9 @@ import project_csb.utilSet.MainInterface;
 // 핸드폰 메인화면 view
 public class PhoneMainView implements MainInterface{
 	// 싱글톤
-	private static PhoneMainView view = new PhoneMainView();
+	private static PhoneMainView phoneMainView = new PhoneMainView();
 	private PhoneMainView() {}
-	public static PhoneMainView getInstance() {return view;}
+	public static PhoneMainView getInstance() {return phoneMainView;}
 	//입력객체
 	private Scanner sc = new Scanner(System.in);	
 
@@ -19,7 +19,7 @@ public class PhoneMainView implements MainInterface{
 		try {
 			
 		
-		System.out.print("\n\n전화번호 입력( '-' 제외 : "); String phoneNumber = sc.next();
+		System.out.print("\n\n전화번호 입력( '-' 제외 ) : "); String phoneNumber = sc.next();
 		// 세션등록 메소드
 		if(MainPhoneController.getInstance().setPhoneSession(phoneNumber) == false) {
 			System.out.println("입력 실패");		

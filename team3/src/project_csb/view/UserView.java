@@ -5,9 +5,9 @@ import project_csb.utilSet.MainInterface;
 // 사용자 view
 public class UserView implements MainInterface{
 	// 싱글톤
-	private static UserView view = new UserView();
+	private static UserView userView = new UserView();
 	private UserView() {}
-	public static UserView getInstance() {return view;}	
+	public static UserView getInstance() {return userView;}	
 	
 	@Override
 	public void OutPutFront() {

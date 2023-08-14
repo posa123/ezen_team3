@@ -59,7 +59,7 @@ create table Delivery_status (
 	InvoiceNumber int not null,  						-- 송장번호				
     bitem int not null, 								-- 물건코드
     barticle int not null ,								-- 기사코드
-    Customer_phone_numbe bigint not null, 				-- 고객전화번호
+    Customer_phone_numbe varchar(13) not null, 				-- 고객전화번호
     delivery_status boolean default true not null,		-- 배송상태
     primary key(lineNumber) ,
     foreign key(bitem) references objecttable(bitem) on update cascade ,
@@ -114,29 +114,29 @@ insert into objecttable( bitem , bname , bsituation )   values(333355517 , '고�
  insert into archistable(cnumer , bnumber , storagedate , visitdate ) values( 3 , 3 ,  '2023-08-08 17:53:03' , '2023-08-09 08:00:03' );
  
  # 4. 택배기사 레코드 
-insert into couriertale(barticle , barname , barphone ) values(230808101 , '홍길동' , 01011112222);
-insert into couriertale(barticle , barname , barphone ) values(230808102 , '유재석' , 01011113333);
-insert into couriertale(barticle , barname , barphone ) values(230808103 , '강호동' , 01011114444);
-insert into couriertale(barticle , barname , barphone ) values(230808104 , '신동엽' , 01011115555);
-insert into couriertale(barticle , barname , barphone ) values(230808105 , '김근배' , 01011116666);
-insert into couriertale(barticle , barname , barphone ) values(230808106, '정희락' , 01011117777);
-insert into couriertale(barticle , barname , barphone ) values(230808107 , '한승우' , 01011118888);
-insert into couriertale(barticle , barname , barphone ) values(230808108 , '김현수' , 01011119999);
-insert into couriertale(barticle , barname , barphone ) values(230808109 , '이성호' , 01022221111);
-insert into couriertale(barticle , barname , barphone ) values(230808110 , '김규리' , 01022222222);
-insert into couriertale(barticle , barname , barphone ) values(230808111 , '고연진' , 01022223333);
-insert into couriertale(barticle , barname , barphone ) values(230808112 , '황기준' , 01022224444);
-insert into couriertale(barticle , barname , barphone ) values(230808113 , '김준희' , 01022225555);
-insert into couriertale(barticle , barname , barphone ) values(230808114 , '이환희' , 01022226666);
-insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , 01022227777);
+insert into couriertale(barticle , barname , barphone ) values(230808101 , '홍길동' , '01011112222');
+insert into couriertale(barticle , barname , barphone ) values(230808102 , '유재석' , '01011113333');
+insert into couriertale(barticle , barname , barphone ) values(230808103 , '강호동' , '01011114444');
+insert into couriertale(barticle , barname , barphone ) values(230808104 , '신동엽' , '01011115555');
+insert into couriertale(barticle , barname , barphone ) values(230808105 , '김근배' , '01011116666');
+insert into couriertale(barticle , barname , barphone ) values(230808106, '정희락' , '01011117777');
+insert into couriertale(barticle , barname , barphone ) values(230808107 , '한승우' , '01011118888');
+insert into couriertale(barticle , barname , barphone ) values(230808108 , '김현수' ,'01011119999');
+insert into couriertale(barticle , barname , barphone ) values(230808109 , '이성호' , '01022221111');
+insert into couriertale(barticle , barname , barphone ) values(230808110 , '김규리' , '01022222222');
+insert into couriertale(barticle , barname , barphone ) values(230808111 , '고연진' , '01022223333');
+insert into couriertale(barticle , barname , barphone ) values(230808112 , '황기준' , '01022224444');
+insert into couriertale(barticle , barname , barphone ) values(230808113 , '김준희' , '01022225555');
+insert into couriertale(barticle , barname , barphone ) values(230808114 , '이환희' , '01022226666');
+insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , '01022227777');
 
 #  5. 게시판 레코드 
 insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' , '2023-08-07 14:00:00' );
 insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121' , '2023-08-08 12:00:00' );
 
 # 6. 배송 현황 레코드 
-insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe  ) values( 20230808 , 33332222 , 230808101 , 01033332222  );
-insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 20230809 , 33335555 , 230808102 , 01022225555 );
+insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe  ) values( 20230808 , 33332222 , 230808101 , '01033332222'  );
+insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 20230809 , 33335555 , 230808102 , '01022225555' );
        
 # 7. 문자  레코드         
 insert into texting ( Customer_phone_numbe , bnumber) values( 010-3333-2222 , 1);

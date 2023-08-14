@@ -23,7 +23,7 @@ public class CompanySysController {
 					new CompanySysDto( ExtraUtil.getInstance().madeInvoiceNumber() , bitem , barticle , Customer_phone_numbe);
 		
 		// 유효성 검사
-			if(ExtraUtil.getInstance().phoneNumberCheck(companySysDto.getUserPhone()))
+			if(ExtraUtil.getInstance().phoneNumberCheck(companySysDto.getUserPhone()) == false)
 				return false;
 						 
 		//  dao로 보낸다							
@@ -54,7 +54,7 @@ public class CompanySysController {
 			companySysDto.setBarticle(barticle);
 		
 		else if(userPhone != null) {
-			if(ExtraUtil.getInstance().phoneNumberCheck(userPhone))
+			if(ExtraUtil.getInstance().phoneNumberCheck(userPhone) == false)
 				return false;
 				companySysDto.setUserPhone(userPhone);
 		}

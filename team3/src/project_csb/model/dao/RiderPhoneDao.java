@@ -1,7 +1,6 @@
 package project_csb.model.dao;
 
 import java.util.ArrayList;
-
 import project_csb.database.ConnectJdbc;
 import project_csb.model.dto.RiderPhoneDto;
 
@@ -14,14 +13,14 @@ public class RiderPhoneDao extends ConnectJdbc{
 	
 	// 배달현황 수정
 			// 물건코드로 식별할꺼기 때문에 컨트롤러에서 보낸 물건코드를 매게변수에 담는다
-		public boolean deliveryCorrection(int bitem) {
+		public boolean deliveryCorrection(int lineNumber) {
 			try{
 				// 1. SQL 작성한다 
 					// 수정할 배송현황 물건코드를 입력하고 배송상태를 수정한다 false로 
-				String sql = "update Delivery_status set Delivery_status = false where bitem = ?";
+				String sql = "update Delivery_status set Delivery_status = false where lineNumber = ?";
 				ps = conn.prepareStatement(sql);
 				// int로 선언된 물건코드 setter부르기 
-				ps.setInt(1, bitem);
+				ps.setInt(1, lineNumber);
 				int row = ps.executeUpdate(sql);
 				if( row == 1) {
 					return true;
