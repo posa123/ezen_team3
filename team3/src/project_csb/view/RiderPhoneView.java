@@ -20,23 +20,27 @@ public class RiderPhoneView implements MainInterface{
 	// 1. 기사 휴대폰 메뉴/기능 
 	@Override
 	public void OutPutFront() {
-		System.out.println("\n\n ------------------ 기사 시스템 ----------------- ");
-		System.out.println("1.할당된 배달건확인 2.배달 현황수정 3.뒤로가기 선택 >>");
-		try {
-			int ch = sc.nextInt();
-			switch(ch) {
-			case 1:
-				cheakDelivery();
-				break;
-			case 2:
-				updateDelivery();
-				break;
-			case 3:
-				return;				
-			}	
+		while(true) {
+			System.out.println("\n\n =============== 기사 시스템 ============== ");
+			System.out.println("1.할당된 배달건확인 2.배달 현황수정 3.뒤로가기 선택 >>");
+			try {
+				int ch = sc.nextInt();
+				
+				switch(ch) {
+				case 1:
+					cheakDelivery();
+					break;
+				case 2:
+					updateDelivery();
+					break;
+				case 3:
+					return;				
+				}	
+			}
+			catch(InputMismatchException e) {System.out.println("[잘못 입력하셨습니다]");}
+			catch(Exception e) {System.out.println(e);}
 		}
-		catch(InputMismatchException e) {System.out.println("[잘못 입력하셨습니다]");}
-		catch(Exception e) {System.out.println(e);}
+		
 		
 		
 	} // RiderSystem e
@@ -44,7 +48,7 @@ public class RiderPhoneView implements MainInterface{
 	// 2. 할당된 배달건확인 메소드
 	public void cheakDelivery() {
 		ArrayList<RiderPhoneDto> dtoList = RiderPhoneController.getInstance().boxRegistList();
-		System.out.printf("%-9s %-9s %-9s %-8s %-9s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.printf("\n\n%-8s %-8s %-8s %-8s %-8s %-9s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
 		System.out.println("==================================================================");
 		for (int i = 0; i < dtoList.size(); i++) {
 			RiderPhoneDto tmpDto = dtoList.get(i); // i번째의 객체를 호출

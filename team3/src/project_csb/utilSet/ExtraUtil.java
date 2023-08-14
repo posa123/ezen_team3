@@ -16,6 +16,8 @@ public class ExtraUtil {
 	 */
 	public boolean phoneNumberCheck( String phoneNumber ) {
 		// 유효성 검사
+			// 전화번호가 null이면 false
+			if(phoneNumber == null)return false;
 			// 1. 전화번호가 11자리가 아니라면 false
 			if(phoneNumber.length() != 11)return false;
 				// 2. 전화번호에 -가 포함 되어있다면 false

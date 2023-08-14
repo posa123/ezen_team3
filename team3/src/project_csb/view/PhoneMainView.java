@@ -49,7 +49,7 @@ public class PhoneMainView implements MainInterface{
 			//뒤로가기
 			case 3:
 				MainPhoneController.getInstance().setPhoneSession(null);
-				break;
+				return;
 			}
 		}
 		// 입력 타입이 정수가 아닌 다른 타입이라면
