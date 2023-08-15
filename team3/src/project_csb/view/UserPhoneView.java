@@ -54,7 +54,7 @@ public class UserPhoneView implements MainInterface{
 	 * 배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
-		boolean result = UserPhoneController.getInstance().deliveryStatus(0);
+		boolean result = UserPhoneController.getInstance().deliveryStatus();
 		System.out.println("배송 상태"); 
 	}
 	

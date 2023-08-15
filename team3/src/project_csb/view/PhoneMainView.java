@@ -26,8 +26,6 @@ public class PhoneMainView implements MainInterface{
 			return;
 		}
 			
-	
-			
 		while(true) {
 		
 			System.out.print("1.기사 핸드폰 열기 2.사용자 핸드폰 열기 3.뒤로가기 선택>>");

@@ -15,7 +15,7 @@ public class UserPhoneController {
 	
 
 	/*
-	 *  송장번호 확인하는메소드 
+	   송장번호 확인하는메소드 
 	 */
 	public ArrayList<Integer> invoiceNumber() {
 		
@@ -30,6 +30,7 @@ public class UserPhoneController {
 	// 배송상태확인
 	public int deliveryStatus(int invoiceNumber) {
 		
+		// Dao에게 전달 
 		return UserPhoneDao.getInstance().deliveryStatus(invoiceNumber);
 		
 	}
