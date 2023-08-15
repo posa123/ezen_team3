@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import project_csb.controller.RiderPhoneController;
-import project_csb.model.dto.CompanySysDto;
 import project_csb.model.dto.RiderPhoneDto;
 import project_csb.utilSet.MainInterface;
 

@@ -22,7 +22,7 @@ public class MainPhoneController {
 		}
 		else
 			return false;	
-		}
+	}
 	// 기사 판단 메소드
 	public boolean isRiderPhone() {
 		return PhoneMainDao.getInstance().isRiderPhone( phoneSession );

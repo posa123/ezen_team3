@@ -29,6 +29,8 @@ public class CompanySysController {
 		//  dao로 보낸다							
 		return	CompanySysDao.getInstance().boxRegistration(companySysDto);
 	}
+	
+	
 	// 배송 관리
 	public ArrayList<CompanySysDto> boxShipping() {
 		// boxManagement();dao메소드를 return 값으로 view에게 보낸다 
@@ -57,9 +59,7 @@ public class CompanySysController {
 			if(ExtraUtil.getInstance().phoneNumberCheck(userPhone) == false)
 				return false;
 				companySysDto.setUserPhone(userPhone);
-		}
-					
-		
+		}		
 		// dto로 포장한 값을 dao에게 보낸다 (companySysDto)
 		// dao에서 반환된 true/false 값을 view에게 보낸다 		 		
 		return CompanySysDao.getInstance().boxRegistUpdate(companySysDto);
