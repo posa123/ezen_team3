@@ -16,7 +16,7 @@ public class UserPhoneView implements MainInterface{
 	
 	@Override
 	public void OutPutFront() {
-		System.out.println("---------------- UserPhone System ------------------------");
+		System.out.println("\n\n=========== UserPhone System =============");
 		System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.뒤로가기  선택 >> ");
 		try {
 			int ch = sc.nextInt();

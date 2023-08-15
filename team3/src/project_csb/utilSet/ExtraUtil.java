@@ -1,9 +1,9 @@
 package project_csb.utilSet;
 
 public class ExtraUtil {
-	private static ExtraUtil phoneNumberCheck = new ExtraUtil();
+	private static ExtraUtil extraUtil = new ExtraUtil();
 	private ExtraUtil() {}
-	public static ExtraUtil getInstance() {return phoneNumberCheck;}
+	public static ExtraUtil getInstance() {return extraUtil;}
 	
 	
 	/*
