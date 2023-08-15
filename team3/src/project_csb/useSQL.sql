@@ -31,7 +31,7 @@ create table archistable(
     primary key(cnumer) , 	
     foreign key(bnumber)  references anmdtable(bnumber) on update cascade
     );      
-select * from archistable;
+
 # 4. 택배기사 테이블 
 create table couriertale( 
     barticle int not null unique,     			 -- 기사코드
@@ -71,26 +71,29 @@ drop table if exists texting;
 create table texting (
 	Customer_phone_numbe varchar(20) , 			  	 -- 고객전화번호
     bnumber mediumint unique not null, 		 -- 함번호
+    dateReceipt datetime default now() ,
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
     );	
 select * from texting;
+select * from texting , anmdtable;
+select a.bnumber , a.bpw , date_format(dateReceipt , '%y/%m/%d %H시 %i분 %S초' ) from anmdtable a , texting t where a.bnumber = t.bnumber and Customer_phone_numbe = '01033332222';
 
 # 1. 무인택배함 테이블 레코드 
-insert into anmdtable( bnumber , bsituation , bpw ) values( 1 , '실온' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 2 , '냉장' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 3 , '냉동' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 4 , '실온' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 5 , '냉장' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 6 , '냉동' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 7 , '실온' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 8 , '냉장' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 9 , '냉동' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 10 , '실온' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 11 , '냉장' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 12 , '냉동' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 13 , '실온' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 14 , '냉장' , 'null' );
-insert into anmdtable( bnumber , bsituation , bpw ) values( 15 , '냉동' , 'null' );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 1 , '실온' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 2 , '냉장' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 3 , '냉동' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 4 , '실온' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 5 , '냉장' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 6 , '냉동' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 7 , '실온' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 8 , '냉장' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 9 , '냉동' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 10 , '실온' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 11 , '냉장' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 12 , '냉동' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 13 , '실온' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 14 , '냉장' , null );
+insert into anmdtable( bnumber , bsituation , bpw ) values( 15 , '냉동' , null );
 
 # 2. 물건테이블 레코드
 insert into objecttable( bitem , bname , bsituation )   values(33332222 , '에어팟' , '실온');
@@ -139,8 +142,8 @@ insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_n
 insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 20230809 , 33335555 , 230808102 , '01022225555' );
        
 # 7. 문자  레코드         
-insert into texting ( Customer_phone_numbe , bnumber) values( '01033332222' , 1);
-insert into texting ( Customer_phone_numbe , bnumber) values( '01022225555' , 2);
+insert into texting ( Customer_phone_numbe , bnumber ) values( '01033332222' , 1  );
+insert into texting ( Customer_phone_numbe , bnumber ) values( '01022225555' , 2  );
 
 
 
