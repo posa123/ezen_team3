@@ -4,6 +4,7 @@ package project_csb.controller;
 
 import java.util.ArrayList;
 import project_csb.model.dao.UserPhoneDao;
+import project_csb.view.UserPhoneView;
 
 // 유저 핸드폰 컨트롤러
 public class UserPhoneController {
@@ -25,27 +26,19 @@ public class UserPhoneController {
 
 	}
 	
-
+                           
 	// 배송상태확인
-	public boolean deliveryStatus() {
+	public int deliveryStatus(int invoiceNumber) {
 		
+		return UserPhoneDao.getInstance().deliveryStatus(invoiceNumber);
 		
-		return false;
-	
 	}
 	
 	// 문자확인
 	
 	
 
-	/*
-	 * 배송상태 확인하는 메소드
-	 */
-	public int checkDeliveryStatus( int invoiceNumber) {
-		
-		
-		return -1;
-	}
+	
 
 }
 
