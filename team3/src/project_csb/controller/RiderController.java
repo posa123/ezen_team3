@@ -8,4 +8,6 @@ public class RiderController {
 	private static RiderController controller = new RiderController();
 	private RiderController() {}
 	public static RiderController getInstance() {return controller;}
+	
+	
 }

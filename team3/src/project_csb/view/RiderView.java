@@ -13,4 +13,6 @@ public class RiderView implements MainInterface{
 	public void OutPutFront() {
 		System.out.println("\n\n기사 view 실행");
 	}
+	
+	
 }
