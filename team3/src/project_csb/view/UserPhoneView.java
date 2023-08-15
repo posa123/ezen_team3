@@ -62,6 +62,7 @@ public class UserPhoneView implements MainInterface{
 	 * 배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
+<<<<<<< HEAD
 		System.out.println("[택배 어플 켜기]");
 		System.out.print("송장 번호 입력 : "); int invoiceNumber = sc.nextInt();
 		System.out.println("배송 상태");
@@ -78,6 +79,10 @@ public class UserPhoneView implements MainInterface{
 			System.out.println("내역이 없습니다.");
 			break;
 		}	
+=======
+		boolean result = UserPhoneController.getInstance().deliveryStatus();
+		System.out.println("배송 상태"); 
+>>>>>>> branch '정희락' of https://github.com/posa123/ezen_team3
 	}
 	
 	/*

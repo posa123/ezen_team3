@@ -15,6 +15,7 @@ public class CompanySysDto {
 	private String userPhone;
 	// 배송상태(기본값 true)
 	private boolean DeliveryStatus;
+	
 	// 기본생성자
 	public CompanySysDto() {}
 	
