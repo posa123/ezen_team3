@@ -13,6 +13,7 @@ public class UserPhoneController {
 	private UserPhoneController() {}
 	public static UserPhoneController getInstance() {return userPhoneController;}
 	
+
 	/*
 	 *  송장번호 확인하는메소드 
 	 */
@@ -20,7 +21,9 @@ public class UserPhoneController {
 		
 		
 		// MainPhoneController.getInstance().getPhoneSession() 에 값이들어오는걸 dao에게 전달 
-		return UserPhoneDao.getInstance().invoiceNumber(MainPhoneController.getInstance().getPhoneSession());	
+
+		return UserPhoneDao.getInstance().invoiceNumber(MainPhoneController.getInstance().getPhoneSession());
+
 	}
 	
 	/*
@@ -28,8 +31,8 @@ public class UserPhoneController {
 	 */
 	public int checkDeliveryStatus( int invoiceNumber ) {
 		
+		return UserPhoneDao.getInstance().deliveryStatus(invoiceNumber);
 		
-		return -1;
 	}
 	
 	/*
@@ -39,3 +42,20 @@ public class UserPhoneController {
 		return UserPhoneDao.getInstance().checkMail(MainPhoneController.getInstance().getPhoneSession());
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

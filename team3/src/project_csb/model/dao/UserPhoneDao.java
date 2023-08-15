@@ -24,6 +24,7 @@ public class UserPhoneDao extends ConnectJdbc {
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, phoneSession);
 			rs = ps.executeQuery();
+			// 레코드값이 몇개인지 모르기 때문에 while문 사용
 			while(rs.next()) {	
 				// 배열안에 넣는다
 				invoiceList.add(rs.getInt(1));			
@@ -32,7 +33,32 @@ public class UserPhoneDao extends ConnectJdbc {
 		//배열 반환
 		return invoiceList;
 	}
-	
+	// 배송상태확인/출력
+		public int deliveryStatus(int invoiceNumber) {
+			
+			try {
+				// 1. sql작성
+				String sql = "select delivery_status from Delivery_status where InvoiceNumber = ?";
+				
+				ps = conn.prepareStatement(sql);
+				// ? 를 채울값을 넣어야된다 
+				ps.setInt(1, invoiceNumber);
+				rs = ps.executeQuery();
+				// true = 1  false = 2  Error = 0 
+				// 먀냐게 반환값이 true면 배송완료  반환값이 false면 배송중 반환값이 Error면 실패 
+				// delivery_status 는 배달중 배달완료 이기때문에 getBoolean 타입이들어간다 
+				boolean result = rs.getBoolean(1);
+				if(result == true) {
+					return 1;
+				}else if(result == false) {
+					return 2;
+				}
+				
+			}catch (Exception e) {System.out.println(e);}
+			
+			return 0;
+		}
+		
 	/*
 	 *  문자 확인 메소드
 	 */
