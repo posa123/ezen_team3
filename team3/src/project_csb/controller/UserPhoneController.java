@@ -20,8 +20,34 @@ public class UserPhoneController {
 		
 		// MainPhoneController.getInstance().getPhoneSession() 에 값이들어오는걸 dao에게 전달 
 		return UserPhoneDao.getInstance().invoiceNumber(MainPhoneController.getInstance().getPhoneSession());
-		
+	
 	}
+	
+	// 배송상태확인
+	public boolean deliveryStatus() {
+		
+		
+		return false;
+	}
+	
+	// 문자확인
 	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

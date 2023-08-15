@@ -24,6 +24,7 @@ public class UserPhoneDao extends ConnectJdbc {
 			String sql = "select InvoiceNumber from Delivery_status where Customer_phone_numbe = ? ";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
+			// 레코드값이 몇개인지 모르기 때문에 while문 사용
 			while(rs.next()) {	
 				// 배열안에 넣는다
 				invoicelist.add(rs.getInt(1));
@@ -33,4 +34,37 @@ public class UserPhoneDao extends ConnectJdbc {
 		return invoicelist;
 	}
 	
-}
+	// 배송상태확인/출력
+	public int deliveryStatus() {
+		
+		try {
+			// 1. sql작성
+			String sql = "select delivery_status from Delivery_status where InvoiceNumber = ?";
+			
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			// true = 1  false = 2  Error = 0 
+			// 먀냐게 반환값이 true면 배송완료  반환값이 false면 배송중 반환값이 Error면 실패 
+			// delivery_status 는 배달중 배달완료 이기때문에 getBoolean 타입이들어간다 
+			if(rs.next()) {rs.getBoolean(1);} 
+			if(rs.next()) {rs.getBoolean(2);} 
+			if(rs.next()) {rs.getBoolean(3);} 
+			
+			
+		}catch (Exception e) {System.out.println(e);}
+		
+		
+		return 1;
+	}
+	
+}// class e
+
+
+
+
+
+
+
+
+
+
