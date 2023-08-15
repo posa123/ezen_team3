@@ -4,6 +4,7 @@ package project_csb.controller;
 
 import java.util.ArrayList;
 import project_csb.model.dao.UserPhoneDao;
+import project_csb.model.dto.UserPhoneDto;
 
 // 유저 핸드폰 컨트롤러
 public class UserPhoneController {
@@ -23,11 +24,18 @@ public class UserPhoneController {
 	}
 	
 	/*
-	 * 배송상태 확인하는 메소드
+	 * 	배송상태 확인하는 메소드
 	 */
-	public int checkDeliveryStatus( int invoiceNumber) {
+	public int checkDeliveryStatus( int invoiceNumber ) {
 		
 		
 		return -1;
+	}
+	
+	/*
+	 *  문자확인 메소드
+	 */
+	public ArrayList<UserPhoneDto> checkMail(){				
+		return UserPhoneDao.getInstance().checkMail(MainPhoneController.getInstance().getPhoneSession());
 	}
 }

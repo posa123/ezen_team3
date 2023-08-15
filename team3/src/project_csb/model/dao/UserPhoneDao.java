@@ -1,8 +1,10 @@
 package project_csb.model.dao;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import project_csb.database.ConnectJdbc;
+import project_csb.model.dto.UserPhoneDto;
 
 //유저 핸드폰 dao
 public class UserPhoneDao extends ConnectJdbc {
@@ -29,6 +31,28 @@ public class UserPhoneDao extends ConnectJdbc {
 		}catch (Exception e) {System.out.println(e);}
 		//배열 반환
 		return invoiceList;
+	}
+	
+	/*
+	 *  문자 확인 메소드
+	 */
+	public ArrayList<UserPhoneDto> checkMail( String PhoneNumber ){
+		ArrayList<UserPhoneDto> userPhoneDto = new ArrayList<>();
+		try {
+			// 함 비밀번호와 함 번호 찾는 sql문
+			String sql = "select a.bnumber , a.bpw , dateReceipt from anmdtable a , texting t where a.bnumber = t.bnumber and Customer_phone_numbe = ?";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1 , PhoneNumber);
+			rs = ps.executeQuery();
+			while(rs.next()) {	
+				UserPhoneDto dto = new UserPhoneDto( rs.getInt(1) , rs.getString(2) , rs.getString(3));
+				userPhoneDto.add(dto);
+			}
+			// 배열 반환
+			return userPhoneDto;
+		}catch(Exception e) {System.out.println(e);	}	
+		
+		return null;	
 	}
 	
 }

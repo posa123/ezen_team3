@@ -1,21 +1,38 @@
 package project_csb.model.dto;
+
+
 // 유저핸드폰 dto
 public class UserPhoneDto{
 	
 	// 함번호
 	private int bnumber;
 	// 비밀번호 
-	private int bpw;
+	private String bpw;
+	// 수신일
+	private String dateRecipt;
+	
 	
 	// 기본생성자 
 	public UserPhoneDto() {}
 	
+
 	// 풀생성자 
-	public UserPhoneDto(int bnumber, int bpw) {
+	public UserPhoneDto(int bnumber, String bpw , String dateRecipt) {
 		super();
 		this.bnumber = bnumber;
 		this.bpw = bpw;
+		this.dateRecipt = dateRecipt;
 	}
+
+	public String getDateRecipt() {
+		return dateRecipt;
+	}
+
+
+	public void setDateRecipt(String dateRecipt) {
+		this.dateRecipt = dateRecipt;
+	}
+
 
 	// getter and setter
 	public int getBnumber() {
@@ -26,11 +43,11 @@ public class UserPhoneDto{
 		this.bnumber = bnumber;
 	}
 
-	public int getBpw() {
+	public String getBpw() {
 		return bpw;
 	}
 
-	public void setBpw(int bpw) {
+	public void setBpw(String bpw) {
 		this.bpw = bpw;
 	}
 

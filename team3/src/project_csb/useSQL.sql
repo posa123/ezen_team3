@@ -69,7 +69,7 @@ select * from Delivery_status;
 drop table if exists texting;
 /* 7. 문자 테이블 */
 create table texting (
-	Customer_phone_numbe int , 			  	 -- 고객전화번호
+	Customer_phone_numbe varchar(20) , 			  	 -- 고객전화번호
     bnumber mediumint unique not null, 		 -- 함번호
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
     );	
@@ -109,9 +109,9 @@ insert into objecttable( bitem , bname , bsituation )   values(333355516 , '긴�
 insert into objecttable( bitem , bname , bsituation )   values(333355517 , '고추장' , '냉장');
 
 # 3. 택배함보관내역 레코드 
- insert into archistable(cnumer , bnumber , storagedate , visitdate) values( 1 , 1 , '2023-08-08 17:53:01' , '2023-08-09 08:00:01' );
- insert into archistable(cnumer , bnumber , storagedate , visitdate ) values( 2 , 2 , '2023-08-08 17:53:02' , '2023-08-09 08:00:02' );
- insert into archistable(cnumer , bnumber , storagedate , visitdate ) values( 3 , 3 ,  '2023-08-08 17:53:03' , '2023-08-09 08:00:03' );
+ insert into archistable(cnumer , bnumber , storagedate ) values( 1 , 1 , '2023-08-08 17:53:01'  );
+ insert into archistable(cnumer , bnumber , storagedate  ) values( 2 , 2 , '2023-08-08 17:53:02'  );
+ insert into archistable(cnumer , bnumber , storagedate  ) values( 3 , 3 ,  '2023-08-08 17:53:03'  );
  
  # 4. 택배기사 레코드 
 insert into couriertale(barticle , barname , barphone ) values(230808101 , '홍길동' , '01011112222');
@@ -139,14 +139,14 @@ insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_n
 insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 20230809 , 33335555 , 230808102 , '01022225555' );
        
 # 7. 문자  레코드         
-insert into texting ( Customer_phone_numbe , bnumber) values( 010-3333-2222 , 1);
-insert into texting ( Customer_phone_numbe , bnumber) values( 010-2222-5555 , 2);
+insert into texting ( Customer_phone_numbe , bnumber) values( '01033332222' , 1);
+insert into texting ( Customer_phone_numbe , bnumber) values( '01022225555' , 2);
 
 
 
+select InvoiceNumber from Delivery_status where Customer_phone_numbe = '01033332222';
+
+select barphone from couriertale where barphone = '01011112222';
 
 
-
-
-
-
+update Delivery_status set delivery_status = true where lineNumber = 1;
