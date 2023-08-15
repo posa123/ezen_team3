@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import project_csb.controller.UserPhoneController;
-import project_csb.model.dto.RiderPhoneDto;
 import project_csb.model.dto.UserPhoneDto;
 import project_csb.utilSet.MainInterface;
 
@@ -63,11 +62,22 @@ public class UserPhoneView implements MainInterface{
 	 * 배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
-		System.out.print("송장 번호를 입력해주세요."); int invoiceNumber = sc.nextInt();
+		System.out.println("[택배 어플 켜기]");
+		System.out.print("송장 번호 입력 : "); int invoiceNumber = sc.nextInt();
 		System.out.println("배송 상태");
 		System.out.println("=============");
 		int check = UserPhoneController.getInstance().checkDeliveryStatus( invoiceNumber );
-		
+		switch(check) {
+		case 1:
+			System.out.println("배송 완료");
+			break;
+		case 2:
+			System.out.println("배송 중");
+			break;
+		case 3:
+			System.out.println("내역이 없습니다.");
+			break;
+		}	
 	}
 	
 	/*
