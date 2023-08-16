@@ -57,7 +57,7 @@ public class UserPhoneView implements MainInterface{
 	}
 	
 	/*
-	 * 배송상태 확인하기 메소드
+	   배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
 		System.out.print("송장번호 입력 : "); int invoice = ExtraUtil.getInstance().getScInstance().nextInt();
