@@ -61,7 +61,7 @@ public class RiderView implements MainInterface {
 	}
 	// 택배함 보관 내역 테이블 등록
 		// 함번호는 기사인증 메소드에서 입력받았기때문에 매개변수로 가져온다 
-	public void boxKeep(int bnumber) {
+	public void boxKeep() {
 		System.out.println(" ==================== 택배함 보관 내역 시스템 ============= ");
 		
 		
