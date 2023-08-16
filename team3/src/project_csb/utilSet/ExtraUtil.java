@@ -19,9 +19,10 @@ public class ExtraUtil {
 	/*
 	 	phoneNumberCheck( String phoneNumber )메소드는 인자값으로 문자열(휴대폰 번호)를 받습니다.
 	 	그 후 각각의 검사를 진행합니다.
-	 	1. 전화번호가 11자리인지
-	 	2. 전화번호에 -가 포함 되어있는지
-	 	3. 전화번호 앞 세자리에 010이 포함되어 있는지
+	 	2. 전화번호가 11자리인지
+	 	3. 전화번호에 -가 포함 되어있는지
+	 	4. 전화번호 앞 세자리에 010이 포함되어 있는지
+	 	5. 숫자가 아닌 문자를 입력했는지
 	 	한 가지라도 해당될 경우 false를 반환합니다.
 	 */
 	public boolean phoneNumberCheck( String phoneNumber ) {
@@ -38,11 +39,12 @@ public class ExtraUtil {
 						phoneNumber.charAt(1) +
 							phoneNumber.charAt(2))				
 					) return false;
-			// 5. 숫자가 아닌 문자를 입력하면 false
-			try {
-	 			Integer.parseInt(phoneNumber); 	
-	 		}catch(NumberFormatException e) {
-	 			return false;
+			
+			// 5.
+			for(int i = 0; i < phoneNumber.length(); i++) {
+	 			// 아스키코드 48 ~ 57은 0부터 9
+	 			if(  phoneNumber.charAt(i) > 57 ||  48 > phoneNumber.charAt(i) )
+	 				return false;
 	 		}
 			
 			return true;
@@ -69,13 +71,17 @@ public class ExtraUtil {
  	 */
  	public boolean passwordCheck(String password) {
  		
+ 		// 1.
  		if(password == null)return false;
+ 		// 2.
  		if(password.length() != 4)return false;
- 		try {
- 			Integer.parseInt(password); 	
- 		}catch(NumberFormatException e) {
- 			return false;
+ 		// 3.
+ 		for(int i = 0; i < password.length(); i++) {
+ 			// 아스키코드 48 ~ 57은 0부터 9
+ 			if(  password.charAt(i) > 57 ||  48 > password.charAt(i) )
+ 				return false;
  		}
  		return true;
  	}
+
 }
