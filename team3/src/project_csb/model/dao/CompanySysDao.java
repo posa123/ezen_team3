@@ -82,9 +82,7 @@ public class CompanySysDao extends ConnectJdbc{
 				phoneValue = dto.getUserPhone();				
 			}				
 			// 1. sql 작성한다
-			String sql = "update Delivery_status set spot = ?  where lineNumber = ?";	
-			// spot을 미리 작성해둔 컬럼명으로 대체.
-			sql = sql.replace("spot", spot);
+			String sql = "update Delivery_status set " + spot + " = ?  where lineNumber = ?";	
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
 			

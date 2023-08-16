@@ -55,8 +55,16 @@ public class UserPhoneView implements MainInterface{
 	 * 배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
-		boolean result = UserPhoneController.getInstance().deliveryStatus();
-		System.out.println("배송 상태"); 
+		System.out.print("송장번호 입력 : "); int invoice = sc.nextInt();
+		int result = UserPhoneController.getInstance().deliveryStatus(invoice);
+		switch(result) {
+		case 1:
+			System.out.println("[배송 완료]");
+		case 2:
+			System.out.println("[배송 중]");
+		case 3:
+			System.out.println("[내역 없음]");
+		}
 	}
 	
 }//class e
