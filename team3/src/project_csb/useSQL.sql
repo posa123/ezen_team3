@@ -42,35 +42,35 @@ create table couriertale(
 select * from couriertale; 
 
 /* 5. 게시판 테이블 */
-drop table if exists bulletin_board;
+drop table if exists bulletinBoard;
 create table bulletin_board (
-	Post_number smallint auto_increment not null ,			-- 게시물번호
-    Post_title varchar(15) not null,						-- 게시물제목
-    Content_Posts longtext not null, 						-- 게시물내용
-    Writer_phone_number varchar(20) not null,				-- 작성자전화번호
-    Date_Created datetime default now() ,					--  작성 일시
-    primary key(Post_number)
+	postNumber smallint autoIncrement not null ,			-- 게시물번호
+    postTitle varchar(15) not null,							-- 게시물제목
+    contentPosts longtext not null, 						-- 게시물내용
+    writerPhoneNumber varchar(20) not null,					-- 작성자전화번호
+    dateCreatedDatetime default now() ,						--  작성 일시
+    primary key(postNumber)
     );
-select * from bulletin_board;
+select * from bulletinBoard;
 /* 6. 배송 현황 테이블 */
-drop table if exists Delivery_status;
-create table Delivery_status ( 
-	lineNumber	int auto_increment   ,							-- 행번호 , 자동부여 						
-	InvoiceNumber int not null ,  	-- 송장번호				
+drop table if exists deliveryStatus;
+create table deliveryStatus ( 
+	lineNumber	int autoIncrement   ,							-- 행번호 , 자동부여 						
+	InvoiceNumber int not null ,  								-- 송장번호				
     bitem int not null, 										-- 물건코드
     barticle int not null ,										-- 기사코드
-    Customer_phone_numbe varchar(13) not null, 					-- 고객전화번호
-    delivery_status boolean default false not null,				-- 배송상태
+    customerPhoneNumbe varchar(13) not null, 					-- 고객전화번호
+    deliveryStatus boolean default false not null,				-- 배송상태
     primary key(lineNumber) ,
     foreign key(bitem) references objecttable(bitem) on update cascade ,
     foreign key(barticle) references couriertale(barticle) on update cascade 
     );
-select * from Delivery_status;
+select * from deliveryStatus;
 drop table if exists texting;
-select count(lineNumber) from Delivery_status;
+select count(lineNumber) from deliveryStatus;
 /* 7. 문자 테이블 */
 create table texting (
-	Customer_phone_numbe int , 			  	 -- 고객전화번호
+	customerPhoneNumbe int , 			  	 -- 고객전화번호
     bnumber mediumint unique not null, 		 -- 함번호
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
     );	
@@ -132,16 +132,16 @@ insert into couriertale(barticle , barname , barphone ) values(230808114 , '이�
 insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , '01022227777');
 
 #  5. 게시판 레코드 
-insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' , '2023-08-07 14:00:00' );
-insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121' , '2023-08-08 12:00:00' );
+insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber , dateCreated ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' , '2023-08-07 14:00:00' );
+insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber , dateCreated ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121' , '2023-08-08 12:00:00' );
 
 # 6. 배송 현황 레코드 
-insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe  ) values( 100000 + lineNumber , 33332222 , 230808101 , '01033332222'  );
-insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 100000 + lineNumber , 33335555 , 230808102 , '01022225555' );
+insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe  ) values( 100000 + lineNumber , 33332222 , 230808101 , '01033332222'  );
+insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe ) values( 100000 + lineNumber , 33335555 , 230808102 , '01022225555' );
        
 # 7. 문자  레코드         
-insert into texting ( Customer_phone_numbe , bnumber) values( 010-3333-2222 , 1);
-insert into texting ( Customer_phone_numbe , bnumber) values( 010-2222-5555 , 2);
+insert into texting ( customerPhoneNumbe , bnumber) values( 010-3333-2222 , 1);
+insert into texting ( customerPhoneNumbe , bnumber) values( 010-2222-5555 , 2);
 
 
 
