@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import project_csb.controller.UserPhoneController;
+import project_csb.utilSet.ExtraUtil;
 import project_csb.utilSet.MainInterface;
 
 // 유저 핸드폰 화면
@@ -12,31 +13,35 @@ public class UserPhoneView implements MainInterface{
 	private static UserPhoneView userPhoneView = new UserPhoneView();
 	private UserPhoneView() {}
 	public static UserPhoneView getInstance() {return userPhoneView;}
-	private Scanner sc = new Scanner(System.in);
+	
 	
 	@Override
 	public void OutPutFront() {
+		while(true) {
 		try {
 			System.out.println("\n\n=========== UserPhone System =============");
-			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.뒤로가기  선택 >> ");
+			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.문자 확인하기 4.뒤로가기  선택 >> ");
 		
-			int ch = sc.nextInt();
+			int ch = ExtraUtil.getInstance().getScInstance().nextInt();
 			switch( ch ) {
-			//배송조회
-			case 1:
-				checkInvoiceNumber();
-				break;
-			//문자확인하기
-			case 2:
-				checkDeliveryStatus();
-				break;
-			case 3:				
-				return;				
+				//배송조회
+				case 1:
+					checkInvoiceNumber();
+					break;
+				//문자확인하기
+				case 2:
+					checkDeliveryStatus();
+					break;
+				case 3:				
+					return;				
 			}	
-		}catch(InputMismatchException e) {
-			System.out.println("[잘못 입력하셨습니다.]");
-			sc=new Scanner(System.in);} 
-		catch (Exception e) {	System.out.println(e);}							
+			
+			}catch(InputMismatchException e) {
+				System.out.println("[잘못 입력하셨습니다.]");
+				ExtraUtil.getInstance().setScInstance(new Scanner(System.in));
+			}catch (Exception e) {	System.out.println(e);}					
+		}//while
+							
 	}//OutPutFront e
 	
 	
@@ -55,16 +60,26 @@ public class UserPhoneView implements MainInterface{
 	 * 배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
-		System.out.print("송장번호 입력 : "); int invoice = sc.nextInt();
+		System.out.print("송장번호 입력 : "); int invoice = ExtraUtil.getInstance().getScInstance().nextInt();
 		int result = UserPhoneController.getInstance().deliveryStatus(invoice);
 		switch(result) {
+		case 0:
+			System.out.println("[내역 없음]");
+			break;
 		case 1:
 			System.out.println("[배송 완료]");
+			break;
 		case 2:
 			System.out.println("[배송 중]");
-		case 3:
-			System.out.println("[내역 없음]");
+			break;
 		}
+	}
+	
+	/*
+	 *  문자 확인하기 메소드
+	 */
+	public void checkMail() {
+		
 	}
 	
 }//class e

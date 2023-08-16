@@ -44,7 +44,7 @@ public class CompanySysDao extends ConnectJdbc{
 				CompanySysDto dto = new CompanySysDto(
 					rs.getInt(1) ,
 					rs.getInt(2) , rs.getInt(3) ,
-					rs.getInt(4) , rs.getString(5)
+					rs.getInt(4) , rs.getString(5) , rs.getBoolean(6)
 				);
 				// 변환된 Dto 를 리스트객체에 담는다  
 				list.add(dto);
