@@ -13,20 +13,11 @@ public class RiderController {
 	public static RiderController getInstance() {return controller;}
 	
 	
-	// 1. 기사 인증메소드
-	public int RiderCertification() {
+	// 해당 카테고리의 보관함 출력 메소드 
+		// 해당카테고리를 선택/입력 했을때 비어있는/null 테이블을 찾아야한다 
+	public ArrayList<RiderDto> categoryPrint(String bsituation) {
 		
-		
-		return 1;
-	}
-	
-	// 무인택배함 테이블 등록 
-		// 보관함번호 , 비밀번호 , 보관함 카테고리/설정 
-	public boolean SoldierCourierBox(int bnumber , int bpw , String bsituation) {
-		RiderDto riderDto = 
-				new RiderDto(bnumber, bpw, bsituation);
-		
-		return false;
+		return RiderDao.getInstance().categoryPrint(bsituation);
 	}
 	
 	// 2. 고객에게 보관함 번호와 비밀번호 전달 하기  

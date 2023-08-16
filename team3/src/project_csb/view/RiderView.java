@@ -18,65 +18,60 @@ public class RiderView implements MainInterface {
 	@Override
 	public void OutPutFront() {
 
-		System.out.println("\n\n ========= Rider System ==============");
-		System.out.println("1.택배사 입력하기 2.기사 인증하기 3.고객에게 보관함 번호,비밀번호 전달하기 4.뒤로가기 선택 >>");
-		try {
-			int ch = sc.nextInt();
-			switch(ch) {
-			// 택배사 입력하기 
-			case 1: 
-				System.out.println("1.쿠팡 2.롯데 3.CJ 4.건영");
-				break;
-			case 2:
-				// 기사인증메소드
-				RiderCheckNumber();
-				break;
-			case 3:
-				// 고객에게 보관함 번호와 비밀번호 전달하기 
-				CustomerRelay();
-				break;
-			case 4:
-				return;	
-			}
-			
-		}catch (Exception e) {System.out.println(e);}
+		
+		/*
+		 	1. 택배사입력
+		 	2. 인증메소드
+		 	3. 카테고리입력(어디에보관할껀지 , 해당카테고리보관함이 출력되야함) 
+		 	4. 보관함 번호,비밀번호 입력 
+		 	5. 고객에게 보관함 번호 , 비밀번호 입력
+		*/
 		
 	}// OutPutFront e
 	
 	// 기사인증 메소드 
 	public void RiderCheckNumber() {
+		System.out.println("\n\n ========= Rider System ==============");
+		System.out.println("1.Cj대한통운 2.로젠택배 3.우체국택배 4.한진택배 5.롯데택배 6.대신택배 7.대신택배 8.건영택배 9.농협택배 10.편의점택배");
+		
+		System.out.println("\n\n전화번호를 입력해주세요 : "); String phoneNumber = sc.next();
 		// 난수 생성 메소드호출 
-		ExtraUtil.getInstance().certNumber();
+		int result = 
+				ExtraUtil.getInstance().certNumber();
 		
-		System.out.println("\n\n전화번호를 입력해주세요 : ");
-		System.out.println("인증번호를 입력하세요 : ");
+		System.out.println("인증번호를 입력하세요 : "); int cNumber = sc.nextInt();
 		
-
-		System.out.println("\n\n기사 view 실행");
-		//택배사 입력하기
-		System.out.println("택배사 입력하세요 : ");
+		// 인증한후에 기사가 고객에게 전달하기전 필요한 양식 입력
+		// 함번호
+		System.out.println("함 번호를 입력하세요 : "); int bnumber = sc.nextInt();
+		
+		// 비밀번호
+		System.out.println("비밀번호를 입력하세요 : "); int bpw = sc.nextInt();
+		
+		// 카테고리선택
+		System.out.println("\n\n ======= 원하시는 보관 카테고리를 선택해주세요 ====== ");
+		System.out.println("1.실온 2.냉장 3.냉동");
+		
 		//기사 인증하기
-		RiderController.getInstance().RiderCertification();
-		//보관함과 비밀번호 설정하기
+		RiderController.getInstance().RiderCertification(bnumber, bpw, phoneNumber);
+		
 		//고객(사용자)에게 보관함 번호와 비밀번호 전달하기
-
+		RiderView.getInstance().CustomerRelay();
+		
+	}
+	// 택배함 보관 내역 테이블 등록
+		// 함번호는 기사인증 메소드에서 입력받았기때문에 매개변수로 가져온다 
+	public void boxKeep(int bnumber) {
+		System.out.println(" ==================== 택배함 보관 내역 시스템 ============= ");
+		
+		
 	}
 	
-	// 무인택배함 테이블 등록 
-	public void SoldierCourierBox() {
-		System.out.println("\n\n ------ 무인 택배함 -----------");
-		System.out.println("보관함번호 : "); int bnumber = sc.nextInt();
-		System.out.println("비밀번호  : "); int bpw = sc.nextInt();
-		System.out.println("보관함 카테고리 : "); String bsituation = sc.next();
-		// 컨트롤러 메소드 호출하기 
-		boolean result = RiderController.getInstance()
-				.SoldierCourierBox(bnumber, bpw, bsituation);
-		
-		if(result) {
-			System.out.println("안내) 무인택배함 등록 완료");
-		}else {System.out.println("안내) 무인택배함 등록 실패");}
-		
-	}
+	// 택배함 보관 내역 테이블 수정 
+	
+	
+	// 문자테이블 등록
+	
 	
 	// 고객에게 보관함 번호와 비밀번호 전달하기 메소드
 	 public void CustomerRelay() {}
