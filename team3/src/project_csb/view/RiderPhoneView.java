@@ -58,7 +58,7 @@ public class RiderPhoneView implements MainInterface{
 		}
 	}
 	// 3. 배달현황 수정 메소드 
-	public void updateDelivery() {
+	public void updateDelivery() throws InputMismatchException{
 		System.out.print("[수정하실 현황의 배송 번호를 입력해주세요]"); int lineNumber = sc.nextInt();
 		if(RiderPhoneController.getInstance().deliveryCorrection( lineNumber ))
 			System.out.println("수정 성공");

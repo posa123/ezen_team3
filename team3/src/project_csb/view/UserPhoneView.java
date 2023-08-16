@@ -9,16 +9,17 @@ import project_csb.utilSet.MainInterface;
 // 유저 핸드폰 화면
 public class UserPhoneView implements MainInterface{
 	// 싱글톤
-	private static UserPhoneView view = new UserPhoneView();
+	private static UserPhoneView userPhoneView = new UserPhoneView();
 	private UserPhoneView() {}
-	public static UserPhoneView getInstance() {return view;}
+	public static UserPhoneView getInstance() {return userPhoneView;}
 	private Scanner sc = new Scanner(System.in);
 	
 	@Override
 	public void OutPutFront() {
-		System.out.println("\n\n=========== UserPhone System =============");
-		System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.뒤로가기  선택 >> ");
 		try {
+			System.out.println("\n\n=========== UserPhone System =============");
+			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.뒤로가기  선택 >> ");
+		
 			int ch = sc.nextInt();
 			switch( ch ) {
 			//배송조회
