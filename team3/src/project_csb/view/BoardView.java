@@ -1,5 +1,6 @@
 package project_csb.view;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import project_csb.utilSet.MainInterface;
@@ -29,12 +30,31 @@ public class BoardView implements MainInterface{
 			
 		}
 	}
+	
 	// 게시판 쓰기 메소드
 	public void boardWrite() {
 		System.out.println(" ====== 게시판 글쓰기 ======= ");
 		sc.nextLine();
-		System.out.print("제목 > "); 		String title = sc.nextLine();
-		System.out.print("내용 > "); 		String content = sc.nextLine();
+		System.out.print("제목 > "); 			String postTitle = sc.nextLine();
+		System.out.print("내용 > "); 			String contentPosts = sc.nextLine();
+		System.out.println("전화번호 > ");		String writerPhoneNumber = sc.nextLine();
 		
+		boolean result = 
+				BoardController.getInstance().boardWrite(postTitle, contentPosts, writerPhoneNumber);
+		if(result) {System.out.println("안내) 글쓰기 등록 ");}
+		else {System.out.println("안내) 글쓰기 실패 : 제목 1~50 사로 필수 입력");}
 	}
+	
+	//글 조회 메소드 (모든 게시물 조회)
+	public void boardPrint() {
+		System.out.println(" ====== 게시판 글조회 ======= ");
+		ArrayList<BoardDto> result = BoardController.getInstance().boardPrint();
+		System.out.println("%-10s %-10s %-10s %-10s %-10s \n","no","title","content","phoneNumber","date");
+		for(int i = 0; i<result.size(); i++) {
+			BoardDto dto = result.get(i);	// i번째의 객체를 호출
+			System.out.println("%-10s %-10s %-10s %-10s %-10s \n",
+					dto.getpostNumber(), dto.getpostTitle(), dto.getcontentPosts(), dto.getwriterPhoneNumber(), dto.getdateCreatedDatetime());
+		}
+	}
+	
 }
