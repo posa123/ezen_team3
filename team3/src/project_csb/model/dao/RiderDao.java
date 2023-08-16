@@ -13,25 +13,24 @@ public class RiderDao extends ConnectJdbc{
 	public static RiderDao getInstance() {return dao;}	
 	
 	
-	// 기사 인증메소드 
-	
-	
-	// 무인택배함 테이블 등록
-	public boolean SoldierCourierBox(RiderDto riderDto) {
+	// 해당 카테고리의 보관함 출력 메소드
+	public ArrayList<RiderDto> categoryPrint(String bsituation){
+		ArrayList<RiderDto> list = new ArrayList<>();
 		try {
-			// sql작성 
-			String sql = "insert into anmdtable( bnumber , bsituation , bpw ) values( ? , ? , ? )";
-			// 작성한 sql 조작할 ps 객체 반환 
+			// sql 작성
+			String sql = "select bnumber from anmdtable where bsituation = ?";
+			
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, riderDto.getBnumber()); // 보관함번호
-			ps.setString(2, riderDto.getBsituation());	// 카테고리 
-			ps.setInt(3, riderDto.getBpw()); 	// 비밀번호 
-			int row = ps.executeUpdate();
-			if(row == 1) {return false;}
+			// 매개변수는 없으므로 set은 생략
+			ps.setString(1, bsituation);
+			// 검색결과의 레코드를 여러개 반환 하기위해 rs 반환
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(rs.getInt(1));
+			}
 			
 		} catch (Exception e) {System.out.println(e);}
-		
-		return false;
+		return list;
 	}
 	
 	// 2. 고객에게 보관함 번호와 비밀번호 전달 하기 

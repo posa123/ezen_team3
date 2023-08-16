@@ -55,18 +55,19 @@ select * from bulletin_board;
 /* 6. 배송 현황 테이블 */
 drop table if exists Delivery_status;
 create table Delivery_status ( 
-	lineNumber	int auto_increment   ,					-- 행번호 , 자동부여 						
-	InvoiceNumber int not null,  						-- 송장번호				
-    bitem int not null, 								-- 물건코드
-    barticle int not null ,								-- 기사코드
-    Customer_phone_numbe varchar(13) not null, 				-- 고객전화번호
-    delivery_status boolean default true not null,		-- 배송상태
+	lineNumber	int auto_increment   ,							-- 행번호 , 자동부여 						
+	InvoiceNumber int not null ,  	-- 송장번호				
+    bitem int not null, 										-- 물건코드
+    barticle int not null ,										-- 기사코드
+    Customer_phone_numbe varchar(13) not null, 					-- 고객전화번호
+    delivery_status boolean default false not null,				-- 배송상태
     primary key(lineNumber) ,
     foreign key(bitem) references objecttable(bitem) on update cascade ,
     foreign key(barticle) references couriertale(barticle) on update cascade 
     );
 select * from Delivery_status;
 drop table if exists texting;
+select count(lineNumber) from Delivery_status;
 /* 7. 문자 테이블 */
 create table texting (
 	Customer_phone_numbe varchar(20) , 			  	 -- 고객전화번호
@@ -138,8 +139,8 @@ insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_p
 insert into bulletin_board( Post_number , Post_title , Content_Posts ,  Writer_phone_number , Date_Created ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121' , '2023-08-08 12:00:00' );
 
 # 6. 배송 현황 레코드 
-insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe  ) values( 20230808 , 33332222 , 230808101 , '01033332222'  );
-insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 20230809 , 33335555 , 230808102 , '01022225555' );
+insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe  ) values( 100000 + lineNumber , 33332222 , 230808101 , '01033332222'  );
+insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( 100000 + lineNumber , 33335555 , 230808102 , '01022225555' );
        
 # 7. 문자  레코드         
 insert into texting ( Customer_phone_numbe , bnumber ) values( '01033332222' , 1  );

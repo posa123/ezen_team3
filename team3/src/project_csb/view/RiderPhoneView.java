@@ -5,6 +5,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import project_csb.controller.RiderPhoneController;
 import project_csb.model.dto.RiderPhoneDto;
+import project_csb.utilSet.ExtraUtil;
 import project_csb.utilSet.MainInterface;
 
 //기사 핸드폰 view
@@ -14,7 +15,6 @@ public class RiderPhoneView implements MainInterface{
 	private RiderPhoneView() {}
 	public static RiderPhoneView getInstance() {return view;}	
 	
-	private Scanner sc = new Scanner(System.in);
 	
 	// 1. 기사 휴대폰 메뉴/기능 
 	@Override
@@ -23,20 +23,20 @@ public class RiderPhoneView implements MainInterface{
 			System.out.println("\n\n =============== 기사 시스템 ============== ");
 			System.out.println("1.할당된 배달건확인 2.배달 현황수정 3.뒤로가기 선택 >>");
 			try {
-				int ch = sc.nextInt();
-				
+				int ch = ExtraUtil.getInstance().getScInstance().nextInt();			
 				switch(ch) {
-				case 1:
-					cheakDelivery();
-					break;
-				case 2:
-					updateDelivery();
-					break;
-				case 3:
-					return;				
-				}	
+					case 1:
+						cheakDelivery();
+						break;
+					case 2:
+						updateDelivery();
+						break;
+					case 3:
+						return;				
+					}	
 			}
-			catch(InputMismatchException e) {System.out.println("[잘못 입력하셨습니다]");}
+			catch(InputMismatchException e) {System.out.println("[잘못 입력하셨습니다]");
+			ExtraUtil.getInstance().setScInstance(new Scanner(System.in));}
 			catch(Exception e) {System.out.println(e);}
 		}
 		
@@ -47,7 +47,7 @@ public class RiderPhoneView implements MainInterface{
 	// 2. 할당된 배달건확인 메소드
 	public void cheakDelivery() {
 		ArrayList<RiderPhoneDto> dtoList = RiderPhoneController.getInstance().boxRegistList();
-		System.out.printf("\n\n%-8s %-8s %-8s %-8s %-8s %-9s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.printf("\n\n%-8s %-9s %-9s %-9s %-9s %-9s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
 		System.out.println("==================================================================");
 		for (int i = 0; i < dtoList.size(); i++) {
 			RiderPhoneDto tmpDto = dtoList.get(i); // i번째의 객체를 호출
@@ -57,9 +57,10 @@ public class RiderPhoneView implements MainInterface{
 					(tmpDto.isDeliveryStatus() == false ? "배송 중" : "배송 완료"));
 		}
 	}
+	
 	// 3. 배달현황 수정 메소드 
-	public void updateDelivery() {
-		System.out.print("[수정하실 현황의 배송 번호를 입력해주세요]"); int lineNumber = sc.nextInt();
+	public void updateDelivery() throws InputMismatchException{
+		System.out.print("[수정하실 현황의 배송 번호를 입력해주세요]"); int lineNumber = ExtraUtil.getInstance().getScInstance().nextInt();
 		if(RiderPhoneController.getInstance().deliveryCorrection( lineNumber ))
 			System.out.println("수정 성공");
 		else 

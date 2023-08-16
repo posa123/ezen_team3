@@ -45,12 +45,15 @@ public class UserPhoneDao extends ConnectJdbc {
 				// true = 1  false = 2  Error = 0 
 				// 먀냐게 반환값이 true면 배송완료  반환값이 false면 배송중 반환값이 Error면 실패 
 				// delivery_status 는 배달중 배달완료 이기때문에 getBoolean 타입이들어간다 
-				boolean result = rs.getBoolean(1);
-				if(result == true) {
-					return 1;
-				}else if(result == false) {
-					return 2;
-				}
+
+				if(rs.next()) {
+					
+					if(rs.getBoolean(1) == true) 
+						return 1;
+					else
+						return 2;
+					
+				}						
 				
 			}catch (Exception e) {System.out.println(e);}
 			

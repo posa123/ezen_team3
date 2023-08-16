@@ -10,10 +10,10 @@ import project_csb.utilSet.MainInterface;
 // 유저 핸드폰 화면
 public class UserPhoneView implements MainInterface{
 	// 싱글톤
-	private static UserPhoneView view = new UserPhoneView();
+	private static UserPhoneView userPhoneView = new UserPhoneView();
 	private UserPhoneView() {}
-	public static UserPhoneView getInstance() {return view;}
-	private Scanner sc = new Scanner(System.in);
+	public static UserPhoneView getInstance() {return userPhoneView;}
+	
 	
 	@Override
 	public void OutPutFront() {
@@ -22,7 +22,10 @@ public class UserPhoneView implements MainInterface{
 			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.문자 확인하기 4.뒤로가기  선택 >> ");
 			
 		try {
-			int ch = sc.nextInt();
+			System.out.println("\n\n=========== UserPhone System =============");
+			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.문자 확인하기 4.뒤로가기  선택 >> ");
+		
+			int ch = ExtraUtil.getInstance().getScInstance().nextInt();
 			switch( ch ) {
 			//송장번호 확인하기
 			case 1:
@@ -39,10 +42,11 @@ public class UserPhoneView implements MainInterface{
 			case 4:
 				return;				
 			}	
+
 		}catch(InputMismatchException e) {
 			System.out.println("[잘못 입력하셨습니다.]");
-			sc=new Scanner(System.in);} 
-		catch (Exception e) {	System.out.println(e);}			
+			ExtraUtil.getInstance().setScInstance(new Scanner(System.in));
+		}catch (Exception e) {	System.out.println(e);}					
 		}				
 	}//OutPutFront e
 	
@@ -59,11 +63,11 @@ public class UserPhoneView implements MainInterface{
 	}
 	
 	/*
-	 * 배송상태 확인하기 메소드
+	   배송상태 확인하기 메소드
 	 */
 	public void checkDeliveryStatus() {
 		System.out.println("[택배 어플 켜기]");
-		System.out.print("송장 번호 입력 : "); int invoiceNumber = sc.nextInt();
+		System.out.print("송장 번호 입력 : "); int invoiceNumber = ExtraUtil.getInstance().getScInstance().nextInt();
 		System.out.println("배송 상태");
 		System.out.println("=============");
 		int check = UserPhoneController.getInstance().checkDeliveryStatus( invoiceNumber );
