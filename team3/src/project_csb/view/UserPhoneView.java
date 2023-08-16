@@ -3,8 +3,10 @@ package project_csb.view;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 import project_csb.controller.UserPhoneController;
 import project_csb.model.dto.UserPhoneDto;
+import project_csb.utilSet.ExtraUtil;
 import project_csb.utilSet.MainInterface;
 
 // 유저 핸드폰 화면
@@ -17,36 +19,33 @@ public class UserPhoneView implements MainInterface{
 	
 	@Override
 	public void OutPutFront() {
-		while(true) {
-			System.out.println("\n\n=========== UserPhone System =============");				
-			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.문자 확인하기 4.뒤로가기  선택 >> ");
+		while(true) {				
+			try {
+				System.out.println("\n\n=========== UserPhone System =============");
+				System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.문자 확인하기 4.뒤로가기  선택 >> ");
 			
-		try {
-			System.out.println("\n\n=========== UserPhone System =============");
-			System.out.println("1.송장번호 확인하기 2.배송상태 확인하기 3.문자 확인하기 4.뒤로가기  선택 >> ");
-		
-			int ch = ExtraUtil.getInstance().getScInstance().nextInt();
-			switch( ch ) {
-			//송장번호 확인하기
-			case 1:
-				checkInvoiceNumber();
-				break;
-			//배송상태 확인하기
-			case 2:
-				checkDeliveryStatus();
-				break;
-			//문자 확인하기
-			case 3:	
-				checkMail();
-				break;
-			case 4:
-				return;				
-			}	
-
-		}catch(InputMismatchException e) {
-			System.out.println("[잘못 입력하셨습니다.]");
-			ExtraUtil.getInstance().setScInstance(new Scanner(System.in));
-		}catch (Exception e) {	System.out.println(e);}					
+				int ch = ExtraUtil.getInstance().getScInstance().nextInt();
+				switch( ch ) {
+				//송장번호 확인하기
+				case 1:
+					checkInvoiceNumber();
+					break;
+				//배송상태 확인하기
+				case 2:
+					checkDeliveryStatus();
+					break;
+				//문자 확인하기
+				case 3:	
+					checkMail();
+					break;
+				case 4:
+					return;				
+				}	
+	
+			}catch(InputMismatchException e) {
+				System.out.println("[잘못 입력하셨습니다.]");
+				ExtraUtil.getInstance().setScInstance(new Scanner(System.in));
+			}catch (Exception e) {	System.out.println(e);}					
 		}				
 	}//OutPutFront e
 	

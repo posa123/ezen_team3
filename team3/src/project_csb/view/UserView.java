@@ -22,7 +22,7 @@ public class UserView implements MainInterface{
 		System.out.print("찾아가실 물건이 위치한 보관함 번호를 입력해주세요 [1-20]: "); int bnumber = ExtraUtil.getInstance().getScInstance().nextInt();
 		System.out.print("보관함의 비밀번호를 입력해주세요."); String bpw = ExtraUtil.getInstance().getScInstance().next();
 		//유효성 검사
-		if(ExtraUtil.getInstance().certPassword(bpw) == false) {
+		if(ExtraUtil.getInstance().passwordCheck(bpw) == false) {
 			System.out.println("잘못 입력하셨습니다.");
 			return;
 		}

@@ -17,21 +17,15 @@ public class UserPhoneController {
 	/*
 	   송장번호 확인하는메소드 
 	 */
-	public ArrayList<Integer> invoiceNumber() {
-		
-		
+	public ArrayList<Integer> invoiceNumber() {		
 		// MainPhoneController.getInstance().getPhoneSession() 에 값이들어오는걸 dao에게 전달 
-
 		return UserPhoneDao.getInstance().invoiceNumber(MainPhoneController.getInstance().getPhoneSession());
-
 	}
 	
 	/*
 	 * 	배송상태 확인하는 메소드
 	 */
-	public int checkDeliveryStatus( int invoiceNumber ) {
-		
-		// Dao에게 전달 
+	public int checkDeliveryStatus( int invoiceNumber ) {	
 		return UserPhoneDao.getInstance().deliveryStatus(invoiceNumber);
 		
 	}

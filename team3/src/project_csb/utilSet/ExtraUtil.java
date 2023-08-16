@@ -13,6 +13,9 @@ public class ExtraUtil {
 	public Scanner getScInstance() {return sc;}
 	// 세터
 	public void setScInstance( Scanner sc ) { this.sc = sc;}
+	
+	
+	
 	/*
 	 	phoneNumberCheck( String phoneNumber )메소드는 인자값으로 문자열(휴대폰 번호)를 받습니다.
 	 	그 후 각각의 검사를 진행합니다.
@@ -23,34 +26,32 @@ public class ExtraUtil {
 	 */
 	public boolean phoneNumberCheck( String phoneNumber ) {
 		// 유효성 검사
-			// 전화번호가 null이면 false
+			// 1. 전화번호가 null이면 false
 			if(phoneNumber == null)return false;
-			// 1. 전화번호가 11자리가 아니라면 false
+			// 2. 전화번호가 11자리가 아니라면 false
 			if(phoneNumber.length() != 11)return false;
-				// 2. 전화번호에 -가 포함 되어있다면 false
+			// 3. 전화번호에 -가 포함 되어있다면 false
 			if(phoneNumber.contains("-") )return false;
-				// 3. 전화번호에 앞 세개의 문자가 010이 아니라면 false
+			// 4. 전화번호에 앞 세개의 문자가 010이 아니라면 false
 			if(!"010".equals(				
 					""+phoneNumber.charAt(0) + 
 						phoneNumber.charAt(1) +
 							phoneNumber.charAt(2))				
 					) return false;
+			// 5. 숫자가 아닌 문자를 입력하면 false
+			try {
+	 			Integer.parseInt(phoneNumber); 	
+	 		}catch(NumberFormatException e) {
+	 			return false;
+	 		}
 			
 			return true;
 	}
-	
-/*
- 	===================================================================
-	 madeInvoiceNumber() 메소드는 	10000000부터 99999999까지의 난수를 생성합니다.
-*/	
-	// 송장번호 생성 메소드
-    public int madeInvoiceNumber() {
-       return (int)((Math.random() * 89999999) + 10000000);      
-    }
     
 /*
  	===================================================================
  	certNumber() 메소드는 1000부터 9999까지의 난수를 생성합니다.
+ 	휴대전화 인증번호가 필요할 때 사용합니다.
 */
     // 인증번호 생성 메소드
  	public int certNumber() {
@@ -59,10 +60,14 @@ public class ExtraUtil {
  	}
 	
  	
- 	/*
- 	 *  비밀번호 유효성 검사 메소드
+ 	/*=================================================================
+ 	 *  비밀번호 유효성 검사 메소드는 인자 값으로 문자열(password)를 받습니다.
+ 	 *  그 후 각각의 검사를 진행합니다.
+ 	 *  1. password가 null이 아닌지
+ 	 *  2. password의 총 길이가 4가 아닌지
+ 	 *  3. 숫자가 아닌 문자를 입력했는지
  	 */
- 	public boolean certPassword(String password) {
+ 	public boolean passwordCheck(String password) {
  		
  		if(password == null)return false;
  		if(password.length() != 4)return false;

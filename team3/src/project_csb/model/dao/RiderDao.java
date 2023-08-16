@@ -8,9 +8,9 @@ import project_csb.model.dto.RiderDto;
 // 기사 dao
 public class RiderDao extends ConnectJdbc{
 	// 싱글톤
-	private static RiderDao dao = new RiderDao();
+	private static RiderDao riderDao = new RiderDao();
 	private RiderDao() {}
-	public static RiderDao getInstance() {return dao;}	
+	public static RiderDao getInstance() {return riderDao;}	
 	
 	
 	// 해당 카테고리의 보관함 출력 메소드

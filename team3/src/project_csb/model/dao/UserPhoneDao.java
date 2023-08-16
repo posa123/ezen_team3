@@ -31,6 +31,9 @@ public class UserPhoneDao extends ConnectJdbc {
 		//배열 반환
 		return invoiceList;
 	}
+	
+	
+	
 	// 배송상태확인/출력
 		public int deliveryStatus(int invoiceNumber) {
 			
@@ -46,19 +49,18 @@ public class UserPhoneDao extends ConnectJdbc {
 				// 먀냐게 반환값이 true면 배송완료  반환값이 false면 배송중 반환값이 Error면 실패 
 				// delivery_status 는 배달중 배달완료 이기때문에 getBoolean 타입이들어간다 
 
-				if(rs.next()) {
-					
+				if(rs.next()) {					
 					if(rs.getBoolean(1) == true) 
 						return 1;
 					else
 						return 2;
-					
-				}						
-				
+									}										
 			}catch (Exception e) {System.out.println(e);}
 			
 			return 0;
 		}
+		
+		
 		
 	/*
 	 *  문자 확인 메소드
