@@ -6,7 +6,7 @@ public class CompanySysDto {
 	// 행번호 
 	private int lineNumber; 
 	// 송장번호
-	private int invoiceNumber;
+	private String invoiceNumber;
 	// 물건코드
 	private int bitem;
 	// 기사코드
@@ -19,15 +19,14 @@ public class CompanySysDto {
 	// 기본생성자
 	public CompanySysDto() {}
 	
-	public CompanySysDto(int invoiceNumber, int bitem, int barticle, String userPhone) {
+	public CompanySysDto( int bitem, int barticle, String userPhone) {
 		super();
-		this.invoiceNumber = invoiceNumber;
 		this.bitem = bitem;
 		this.barticle = barticle;
 		this.userPhone = userPhone;
 	}
 	// 풀 생성자
-	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone,boolean deliveryStatus) {
+	public CompanySysDto(int line_number, String invoiceNumber, int bitem, int barticle, String userPhone,boolean deliveryStatus) {
 		super();
 		this.lineNumber = line_number;
 		this.invoiceNumber = invoiceNumber;
@@ -37,7 +36,7 @@ public class CompanySysDto {
 		DeliveryStatus = deliveryStatus;
 	}
 	// 수정시 사용되는 생성자 
-	public CompanySysDto(int line_number, int invoiceNumber, int bitem, int barticle, String userPhone) {
+	public CompanySysDto(int line_number, String invoiceNumber, int bitem, int barticle, String userPhone) {
 		super();
 		this.lineNumber = line_number;
 		this.invoiceNumber = invoiceNumber;
@@ -56,11 +55,11 @@ public class CompanySysDto {
 		this.lineNumber = line_number;
 	}
 
-	public int getInvoiceNumber() {
+	public String getInvoiceNumber() {
 		return invoiceNumber;
 	}
 
-	public void setInvoiceNumber(int invoiceNumber) {
+	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
 

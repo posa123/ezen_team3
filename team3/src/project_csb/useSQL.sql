@@ -43,20 +43,20 @@ select * from couriertale;
 
 /* 5. 게시판 테이블 */
 drop table if exists bulletinBoard;
-create table bulletin_board (
-	postNumber smallint autoIncrement not null ,			-- 게시물번호
+create table bulletinBoard (
+	postNumber int auto_increment not null ,			-- 게시물번호
     postTitle varchar(15) not null,							-- 게시물제목
     contentPosts longtext not null, 						-- 게시물내용
     writerPhoneNumber varchar(20) not null,					-- 작성자전화번호
-    dateCreatedDatetime default now() ,						--  작성 일시
+    dateCreatedDatetime datetime default now() ,						--  작성 일시
     primary key(postNumber)
     );
 select * from bulletinBoard;
 /* 6. 배송 현황 테이블 */
 drop table if exists deliveryStatus;
 create table deliveryStatus ( 
-	lineNumber	int autoIncrement   ,							-- 행번호 , 자동부여 						
-	InvoiceNumber int not null ,  								-- 송장번호				
+	lineNumber	int auto_Increment   ,							-- 행번호 , 자동부여 						
+	InvoiceNumber varchar(25) not null ,  								-- 송장번호				
     bitem int not null, 										-- 물건코드
     barticle int not null ,										-- 기사코드
     customerPhoneNumbe varchar(13) not null, 					-- 고객전화번호
@@ -77,7 +77,7 @@ create table texting (
     );	
 select * from texting;
 select * from texting , anmdtable;
-select a.bnumber , a.bpw , date_format(dateReceipt , '%y/%m/%d %H시 %i분 %S초' ) from anmdtable a , texting t where a.bnumber = t.bnumber and Customer_phone_numbe = '01033332222';
+select a.bnumber , a.bpw , date_format(dateReceipt , '%y/%m/%d %H시 %i분 %S초' ) from anmdtable a , texting t where a.bnumber = t.bnumber and customerPhoneNumbe = '01033332222';
 
 # 1. 무인택배함 테이블 레코드 
 insert into anmdtable( bnumber , bsituation , bpw ) values( 1 , '실온' , null );
@@ -135,12 +135,12 @@ insert into couriertale(barticle , barname , barphone ) values(230808114 , '이�
 insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , '01022227777');
 
 #  5. 게시판 레코드 
-insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber , dateCreated ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' , '2023-08-07 14:00:00' );
-insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber , dateCreated ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121' , '2023-08-08 12:00:00' );
+insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber   ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' );
+insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber   ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121');
 
 # 6. 배송 현황 레코드 
-insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe  ) values( 100000 + lineNumber , 33332222 , 230808101 , '01033332222'  );
-insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe ) values( 100000 + lineNumber , 33335555 , 230808102 , '01022225555' );
+insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe  ) values( date_format(now(6) , '%Y%m%d%H%i%s%f') , 33332222 , 230808101 , '01033332222'  );
+insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe ) values( date_format(now(6) , '%Y%m%d%H%i%s%f') , 333355516 ,230808102 , '01022225555' );
        
 # 7. 문자  레코드         
 insert into texting ( customerPhoneNumbe , bnumber ) values( '01033332222' , 1  );
@@ -148,9 +148,4 @@ insert into texting ( customerPhoneNumbe , bnumber ) values( '01022225555' , 2  
 
 
 
-select InvoiceNumber from Delivery_status where Customer_phone_numbe = '01033332222';
 
-select barphone from couriertale where barphone = '01011112222';
-
-
-update Delivery_status set delivery_status = true where lineNumber = 1;

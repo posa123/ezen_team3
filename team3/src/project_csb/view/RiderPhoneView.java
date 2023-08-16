@@ -47,11 +47,11 @@ public class RiderPhoneView implements MainInterface{
 	// 2. 할당된 배달건확인 메소드
 	public void cheakDelivery() {
 		ArrayList<RiderPhoneDto> dtoList = RiderPhoneController.getInstance().boxRegistList();
-		System.out.printf("\n\n%-8s %-9s %-9s %-9s %-9s %-9s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
-		System.out.println("==================================================================");
+		System.out.printf("%-9s %-22s %-9s %-7s %-9s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.println("==================================================================================");
 		for (int i = 0; i < dtoList.size(); i++) {
 			RiderPhoneDto tmpDto = dtoList.get(i); // i번째의 객체를 호출
-			System.out.printf("%-10s %-10s %-10s %-10s %-11s %-10s \n", 
+			System.out.printf("%-10s %-25s %-10s %-10s %-13s %-10s \n", 
 					tmpDto.getLineNumber() , tmpDto.getIncoiceNumber(),
 					tmpDto.getBitem() , tmpDto.getBarticle(), (tmpDto.getUserPhone()) , 
 					(tmpDto.isDeliveryStatus() == false ? "배송 중" : "배송 완료"));

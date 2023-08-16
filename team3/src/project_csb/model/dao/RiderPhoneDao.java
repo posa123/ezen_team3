@@ -18,7 +18,7 @@ public class RiderPhoneDao extends ConnectJdbc{
 				// 1. SQL 작성한다 
 					// 수정할 배송현황 물건코드를 입력하고 배송상태를 수정한다 false로 
 				// 터치 단말기이기 때문에 다른 번호 입력 걱정 필요 x
-				String sql = "update Delivery_status set delivery_status = true where lineNumber = ?";
+				String sql = "update deliveryStatus set dstatus = true where lineNumber = ?";
 				ps = conn.prepareStatement(sql);
 				// int로 선언된 물건코드 setter부르기 
 				ps.setInt( 1 , lineNumber);
@@ -51,11 +51,11 @@ public class RiderPhoneDao extends ConnectJdbc{
 		} catch (Exception e) {System.out.println("1" +e);}
 		try {
 			// 기사코드로 
-			String sql = "select * from Delivery_status where barticle = " + barticle;
+			String sql = "select * from deliveryStatus where barticle = " + barticle;
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while(rs.next()) {
-				RiderPhoneDto dto = new RiderPhoneDto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getBoolean(6));
+				RiderPhoneDto dto = new RiderPhoneDto(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getString(5), rs.getBoolean(6));
 				dtoList.add(dto);
 			}	
 		} catch (Exception e) {System.out.println("2" + e);}

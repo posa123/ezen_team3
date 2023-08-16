@@ -16,13 +16,12 @@ public class CompanySysDao extends ConnectJdbc{
 	public boolean boxRegistration( CompanySysDto dto ) {
 		try {
 			// 1. SQL 작성한다.
-			String sql = "insert into Delivery_status( InvoiceNumber , bitem , barticle , Customer_phone_numbe ) values( ? , ? , ? , ? ); ";
+			String sql = "insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe ) values( date_format(now(6) , '%Y%m%d%H%i%s%f' ) , ? , ? , ? ); ";
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, dto.getInvoiceNumber()); // 송장번호 
-			ps.setInt(2,dto.getBitem()); // 물건코드
-			ps.setInt(3, dto.getBarticle()); // 기사코드
-			ps.setString(4, dto.getUserPhone());// 고객전화번호
+			ps.setInt(1,dto.getBitem()); // 물건코드
+			ps.setInt(2, dto.getBarticle()); // 기사코드
+			ps.setString(3, dto.getUserPhone());// 고객전화번호
 			int row = ps.executeUpdate();
 			if( row==1 ) return true;
 		} catch (Exception e) {System.out.println(e);}
@@ -33,7 +32,7 @@ public class CompanySysDao extends ConnectJdbc{
 		ArrayList<CompanySysDto> list = new ArrayList<>();
 		try {
 			// 1. SQL 작성한다.
-			String sql ="select * from Delivery_status";
+			String sql ="select * from deliveryStatus";
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
 			// 3. SQL에 ?(매개변수) 없으므로 set 생략 
@@ -43,7 +42,7 @@ public class CompanySysDao extends ConnectJdbc{
 				// 레코드 1개 마다 1개의 DTO 변환
 				CompanySysDto dto = new CompanySysDto(
 					rs.getInt(1) ,
-					rs.getInt(2) , rs.getInt(3) ,
+					rs.getString(2) , rs.getInt(3) ,
 					rs.getInt(4) , rs.getString(5) , rs.getBoolean(6)
 				);
 				// 변환된 Dto 를 리스트객체에 담는다  
@@ -60,11 +59,11 @@ public class CompanySysDao extends ConnectJdbc{
 			// 업데이트 위치
 			String spot = "";
 			int value = 0;
-			String phoneValue = null;
+			String stringValue = null;
 			//송장번호 업데이트
-			if(dto.getInvoiceNumber() != 0) {
+			if(dto.getInvoiceNumber() != null) {
 				spot = "InvoiceNumber";
-				value = dto.getInvoiceNumber();
+				stringValue = dto.getInvoiceNumber();
 			}				
 			//기사코드 업데이트
 			else if(dto.getBarticle() != 0) {
@@ -78,18 +77,18 @@ public class CompanySysDao extends ConnectJdbc{
 			}						
 			//고객핸드폰 업데이트
 			else if(dto.getUserPhone() != null) {
-				spot = "Customer_phone_numbe";
-				phoneValue = dto.getUserPhone();				
+				spot = "customerPhoneNumbe";
+				stringValue = dto.getUserPhone();				
 			}				
 			// 1. sql 작성한다
-			String sql = "update Delivery_status set " + spot + " = ?  where lineNumber = ?";	
+			String sql = "update deliveryStatus set " + spot + " = ?  where lineNumber = ?";	
 			// 2. 작성한 SQL 조작할 인터페이스PS 객체 반환한다. 
 			ps = conn.prepareStatement(sql);
 			
-			if(phoneValue != null) 
-				ps.setString(1, phoneValue); // 고객 휴대폰
-			else 
-				ps.setInt(1, value); // 고객 휴대폰
+			if(value != 0) 
+				ps.setInt(1, value);
+			else
+				ps.setString( 1 , stringValue );
 						
 			ps.setInt(2, dto.getLineNumber()); // 행번호			
 			// row - 유효성 검사를 통해 레코드값이 있는지 없는지 한줄이라도 있으면 성공 
@@ -105,7 +104,7 @@ public class CompanySysDao extends ConnectJdbc{
 	public boolean boxRegistDelete(int lineNumber) {
 		try {
 			// 1. sql작성한다 
-			String sql = "delete from Delivery_status where lineNumber = ? ";
+			String sql = "delete from deliveryStatus where lineNumber = ? ";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, lineNumber);
 			int row = ps.executeUpdate();

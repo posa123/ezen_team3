@@ -72,10 +72,7 @@ public class CompanySysView implements MainInterface {
 				// 뒤로가기
 				case 4:
 					return;
-
-				}// switch e
-
-		
+				}// switch e	
 		} // while
 		
 	}// deliveryManegement e
@@ -88,8 +85,8 @@ public class CompanySysView implements MainInterface {
 		System.out.print("고객 전화번호 입력( '-' 제외 ) : "); String Customer_phone_numbe = ExtraUtil.getInstance().getScInstance().next();
 		// 컨트롤러 메소드 호출 결과
 		boolean result = CompanySysController.getInstance().boxRegistration(
-											bitem, barticle, Customer_phone_numbe);		
-		
+											bitem, barticle, Customer_phone_numbe
+											);		
 		if(result) 
 			System.out.println("안내) 배송 등록하기 완료");
 		 else 
@@ -100,11 +97,11 @@ public class CompanySysView implements MainInterface {
 	// 배송 현황출력 메소드
 	public void boxShipping() {
 		ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxShipping();
-		System.out.printf("%-9s %-9s %-9s %-8s %-9s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.printf("%-9s %-22s %-9s %-7s %-9s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
 		System.out.println("==================================================================");
 		for (int i = 0; i < dto.size(); i++) {
 			CompanySysDto tmpDto = dto.get(i); // i번째의 객체를 호출
-			System.out.printf("%-10s %-10s %-10s %-10s %-11s %-10s \n", 
+			System.out.printf("%-10s %-25s %-10s %-10s %-13s %-10s \n", 
 					tmpDto.getLineNumber() , tmpDto.getInvoiceNumber(),
 					tmpDto.getBitem() , tmpDto.getBarticle(), tmpDto.getUserPhone() , 
 					(tmpDto.isDeliveryStatus() == false ? "배송 중" : "배송 완료"));
@@ -121,13 +118,13 @@ public class CompanySysView implements MainInterface {
 								
 				System.out.println("\n\n======수정하실 항목을 선택해주세요=====");
 				System.out.print("1.송장번호 2.물건코드 3.기사코드 4.고객 전화번호 5.뒤로가기 선택>>");
-				int invoiceNumber = 0; int bitem = 0; int barticle = 0; String userPhone = null;
+				String invoiceNumber = null; int bitem = 0; int barticle = 0; String userPhone = null;
 				
 				int ch = ExtraUtil.getInstance().getScInstance().nextInt();
 				
 				switch(ch) {
 					case 1 : 
-						System.out.print("[수정하실 송장번호를 입력해주세요]"); invoiceNumber = ExtraUtil.getInstance().getScInstance().nextInt();
+						System.out.print("[수정하실 송장번호를 입력해주세요]"); invoiceNumber = ExtraUtil.getInstance().getScInstance().next();
 						break;
 					case 2 :
 						System.out.print("[수정하실 물건코드를 입력해주세요]"); bitem = ExtraUtil.getInstance().getScInstance().nextInt();

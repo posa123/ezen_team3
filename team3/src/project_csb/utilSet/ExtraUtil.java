@@ -19,10 +19,10 @@ public class ExtraUtil {
 	/*
 	 	phoneNumberCheck( String phoneNumber )메소드는 인자값으로 문자열(휴대폰 번호)를 받습니다.
 	 	그 후 각각의 검사를 진행합니다.
+	 	1. 전화번호가 null인지
 	 	2. 전화번호가 11자리인지
-	 	3. 전화번호에 -가 포함 되어있는지
-	 	4. 전화번호 앞 세자리에 010이 포함되어 있는지
-	 	5. 숫자가 아닌 문자를 입력했는지
+	 	3. 전화번호 앞 세자리에 010이 포함되어 있는지
+	 	4. 숫자가 아닌 문자를 입력했는지
 	 	한 가지라도 해당될 경우 false를 반환합니다.
 	 */
 	public boolean phoneNumberCheck( String phoneNumber ) {
@@ -30,17 +30,15 @@ public class ExtraUtil {
 			// 1. 전화번호가 null이면 false
 			if(phoneNumber == null)return false;
 			// 2. 전화번호가 11자리가 아니라면 false
-			if(phoneNumber.length() != 11)return false;
-			// 3. 전화번호에 -가 포함 되어있다면 false
-			if(phoneNumber.contains("-") )return false;
-			// 4. 전화번호에 앞 세개의 문자가 010이 아니라면 false
+			if(phoneNumber.length() != 11)return false;			
+			// 3. 전화번호에 앞 세개의 문자가 010이 아니라면 false
 			if(!"010".equals(				
 					""+phoneNumber.charAt(0) + 
 						phoneNumber.charAt(1) +
 							phoneNumber.charAt(2))				
 					) return false;
 			
-			// 5.
+			// 4.
 			for(int i = 0; i < phoneNumber.length(); i++) {
 	 			// 아스키코드 48 ~ 57은 0부터 9
 	 			if(  phoneNumber.charAt(i) > 57 ||  48 > phoneNumber.charAt(i) )
@@ -49,7 +47,28 @@ public class ExtraUtil {
 			
 			return true;
 	}
-    
+	
+	/*
+	 *  invoiceNumberCheck( String invoiceNumber )메소드는 인자값으로 문자열( 송장 번호)를 받습니다.
+	 *  그 후 각각의 검사를 진행합니다.
+	 *  1. 송장번호가 null인지
+	 *  2. 송장번호가 20자리 이상인지
+	 *  3. 송장번호에 문자가 들어가는지
+	 */
+    public boolean invoiceNumberCheck( String invoiceNumber ) {
+    	// 유효성 검사
+    		// 1. 전화번호가 null이면 false
+    		if(invoiceNumber == null)return false;
+    		// 2. 전화번호가 11자리가 아니라면 false
+    		if(invoiceNumber.length() != 11)return false;					
+    		// 4.
+    		for(int i = 0; i < invoiceNumber.length(); i++) {
+    		 	// 아스키코드 48 ~ 57은 0부터 9
+    		 	if(  invoiceNumber.charAt(i) > 57 ||  48 > invoiceNumber.charAt(i) )
+    		 		return false;
+    		 }    				
+    		return true;
+    }
 /*
  	===================================================================
  	certNumber() 메소드는 1000부터 9999까지의 난수를 생성합니다.

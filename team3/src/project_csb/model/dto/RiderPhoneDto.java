@@ -5,7 +5,7 @@ public class RiderPhoneDto {
 	// 배송번호
 	private int lineNumber;
 	// 송장번호 
-	private int incoiceNumber;
+	private String incoiceNumber;
 	// 물건코드 
 	private int bitem;
 	// 기사코드
@@ -18,8 +18,9 @@ public class RiderPhoneDto {
 	// 기본생성자 
 	public RiderPhoneDto() {}
 
-	// 풀 생성자 
-	public RiderPhoneDto(int lineNumber, int incoiceNumber, int bitem, int barticle, String userPhone,
+	
+
+	public RiderPhoneDto(int lineNumber, String incoiceNumber, int bitem, int barticle, String userPhone,
 			boolean deliveryStatus) {
 		super();
 		this.lineNumber = lineNumber;
@@ -30,6 +31,8 @@ public class RiderPhoneDto {
 		DeliveryStatus = deliveryStatus;
 	}
 
+
+
 	// getter and setter
 	public int getLineNumber() {
 		return lineNumber;
@@ -39,11 +42,11 @@ public class RiderPhoneDto {
 		this.lineNumber = lineNumber;
 	}
 
-	public int getIncoiceNumber() {
+	public String getIncoiceNumber() {
 		return incoiceNumber;
 	}
 
-	public void setIncoiceNumber(int incoiceNumber) {
+	public void setIncoiceNumber(String incoiceNumber) {
 		this.incoiceNumber = incoiceNumber;
 	}
 

@@ -18,7 +18,7 @@ public class UserPhoneDao extends ConnectJdbc {
 		try {
 			// SQL작성한다
 				// 송장번호를 보기위해 , 배송상태를 확인하기위해 유저핸드폰번호를 입력한다.
-			String sql = "select InvoiceNumber from Delivery_status where Customer_phone_numbe = ? ";
+			String sql = "select InvoiceNumber from deliveryStatus where customerPhoneNumbe = ? ";
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, phoneSession);
 			rs = ps.executeQuery();
@@ -39,7 +39,7 @@ public class UserPhoneDao extends ConnectJdbc {
 			
 			try {
 				// 1. sql작성
-				String sql = "select delivery_status from Delivery_status where InvoiceNumber = ?";
+				String sql = "select dstatus from deliveryStatus where InvoiceNumber = ?";
 				
 				ps = conn.prepareStatement(sql);
 				// ? 를 채울값을 넣어야된다 
@@ -69,7 +69,7 @@ public class UserPhoneDao extends ConnectJdbc {
 		ArrayList<UserPhoneDto> userPhoneDto = new ArrayList<>();
 		try {
 			// 함 비밀번호와 함 번호 찾는 sql문
-			String sql = "select a.bnumber , a.bpw , dateReceipt from anmdtable a , texting t where a.bnumber = t.bnumber and Customer_phone_numbe = ?";
+			String sql = "select a.bnumber , a.bpw , dateReceipt from anmdtable a , texting t where a.bnumber = t.bnumber and customerPhoneNumbe = ?";
 			ps = conn.prepareStatement(sql);
 			ps.setString( 1 , PhoneNumber);
 			rs = ps.executeQuery();
