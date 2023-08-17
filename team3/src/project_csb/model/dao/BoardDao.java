@@ -41,7 +41,7 @@ public class BoardDao extends ConnectJdbc{
 						rs.getString(4), rs.getString(5));
 				list.add(dto);
 			}
-		}catch (Exception e) {}
+		}catch (Exception e) {System.out.println(e);}
 		return list;
 	}
 }
