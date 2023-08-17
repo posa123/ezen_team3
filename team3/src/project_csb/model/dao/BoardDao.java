@@ -1,24 +1,26 @@
 package project_csb.model.dao;
 
+import java.util.ArrayList;
 
+import project_csb.database.ConnectJdbc;
+import project_csb.model.dto.BoardDto;
 
 //게시판 dao
-public class BoardDao {
+public class BoardDao extends ConnectJdbc{
 	// 싱글톤
 	private static BoardDao dao = new BoardDao();
 	private BoardDao() {}
 	public static BoardDao getInstance() {return dao;}	
 	
 	//boardWrite : 게시판 쓰기 메소드
-	public boolean boardWrite( BoardDao boardDao) {
+	public boolean boardWrite( BoardDto boardDto) {
 		try {
-			String sql="";
-			ps = conn.prepareStatement(spl);
+			String sql = "insert into bulletinBoard ( postTitle , contentPosts ,  writerPhoneNumber) values( ? , ? , ?)";
+			ps = conn.prepareStatement(sql);
 			
-			ps.setString(1,boardDto.getpostTitle());
-			ps.setString(2,boardDto.getcontentPosts());
-			ps.setString(3,boardDto.getwriterPhoneNumber());
-			
+			ps.setString(1,boardDto.getPostTitle());
+			ps.setString(2,boardDto.getContentPosts());
+			ps.setString(3,boardDto.getWriterPhoneNumber());			
 			int row = ps.executeUpdate();
 			if(row==1) return true;
 			
@@ -27,11 +29,11 @@ public class BoardDao {
 	}
 	
 	//boardPrint : 글 조회 메소드
-	public ArraryList<BoardDto> boardPrint() {
-		ArraryList<BoardDto> list = new ArrayList<>();
+	public ArrayList<BoardDto> boardPrint() {
+		ArrayList<BoardDto> list = new ArrayList<>();
 		try {
 			String sql="";
-			ps = conn.preparStatement(sql);
+			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				BoardDto dto = new BoardDto(

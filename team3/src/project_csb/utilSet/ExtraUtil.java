@@ -1,6 +1,8 @@
 package project_csb.utilSet;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ExtraUtil {
 	private static ExtraUtil extraUtil = new ExtraUtil();
@@ -13,9 +15,10 @@ public class ExtraUtil {
 	public Scanner getScInstance() {return sc;}
 	// 세터
 	public void setScInstance( Scanner sc ) { this.sc = sc;}
-	
-	
-	
+	// 정규식에 필요한 클래스
+	private Pattern p;
+	private Matcher m;
+
 	/*
 	 	phoneNumberCheck( String phoneNumber )메소드는 인자값으로 문자열(휴대폰 번호)를 받습니다.
 	 	그 후 각각의 검사를 진행합니다.

@@ -3,6 +3,8 @@ package project_csb.view;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import project_csb.controller.BoardController;
+import project_csb.model.dto.BoardDto;
 import project_csb.utilSet.MainInterface;
 
 //게시판 view
@@ -49,11 +51,11 @@ public class BoardView implements MainInterface{
 	public void boardPrint() {
 		System.out.println(" ====== 게시판 글조회 ======= ");
 		ArrayList<BoardDto> result = BoardController.getInstance().boardPrint();
-		System.out.println("%-10s %-10s %-10s %-10s %-10s \n","no","title","content","phoneNumber","date");
+		System.out.printf("%-10s %-10s %-10s %-10s %-10s \n","no","title","content","phoneNumber","date");
 		for(int i = 0; i<result.size(); i++) {
 			BoardDto dto = result.get(i);	// i번째의 객체를 호출
-			System.out.println("%-10s %-10s %-10s %-10s %-10s \n",
-					dto.getpostNumber(), dto.getpostTitle(), dto.getcontentPosts(), dto.getwriterPhoneNumber(), dto.getdateCreatedDatetime());
+			System.out.printf("%-10s %-10s %-10s %-10s %-10s \n",
+					dto.getPostNumber(), dto.getPostTitle(), dto.getContentPosts(), dto.getWriterPhoneNumber(), dto.getDateCreatedDatetime());
 		}
 	}
 	
