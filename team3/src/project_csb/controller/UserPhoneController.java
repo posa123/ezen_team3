@@ -1,5 +1,6 @@
 package project_csb.controller;
 
+import project_csb.model.dao.UserPhoneDao;
 
 
 import java.util.ArrayList;
@@ -11,6 +12,16 @@ public class UserPhoneController {
 	// 싱글톤
 	private static UserPhoneController userPhoneController = new UserPhoneController();
 	private UserPhoneController() {}
+
+	public static UserPhoneController getInstance() {return controller;}
+	
+	// 송장번호를 입력받아 배송상태확인 함수
+	public void InvoiceNumber() {
+		
+		
+		UserPhoneDao.getInstance().
+	}
+	
 	public static UserPhoneController getInstance() {return userPhoneController;}
 	
 
@@ -36,6 +47,7 @@ public class UserPhoneController {
 	public ArrayList<UserPhoneDto> checkMail(){				
 		return UserPhoneDao.getInstance().checkMail(MainPhoneController.getInstance().getPhoneSession());
 	}
+
 }
 
 

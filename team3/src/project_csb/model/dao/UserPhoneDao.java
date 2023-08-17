@@ -11,6 +11,7 @@ public class UserPhoneDao extends ConnectJdbc {
 	private UserPhoneDao() {}
 	public static UserPhoneDao getInstance() {return userPhoneDao;}	
 	
+
 	public ArrayList<Integer> invoiceNumber(String phoneSession){
 		// 배열선언하는이유는 유저가 전화번호를 입력했을때 배송상태/송장번호가 여러개 일수있기때문에 그갯수만큼 넣는다 
 			// 배열선언을 해주지않으면 여러개의 배송정보를 부를수가없다.
