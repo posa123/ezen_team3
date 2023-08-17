@@ -2,6 +2,9 @@ package project_csb.controller;
 
 import java.util.ArrayList;
 
+import project_csb.model.dao.BoardDao;
+import project_csb.model.dto.BoardDto;
+
 //게시판 컨트롤러
 public class BoardController {
 	// 싱글톤
@@ -15,9 +18,9 @@ public class BoardController {
 		if(postTitle.length() == 0 || postTitle.length() > 50) { return false; }
 		//Dto
 		BoardDto boardDto = new BoardDto (
-				postTitle, contentPosts, writerPhoneNumber,
-				MemberController.getInstance());
-		return boardDto.getInstance().boardWrite(boardDto);
+				postTitle, contentPosts, writerPhoneNumber
+				);
+		return BoardDao.getInstance().boardWrite(boardDto);
 	}
 	
 	// boardPrint : 글 조회 메소드
