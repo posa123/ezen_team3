@@ -25,7 +25,7 @@ public class BoardView implements MainInterface{
 		try {
 			int ch = sc.nextInt();
 			if( ch == 1) { boardWrite(); }
-			if( ch == 2) {}
+			if( ch == 2) { boardPrint(); }
 		}catch (Exception e) {
 			System.out.println("경고)잘못된 입력입니다. ");
 			sc = new Scanner(System.in);
