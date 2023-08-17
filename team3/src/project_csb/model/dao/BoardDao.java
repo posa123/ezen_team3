@@ -32,7 +32,7 @@ public class BoardDao extends ConnectJdbc{
 	public ArrayList<BoardDto> boardPrint() {
 		ArrayList<BoardDto> list = new ArrayList<>();
 		try {
-			String sql="";
+			String sql="select postNumber ,postTitle,contentPosts,dateCreatedDatetime from bulletinBoard; ";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) {
