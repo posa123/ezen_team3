@@ -7,9 +7,9 @@ import project_csb.model.dto.UserPhoneDto;
 //유저 핸드폰 dao
 public class UserPhoneDao extends ConnectJdbc {
 	// 싱글톤
-	private static UserPhoneDao dao = new UserPhoneDao();
+	private static UserPhoneDao userPhoneDao = new UserPhoneDao();
 	private UserPhoneDao() {}
-	public static UserPhoneDao getInstance() {return dao;}	
+	public static UserPhoneDao getInstance() {return userPhoneDao;}	
 	
 	public ArrayList<Integer> invoiceNumber(String phoneSession){
 		// 배열선언하는이유는 유저가 전화번호를 입력했을때 배송상태/송장번호가 여러개 일수있기때문에 그갯수만큼 넣는다 
@@ -54,7 +54,7 @@ public class UserPhoneDao extends ConnectJdbc {
 						return 1;
 					else
 						return 2;
-									}										
+				}										
 			}catch (Exception e) {System.out.println(e);}
 			
 			return 0;

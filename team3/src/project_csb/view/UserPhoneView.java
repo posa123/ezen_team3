@@ -64,7 +64,7 @@ public class UserPhoneView implements MainInterface{
 	/*
 	   배송상태 확인하기 메소드
 	 */
-	public void checkDeliveryStatus() {
+	public void checkDeliveryStatus() throws InputMismatchException{
 		System.out.println("[택배 어플 켜기]");
 		System.out.print("송장 번호 입력 : "); int invoiceNumber = ExtraUtil.getInstance().getScInstance().nextInt();
 		System.out.println("배송 상태");
