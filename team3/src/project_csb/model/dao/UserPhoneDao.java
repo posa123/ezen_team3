@@ -8,4 +8,5 @@ public class UserPhoneDao {
 	private static UserPhoneDao dao = new UserPhoneDao();
 	private UserPhoneDao() {}
 	public static UserPhoneDao getInstance() {return dao;}	
+	
 }
