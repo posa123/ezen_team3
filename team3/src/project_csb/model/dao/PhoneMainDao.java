@@ -15,6 +15,7 @@ public class PhoneMainDao extends ConnectJdbc{
 		try {
 			String sql = "select barphone from couriertale where barphone = ?";		
 			ps = conn.prepareStatement(sql);
+			ps.setString(1, phoneSession);
 			rs = ps.executeQuery();
 			if(rs.next()) 
 				return true;

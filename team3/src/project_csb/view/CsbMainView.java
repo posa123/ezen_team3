@@ -2,8 +2,8 @@ package project_csb.view;
 
 import java.util.Scanner;
 
-import project_csb.interfaceSet.MainInterface;
-import project_csb.interfaceSet.ViewList;
+import project_csb.utilSet.MainInterface;
+import project_csb.utilSet.ViewList;
 
 // 무인택배함 메인 페이지
 public class CsbMainView implements MainInterface{
@@ -18,7 +18,7 @@ public class CsbMainView implements MainInterface{
 	public void OutPutFront() {
 		while(true) {
 		      System.out.println("\n\n======= 환영합니다.==========");
-		      System.out.print("1.물품등록 2.물품찾기 3.불편접수게시판 4.뒤로가기");
+		      System.out.print("1.물품등록 2.물품찾기 3.불편접수게시판 4.뒤로가기 선택>>");
 				int ch = sc.nextInt() + 2;
 				// 4입력시 return
 				if(ch == 6) return;

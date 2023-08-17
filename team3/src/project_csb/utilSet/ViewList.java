@@ -1,4 +1,4 @@
-package project_csb.interfaceSet;
+package project_csb.utilSet;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,8 +13,8 @@ public class ViewList {
 	public ArrayList<MainInterface> arr = new ArrayList<>(Arrays.asList(
 			
 			project_csb.view.CompanySysView.getInstance() ,				// 회사 시스템 		view
-			project_csb.view.PhoneMainView.getInstance() , 		// 휴대폰 메인 		view
-			project_csb.view.CsbMainView.getInstance() ,						// 무인택배함 메인	view
+			project_csb.view.PhoneMainView.getInstance() , 				// 휴대폰 메인 		view
+			project_csb.view.CsbMainView.getInstance() ,				// 무인택배함 메인	view
 			project_csb.view.RiderView.getInstance() ,					// 	-기사 		view
 			project_csb.view.UserView.getInstance() ,					// 	-사용자		view
 			project_csb.view.BoardView.getInstance() 					//	-게시판		view
