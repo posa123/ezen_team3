@@ -54,7 +54,7 @@ public class ExtraUtil {
     public boolean invoiceNumberCheck( String invoiceNumber ) {
     	// 유효성 검사
     	if(invoiceNumber == null) return false;
-    	p = Pattern.compile("\\d{20}");
+    	p = Pattern.compile("\\d{20 , 30}");
 		m = p.matcher(invoiceNumber);
 		
 		if(!m.matches() ) 
