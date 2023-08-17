@@ -12,8 +12,8 @@ public class RiderDao extends ConnectJdbc{
 	private RiderDao() {}
 	public static RiderDao getInstance() {return riderDao;}	
 	
-	// 해당 카테고리의 보관함 출력 메소드
-		// 함번호가 들어오는 값이 숫자로 들어오기때문에 Integer로 타입설정 
+	// 1. 보관함 카테고리 선택 후 보관 가능한 보관함 모두 출력 메소드
+		 // 함번호가 들어오는 값이 숫자로 들어오기때문에 Integer로 타입설정 
 	public ArrayList<Integer> categoryPrint(String bsituation){
 		ArrayList<Integer> riderList = new ArrayList<Integer>(); // 가변길이/자동길이 로 설정 
 	
@@ -35,13 +35,22 @@ public class RiderDao extends ConnectJdbc{
 		return riderList;
 	}
 	
-	// 택배함 보관 내역 테이블 수정 
+	//  2. parcelboxUpdate : 택배함 보관 내역 테이블 수정 
+	public boolean parcelboxUpdate() {
+		
+		try {
+			// sql 작성 
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
+	}
 	
 	
-	// 문자테이블 등록
+	// 2. 문자테이블 등록
 	
 	
-	// 2. 고객에게 보관함 번호와 비밀번호 전달 하기 
+	// 3. 고객에게 문자발송 메소드
 	public ArrayList<RiderDto> CustomerRelay(RiderDto riderDto){
 		try {
 			// sql작성
@@ -50,6 +59,18 @@ public class RiderDao extends ConnectJdbc{
 		} catch (Exception e) {System.out.println(e);}
 		
 		return null;
+	}
+	
+	// 4. 보관함 비밀번호 설정 메소드
+	public boolean passwordCreate(RiderDto riderDto) {
+		
+		try {
+			
+			// 
+			
+		} catch (Exception e) {System.out.println(e);}
+		
+		return false;
 	}
 	
 }

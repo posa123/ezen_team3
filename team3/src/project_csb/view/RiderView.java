@@ -45,13 +45,13 @@ public class RiderView implements MainInterface {
 		
 		System.out.println("\n\n전화번호를 입력해주세요 : "); String phoneNumber = sc.next();
 		// 난수 생성 메소드호출 
-		int result = 
+		int result1 = 
 				ExtraUtil.getInstance().certNumber();
 		
 		System.out.println("인증번호를 입력하세요 : "); int cNumber = sc.nextInt();
 		
 		// 입력받은 인증번호가 맞는지 검사
-		if(result == cNumber) {
+		if(result1 == cNumber) {
 			System.out.println("인증 되었습니다");
 		}else {System.out.println("인증 실패됬습니다");}
 		
@@ -62,10 +62,12 @@ public class RiderView implements MainInterface {
 		int ch = sc.nextInt();
 		// 배열로 선언하면 모든 보관함의 유효성검사를 해줘야하기때문에 ArrayList 로 자동길이를 설정했다 
 		ArrayList<Integer> selectCategory;
+		// 들어오는값이 숫자가아닌 문자열이므로 String 타입생성 
 		String category = null;
 		// 선택한 카테고리를 컨트롤러에게 보낸다
 		if(ch == 1) {
 			category = "실온";
+			// 선택한 번호가 1번이면 해당 category 변수에 "실온" 을담는다 
 		}// if e
 		if(ch == 2) {
 			category = "냉장";
@@ -74,8 +76,8 @@ public class RiderView implements MainInterface {
 			category = "냉동";
 		}// if e
 		
+		// selectCategory 배열에 RiderController 에게 category를담아서 컨트롤러에게 전달한다.
 		selectCategory = RiderController.getInstance().categoryPrint(category);
-		// 해당 
 		
 		// 인증한후에 기사가 고객에게 전달하기전 필요한 양식 입력
 		// 함번호
@@ -84,11 +86,41 @@ public class RiderView implements MainInterface {
 		// 비밀번호
 		System.out.println("비밀번호를 입력하세요 : "); int bpw = sc.nextInt();
 		
-		
-		//고객(사용자)에게 보관함 번호와 비밀번호 전달하기
-		RiderView.getInstance().CustomerRelay();
+	
+	}
+	
+	// 보관함 카테고리 선택 후 보관 가능한 보관함 모두 출력 메소드
+	public void parcelboxUpdate() {
 		
 	}
-
+	
+	// 보관함 비밀번호 설정/생성 메소드
+	public void passwordCreate() {
+		System.out.println("\n\n ----- 비밀번호 생성해주세요 -------- ");
+		System.out.println("비밀번호 : "); int pwCreate = sc.nextInt();
+		
+		// 생성한 비밀번호 컨트롤에게 전달 
+		int result2 = 
+				RiderController.getInstance().passwordCreate(pwCreate);
+		
+	}
+	
+	// 고객에게 문자 발송 메소드
+	
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
