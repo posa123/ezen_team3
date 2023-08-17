@@ -15,12 +15,10 @@ public class BoardDao extends ConnectJdbc{
 	//boardWrite : 게시판 쓰기 메소드
 	public boolean boardWrite( BoardDto boardDto) {
 		try {
-			String sql = "insert into bulletinBoard ( postTitle , contentPosts ,  writerPhoneNumber) values( ? , ? , ?)";
-			ps = conn.prepareStatement(sql);
-			
-			ps.setString(1,boardDto.getPostTitle());
-			ps.setString(2,boardDto.getContentPosts());
-			ps.setString(3,boardDto.getWriterPhoneNumber());			
+			String sql = "insert into bulletinBoard (contentPosts ,  writerPhoneNumber) values( ? , ?)";
+			ps = conn.prepareStatement(sql);	
+			ps.setString(1,boardDto.getContentPosts());
+			ps.setString(2,boardDto.getWriterPhoneNumber());			
 			int row = ps.executeUpdate();
 			if(row==1) return true;
 			
@@ -30,18 +28,18 @@ public class BoardDao extends ConnectJdbc{
 	
 	//boardPrint : 글 조회 메소드
 	public ArrayList<BoardDto> boardPrint() {
-		ArrayList<BoardDto> list = new ArrayList<>();
+		ArrayList<BoardDto> dtoList = new ArrayList<>();
 		try {
-			String sql="select postNumber ,postTitle,contentPosts,dateCreatedDatetime from bulletinBoard ";
+			String sql="select postNumber ,contentPosts,dateCreatedDatetime from bulletinBoard ";
 			ps = conn.prepareStatement(sql);
 			rs = ps.executeQuery();
 			while( rs.next() ) {
 				BoardDto dto = new BoardDto(
-						rs.getInt(1), rs.getString(2), rs.getString(3), 
-						rs.getString(4), rs.getString(5));
-				list.add(dto);
+						rs.getInt(1), rs.getString(2), rs.getString(3) 
+						);
+				dtoList.add(dto);
 			}
 		}catch (Exception e) {System.out.println(e);}
-		return list;
+		return dtoList;
 	}
 }

@@ -25,9 +25,8 @@ public class RiderPhoneDao extends ConnectJdbc{
 				int row = ps.executeUpdate();
 				if( row == 1) {
 					return true;
-				}else {
-					return false;
 				}
+				
 				
 			}catch (Exception e) {System.out.println(e);}
 			

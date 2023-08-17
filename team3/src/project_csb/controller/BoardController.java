@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import project_csb.model.dao.BoardDao;
 import project_csb.model.dto.BoardDto;
+import project_csb.utilSet.ExtraUtil;
 
 //게시판 컨트롤러
 public class BoardController {
@@ -13,13 +14,12 @@ public class BoardController {
 	public static BoardController getInstance() {return controller;}
 	
 	// boardWrite : 게시판 쓰기 메소드
-	public boolean boardWrite( String postTitle, String contentPosts, String writerPhoneNumber) {
+	public boolean boardWrite(  String contentPosts, String writerPhoneNumber) {
+		
 		//유효성 검사
-		if(postTitle.length() == 0 || postTitle.length() > 50) { return false; }
-		//Dto
-		BoardDto boardDto = new BoardDto (
-				postTitle, contentPosts, writerPhoneNumber
-				);
+		if(ExtraUtil.getInstance().phoneNumberCheck(writerPhoneNumber) == false)
+			return false;
+		BoardDto boardDto = new BoardDto( contentPosts , writerPhoneNumber);
 		return BoardDao.getInstance().boardWrite(boardDto);
 	}
 	

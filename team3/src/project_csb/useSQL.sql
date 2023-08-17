@@ -45,7 +45,6 @@ select * from couriertale;
 drop table if exists bulletinBoard;
 create table bulletinBoard (
 	postNumber int auto_increment not null ,			-- 게시물번호
-    postTitle varchar(15) not null,							-- 게시물제목
     contentPosts longtext not null, 						-- 게시물내용
     writerPhoneNumber varchar(20) not null,					-- 작성자전화번호
     dateCreatedDatetime datetime default now() ,						--  작성 일시
@@ -60,7 +59,7 @@ create table deliveryStatus (
     bitem int not null, 										-- 물건코드
     barticle int not null ,										-- 기사코드
     customerPhoneNumbe varchar(13) not null, 					-- 고객전화번호
-    deliveryStatus boolean default false not null,				-- 배송상태
+    dstatus boolean default false not null,				-- 배송상태
     primary key(lineNumber) ,
     foreign key(bitem) references objecttable(bitem) on update cascade ,
     foreign key(barticle) references couriertale(barticle) on update cascade 
@@ -135,8 +134,8 @@ insert into couriertale(barticle , barname , barphone ) values(230808114 , '이�
 insert into couriertale(barticle , barname , barphone ) values(230808115 , '이진형' , '01022227777');
 
 #  5. 게시판 레코드 
-insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber   ) values( 1 , '잘썼습니다' , '좋은보관함입니다' , '010-1234-0000' );
-insert into bulletinBoard( postNumber , postTitle , contentPosts ,  writerPhoneNumber   ) values( 2 , '2번 칸 수리요망' , '문이 삐그덕 거리네요' , '010-4343-2121');
+insert into bulletinBoard( postNumber , contentPosts ,  writerPhoneNumber   ) values( 1 ,  '좋은보관함입니다' , '010-1234-0000' );
+insert into bulletinBoard( postNumber  , contentPosts ,  writerPhoneNumber   ) values( 2 ,  '문이 삐그덕 거리네요' , '010-4343-2121');
 
 # 6. 배송 현황 레코드 
 insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe  ) values( date_format(now(6) , '%Y%m%d%H%i%s%f') , 33332222 , 230808101 , '01033332222'  );
@@ -145,6 +144,7 @@ insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumb
 # 7. 문자  레코드         
 insert into texting ( customerPhoneNumbe , bnumber ) values( '01033332222' , 1  );
 insert into texting ( customerPhoneNumbe , bnumber ) values( '01022225555' , 2  );
+select postNumber ,contentPosts,dateCreatedDatetime from bulletinBoard 
 
 
 

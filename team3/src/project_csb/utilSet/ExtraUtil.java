@@ -32,10 +32,11 @@ public class ExtraUtil {
 	 */
 	public boolean phoneNumberCheck( String phoneNumber ) {
 		// 유효성 검사
+		if(phoneNumber == null)return false;
     	p = Pattern.compile("010\\d{8}");
 		m = p.matcher(phoneNumber);
 		
-		if( m.matches() ) 
+		if(!m.matches() ) 
 			return false;
 			
 		return true;
@@ -52,13 +53,14 @@ public class ExtraUtil {
 	 */
     public boolean invoiceNumberCheck( String invoiceNumber ) {
     	// 유효성 검사
+    	if(invoiceNumber == null) return false;
     	p = Pattern.compile("\\d{20}");
 		m = p.matcher(invoiceNumber);
 		
-		if( m.matches() ) 
+		if(!m.matches() ) 
 			return false;
 		
-    		return true;
+    	return true;
     } 	
  	/*=================================================================
  	 *  비밀번호 유효성 검사 메소드는 인자 값으로 문자열(password)를 받습니다.
@@ -72,10 +74,11 @@ public class ExtraUtil {
  	 */
  	public boolean passwordCheck(String password) {
  		// 유효성 검사
+ 		if(password == null) return false;
  		p = Pattern.compile("\\d{4}");
 		m = p.matcher(password);
 		
-		if(! m.matches() ) 
+		if(!m.matches() ) 
 			return false;	
 		
  		return true;
