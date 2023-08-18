@@ -33,12 +33,13 @@ public class ExtraUtil {
 	public boolean phoneNumberCheck( String phoneNumber ) {
 		// 유효성 검사
 		if(phoneNumber == null)return false;
-    	p = Pattern.compile("010\\d{8}");
-		m = p.matcher(phoneNumber);
-		
-		if(!m.matches() ) 
-			return false;
+	
+			p = Pattern.compile("010\\d{8}");
+			m = p.matcher(phoneNumber);
 			
+			if(!m.matches() ) 
+				return false;
+    
 		return true;
 	}
 	
@@ -54,11 +55,12 @@ public class ExtraUtil {
     public boolean invoiceNumberCheck( String invoiceNumber ) {
     	// 유효성 검사
     	if(invoiceNumber == null) return false;
-    	p = Pattern.compile("\\d{20 , 30}");
-		m = p.matcher(invoiceNumber);
-		
-		if(!m.matches() ) 
-			return false;
+
+    		p = Pattern.compile("\\d{20,30}");
+			m = p.matcher(invoiceNumber);
+			
+			if(!m.matches() ) 
+				return false;
 		
     	return true;
     } 	
@@ -73,14 +75,14 @@ public class ExtraUtil {
  	 *  
  	 */
  	public boolean passwordCheck(String password) {
- 		// 유효성 검사
- 		if(password == null) return false;
- 		p = Pattern.compile("\\d{4}");
-		m = p.matcher(password);
-		
-		if(!m.matches() ) 
-			return false;	
-		
+	 		// 유효성 검사
+	 		if(password == null) return false;
+	 		p = Pattern.compile("\\d{4}");
+			m = p.matcher(password);
+			
+			if(!m.matches() ) 
+				return false;	
+ 	
  		return true;
  	}
 /*
