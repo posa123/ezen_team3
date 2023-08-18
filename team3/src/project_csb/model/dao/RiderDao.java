@@ -3,7 +3,6 @@ package project_csb.model.dao;
 import java.util.ArrayList;
 
 import project_csb.database.ConnectJdbc;
-import project_csb.model.dto.RiderDto;
 
 // 기사 dao
 public class RiderDao extends ConnectJdbc{
@@ -35,49 +34,57 @@ public class RiderDao extends ConnectJdbc{
 		return riderList;
 	}
 	
-	//  2. parcelboxUpdate : 택배함 보관 내역 테이블 수정 
-	public boolean parcelboxUpdate() {
-		
-		try {
-			// sql 작성 
+	//  보관함 비밀번호 설정 메소드
+		public boolean passwordCreate(int bnumber  , String bpw) {
+			boolean result = false;
+			try {
+				// sql작성
+					// update 함번호를 설정했고 해당 함번호의 비밀번호를 생성해야한다.
+				String sql = "update anmdtable set bpw = ? where bnumber = ? ";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, bpw);
+				ps.setInt(2 , bnumber);
+				// 실행
+				int row = ps.executeUpdate();
+				if( row == 1) 
+					result = true;
+					
+				if( result == true ) 
+					// 보관 내역 수정 메소드
+					parcelboxUpdate( bnumber );
 			
-		} catch (Exception e) {System.out.println(e);}
+						
+			} catch (Exception e) {System.out.println(e);}
+			
+			return false;
+		}	
 		
-		return false;
+	//  parcelboxUpdate : 택배함 보관 내역 테이블 수정 
+	public void parcelboxUpdate( int bnumber ) {
+		try {
+		String sql = "insert into archistable( bnumber ) values( ? )";
+		ps = conn.prepareStatement(sql);
+		ps.setInt( 1 , bnumber);
+		ps.executeUpdate();
+		} catch (Exception e) {System.out.println(e);}	
 	}
 	
 	
-	// 2. 문자테이블 등록
-	
-	
-	// 3. 고객에게 문자발송 메소드
-	public ArrayList<RiderDto> CustomerRelay(RiderDto riderDto){
+	// 고객에게 문자발송 메소드
+	public boolean CustomerRelay(int bnumber , String phoneNumber){
 		try {
 			// sql작성
-			String sql = "";
-			
-		} catch (Exception e) {System.out.println(e);}
-		
-		return null;
-	}
-	
-	// 4. 보관함 비밀번호 설정 메소드
-	public boolean passwordCreate(int bnumber  , String bpw) {
-		
-		try {
-			// sql작성
-				// update 함번호를 설정했고 해당 함번호의 비밀번호를 생성해야한다.
-			String sql = "update anmdtable set bpw = ? where bnumber = ? ";
+			String sql = "insert into texting(customerPhoneNumbe , bnumber) values( ? , ?)";
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, bpw);
-			ps.setInt(2 , bnumber);
-			// 실행
-			ps.executeUpdate();
-			return true;
-			
+			ps.setString( 1, phoneNumber);
+			ps.setInt( 2 , bnumber );
+			int row = ps.executeUpdate();
+			if(row == 1 )
+				return true;
 		} catch (Exception e) {System.out.println(e);}
 		
 		return false;
 	}
+	
 	
 }

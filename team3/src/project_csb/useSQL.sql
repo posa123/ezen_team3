@@ -13,6 +13,7 @@ create table anmdtable(
     primary key(bnumber)
     );             
 select * from anmdtable;
+update anmdtable set bpw = null where bnumber = 1;
 # 2. 물건 테이블
 create table objecttable( 
     bitem  int not null unique , 		-- 물건코드 
@@ -24,14 +25,15 @@ select * from objecttable;
 # 3. 택배함보관내역 테이블
 drop table if exists archistable; 
 create table archistable( 
-    cnumer Smallint not null,          					-- 번호 
-    bnumber mediumint unique not null ,       			-- 함번호  
-    storagedate datetime default now() not null,    	-- 보관일시 
-    visitdate datetime ,								-- 찾아간일시 
+    cnumer Smallint auto_increment not null,          			-- 번호 
+    bnumber mediumint not null ,       							-- 함번호  
+    storagedate datetime default now() not null,    			-- 보관일시 
+    visitdate datetime default null,							-- 찾아간일시 
     primary key(cnumer) , 	
     foreign key(bnumber)  references anmdtable(bnumber) on update cascade
     );      
-
+select * from archistable;
+insert into archistable( bnumber )
 # 4. 택배기사 테이블 
 create table couriertale( 
     barticle int not null unique,     			 -- 기사코드

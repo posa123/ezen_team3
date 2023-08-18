@@ -22,7 +22,7 @@ public class BoardView implements MainInterface{
 	public void OutPutFront() {
 		while(true) {
 			try {
-				System.out.println("============== 건의사항 게시판 =============== ");
+				System.out.println("========================== 건의사항 게시판 ======================== ");
 				System.out.print("1.글쓰기 2.글조회 3.뒤로가기 선택>> ");
 				
 				int ch = ExtraUtil.getInstance().getScInstance().nextInt();
@@ -66,12 +66,12 @@ public class BoardView implements MainInterface{
 	public void boardPrint() {
 		System.out.println("\n\n =================== 게시판 글조회 ====================== ");
 		ArrayList<BoardDto> result = BoardController.getInstance().boardPrint();
-		System.out.printf("%-10s %-13s %-15s %-10s \n","게시글 번호","글 제목","글 내용","날짜");
+		System.out.printf("%-10s %-30s %-10s \n","게시글 번호","글 내용","날짜");
 		System.out.println("=====================================================");
 		for(int i = 0; i<result.size(); i++) {
 			BoardDto dto = result.get(i);	// i번째의 객체를 호출
-			System.out.printf("%-12d %-12s %-13s %-10s \n",
-					dto.getPostNumber(), dto.getPostTitle(), dto.getContentPosts(), dto.getDateCreatedDatetime());
+			System.out.printf("%-12d %-30s %-10s \n",
+					dto.getPostNumber(), dto.getContentPosts(), dto.getDateCreatedDatetime());
 		}
 	}
 	
