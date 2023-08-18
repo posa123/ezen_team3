@@ -18,19 +18,23 @@ public class UserView implements MainInterface{
 	@Override
 	public void OutPutFront() {
 		try {
-			System.out.println("========== 물건 찾기 =============");
+			System.out.println("============== 물건 찾기 ================");
+			
 			System.out.print("찾아가실 물건이 위치한 보관함 번호를 입력해주세요 [1-20]: "); int bnumber = ExtraUtil.getInstance().getScInstance().nextInt();
+			
+				// 보관함 유효성 검사
+				if(UserController.getInstance().checkLocker( bnumber ) == false) {
+					System.out.println("보관함이 비어있습니다.");
+					return;
+				}
+			
 			System.out.print("보관함의 비밀번호를 입력해주세요."); String bpw = ExtraUtil.getInstance().getScInstance().next();
-			//유효성 검사
-			if(ExtraUtil.getInstance().passwordCheck(bpw) == false) {
-				System.out.println("잘못 입력하셨습니다.");
-				return;
-			}
-			//유효성 검사
-			if(UserController.getInstance().checkLocker( bnumber ) == false) {
-				System.out.println("보관함이 비어있습니다.");
-				return;
-			}
+				
+				// 비밀번호 유효성 검사
+				if(ExtraUtil.getInstance().passwordCheck(bpw) == false) {
+					System.out.println("잘못 입력하셨습니다.");
+					return;
+				}
 			
 			// 물건 찾기 메소드
 			if(UserController.getInstance().findBox(bnumber, bpw) == true) 
