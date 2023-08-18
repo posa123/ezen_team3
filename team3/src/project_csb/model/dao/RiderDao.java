@@ -3,7 +3,6 @@ package project_csb.model.dao;
 import java.util.ArrayList;
 
 import project_csb.database.ConnectJdbc;
-import project_csb.model.dto.RiderDto;
 
 // 기사 dao
 public class RiderDao extends ConnectJdbc{
@@ -50,12 +49,11 @@ public class RiderDao extends ConnectJdbc{
 				if( row == 1) 
 					result = true;
 					
-				if( result == true ) {
+				if( result == true ) 
+					// 보관 내역 수정 메소드
 					parcelboxUpdate( bnumber );
-				}
-				
-				
 			
+						
 			} catch (Exception e) {System.out.println(e);}
 			
 			return false;
@@ -73,14 +71,19 @@ public class RiderDao extends ConnectJdbc{
 	
 	
 	// 고객에게 문자발송 메소드
-	public ArrayList<RiderDto> CustomerRelay(RiderDto riderDto){
+	public boolean CustomerRelay(int bnumber , String phoneNumber){
 		try {
 			// sql작성
-			String sql = "";
-			
+			String sql = "insert into texting(customerPhoneNumbe , bnumber) values( ? , ?)";
+			ps = conn.prepareStatement(sql);
+			ps.setString( 1, phoneNumber);
+			ps.setInt( 2 , bnumber );
+			int row = ps.executeUpdate();
+			if(row == 1 )
+				return true;
 		} catch (Exception e) {System.out.println(e);}
 		
-		return null;
+		return false;
 	}
 	
 	
