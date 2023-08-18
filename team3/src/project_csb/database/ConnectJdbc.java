@@ -17,7 +17,7 @@ public class ConnectJdbc {
 	public ConnectJdbc() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectCsb","root","0000");
+			this.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/projectCsb","root","1234");
 			System.out.println("연동성공");
 		}
 		
