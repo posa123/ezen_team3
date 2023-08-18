@@ -28,12 +28,12 @@ public class RiderController {
 	public boolean parcelboxUpdate() {return false;}
 	
 	// 5. 비밀번호 설정/생성 메소드
-	public int passwordCreate(int bnumber  , String bpw) {
+	public boolean passwordCreate(int bnumber  , String bpw) {
 		System.out.println("\n\n ----- passwordCreate 컨트롤 도착 -----");
-		System.out.println(bpw);
+
 		
 		boolean result = RiderDao.getInstance().passwordCreate( bnumber , bpw);
-		
+		return result;
 		
 	}
 	
