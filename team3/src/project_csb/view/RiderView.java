@@ -16,8 +16,7 @@ public class RiderView implements MainInterface {
 	public static RiderView getInstance() {return riderView;}	
 	
 	
-	@Override
-	public void OutPutFront() {
+
 
 		
 		/*
@@ -36,11 +35,10 @@ public class RiderView implements MainInterface {
 		 			카테고리를 선택한이유는?
 		 				등록할 택배가 어떻게 보관할지 식별하기위해 
 		*/
-		
-	}// OutPutFront e
 	
 	// 기사인증 메소드 
-	public void RiderCheckNumber() {
+	@Override
+	public void OutPutFront() {
 		System.out.println("\n\n ========= Rider System ==============");
 		System.out.println("1.Cj대한통운 2.로젠택배 3.우체국택배 4.한진택배 5.롯데택배 6.대신택배 7.대신택배 8.건영택배 9.농협택배 10.편의점택배");
 		
@@ -61,8 +59,7 @@ public class RiderView implements MainInterface {
 		System.out.println("\n\n ======= 원하시는 보관 카테고리를 선택해주세요 ====== ");
 		System.out.println("1.실온 2.냉장 3.냉동");
 		int ch = sc.nextInt();
-		// 배열로 선언하면 모든 보관함의 유효성검사를 해줘야하기때문에 ArrayList 로 자동길이를 설정했다 
-		ArrayList<Integer> selectCategory;
+		
 		// 들어오는값이 숫자가아닌 문자열이므로 String 타입생성 
 		String category = null;
 		// 선택한 카테고리를 컨트롤러에게 보낸다
@@ -76,10 +73,9 @@ public class RiderView implements MainInterface {
 		if(ch == 3) {
 			category = "냉동";
 		}// if e
-		
+		// 배열로 선언하면 모든 보관함의 유효성검사를 해줘야하기때문에 ArrayList 로 자동길이를 설정했다 
 		// selectCategory 배열에 RiderController 에게 category를담아서 컨트롤러에게 전달한다.
-		selectCategory = RiderController.getInstance().categoryPrint(category);
-		
+		ArrayList<Integer> selectCategory = RiderController.getInstance().categoryPrint(category);	
 		//  리스트내에 저장된 객체를 첫번째부터 마지막까지
 			// 인덱스를 0부터 .size() 미만까지 
 		for(int i = 0; i<selectCategory.size(); i++) {

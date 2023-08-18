@@ -35,22 +35,44 @@ public class RiderDao extends ConnectJdbc{
 		return riderList;
 	}
 	
-	//  2. parcelboxUpdate : 택배함 보관 내역 테이블 수정 
-	public boolean parcelboxUpdate() {
-		
-		try {
-			// sql 작성 
+	//  보관함 비밀번호 설정 메소드
+		public boolean passwordCreate(int bnumber  , String bpw) {
+			boolean result = false;
+			try {
+				// sql작성
+					// update 함번호를 설정했고 해당 함번호의 비밀번호를 생성해야한다.
+				String sql = "update anmdtable set bpw = ? where bnumber = ? ";
+				ps = conn.prepareStatement(sql);
+				ps.setString(1, bpw);
+				ps.setInt(2 , bnumber);
+				// 실행
+				int row = ps.executeUpdate();
+				if( row == 1) 
+					result = true;
+					
+				if( result == true ) {
+					parcelboxUpdate( bnumber );
+				}
+				
+				
 			
-		} catch (Exception e) {System.out.println(e);}
+			} catch (Exception e) {System.out.println(e);}
+			
+			return false;
+		}	
 		
-		return false;
+	//  parcelboxUpdate : 택배함 보관 내역 테이블 수정 
+	public void parcelboxUpdate( int bnumber ) {
+		try {
+		String sql = "insert into archistable( bnumber ) values( ? )";
+		ps = conn.prepareStatement(sql);
+		ps.setInt( 1 , bnumber);
+		ps.executeUpdate();
+		} catch (Exception e) {System.out.println(e);}	
 	}
 	
 	
-	// 2. 문자테이블 등록
-	
-	
-	// 3. 고객에게 문자발송 메소드
+	// 고객에게 문자발송 메소드
 	public ArrayList<RiderDto> CustomerRelay(RiderDto riderDto){
 		try {
 			// sql작성
@@ -61,23 +83,5 @@ public class RiderDao extends ConnectJdbc{
 		return null;
 	}
 	
-	// 4. 보관함 비밀번호 설정 메소드
-	public boolean passwordCreate(int bnumber  , String bpw) {
-		
-		try {
-			// sql작성
-				// update 함번호를 설정했고 해당 함번호의 비밀번호를 생성해야한다.
-			String sql = "update anmdtable set bpw = ? where bnumber = ? ";
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, bpw);
-			ps.setInt(2 , bnumber);
-			// 실행
-			ps.executeUpdate();
-			return true;
-			
-		} catch (Exception e) {System.out.println(e);}
-		
-		return false;
-	}
 	
 }
