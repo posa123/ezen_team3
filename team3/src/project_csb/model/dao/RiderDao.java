@@ -62,11 +62,18 @@ public class RiderDao extends ConnectJdbc{
 	}
 	
 	// 4. 보관함 비밀번호 설정 메소드
-	public boolean passwordCreate(RiderDto riderDto) {
+	public boolean passwordCreate(int bnumber  , String bpw) {
 		
 		try {
-			
-			// 
+			// sql작성
+				// update 함번호를 설정했고 해당 함번호의 비밀번호를 생성해야한다.
+			String sql = "update anmdtable set bpw = ? where bnumber = ? ";
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, bpw);
+			ps.setInt(2 , bnumber);
+			// 실행
+			ps.executeUpdate();
+			return true;
 			
 		} catch (Exception e) {System.out.println(e);}
 		

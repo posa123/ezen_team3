@@ -6,7 +6,7 @@ public class RiderDto {
 	private int bnumber;
 	
 	// 비밀번호
-	private int bpw;
+	private String bpw;
 	
 	// 보관함 카테고리/설정  
 	private String bsituation;
@@ -15,7 +15,7 @@ public class RiderDto {
 	public RiderDto() {}
 
 	// 풀생성자 
-	public RiderDto(int bnumber, int bpw, String bsituation) {
+	public RiderDto(int bnumber, String bpw, String bsituation) {
 		super();
 		this.bnumber = bnumber;
 		this.bpw = bpw;
@@ -31,11 +31,11 @@ public class RiderDto {
 		this.bnumber = bnumber;
 	}
 
-	public int getBpw() {
+	public String getBpw() {
 		return bpw;
 	}
 
-	public void setBpw(int bpw) {
+	public void setBpw(String bpw) {
 		this.bpw = bpw;
 	}
 
@@ -48,11 +48,16 @@ public class RiderDto {
 	}
 
 	
-	// toString 생성 
+	// toString 생성자 
 	@Override
 	public String toString() {
 		return "RiderDto [bnumber=" + bnumber + ", bpw=" + bpw + ", bsituation=" + bsituation + "]";
 	}
+	
+	
+	
+	
+	
 	
 	
 	

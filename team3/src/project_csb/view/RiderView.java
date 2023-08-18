@@ -27,6 +27,7 @@ public class RiderView implements MainInterface {
 		 	4. 보관함 번호,비밀번호 입력 
 		 	5. 고객에게 보관함 번호 , 비밀번호 입력
 		 	
+		 - 기사가 택배를 등록할때 	
 		 	언제 : 고객에게 택배를 전달할때
 		 	어디서 : 무인택배함에서
 		 	무엇을 : 택배사(1) , 고객전화번호(2) , 인증번호(3) , 함번호(4) , 비밀번호(5) , 카테고리(6) 등록해서 고객에게 전달한다. 
@@ -79,12 +80,16 @@ public class RiderView implements MainInterface {
 		// selectCategory 배열에 RiderController 에게 category를담아서 컨트롤러에게 전달한다.
 		selectCategory = RiderController.getInstance().categoryPrint(category);
 		
-		// 인증한후에 기사가 고객에게 전달하기전 필요한 양식 입력
-		// 함번호
-		System.out.println("함 번호를 입력하세요 : "); int bnumber = sc.nextInt();
+		//  리스트내에 저장된 객체를 첫번째부터 마지막까지
+			// 인덱스를 0부터 .size() 미만까지 
+		for(int i = 0; i<selectCategory.size(); i++) {
+			System.out.println(selectCategory.get(i));
+		}
+		
+		
 		
 		// 비밀번호
-		System.out.println("비밀번호를 입력하세요 : "); int bpw = sc.nextInt();
+		passwordCreate() ;
 		
 	
 	}
@@ -96,12 +101,15 @@ public class RiderView implements MainInterface {
 	
 	// 보관함 비밀번호 설정/생성 메소드
 	public void passwordCreate() {
+		// 함번호
+		System.out.println("함 번호를 입력하세요 : "); int bnumber = sc.nextInt();
+		
 		System.out.println("\n\n ----- 비밀번호 생성해주세요 -------- ");
-		System.out.println("비밀번호 : "); int pwCreate = sc.nextInt();
+		System.out.println("비밀번호 : "); String pwCreate = sc.next();
 		
 		// 생성한 비밀번호 컨트롤에게 전달 
-		int result2 = 
-				RiderController.getInstance().passwordCreate(pwCreate);
+		boolean result2 = 
+				RiderController.getInstance().passwordCreate( bnumber , pwCreate);
 		
 	}
 	
