@@ -103,7 +103,6 @@ public class RiderView implements MainInterface {
 	public void passwordCreate() {
 		// 함번호
 		System.out.println("함 번호를 입력하세요 : "); int bnumber = sc.nextInt();
-		
 		System.out.println("\n\n ----- 비밀번호 생성해주세요 -------- ");
 		System.out.println("비밀번호 : "); String pwCreate = sc.next();
 		

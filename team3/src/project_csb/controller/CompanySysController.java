@@ -12,7 +12,7 @@ public class CompanySysController {
 	private static CompanySysController controller = new CompanySysController();
 	private CompanySysController() {}
 	public static CompanySysController getInstance() {return controller;}
-
+	
 	
 	// 1. 배송 등록하기 메소드
 	public boolean boxRegistration(int bitem, int barticle, String Customer_phone_numbe) {
