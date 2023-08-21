@@ -33,7 +33,7 @@ create table archistable(
     foreign key(bnumber)  references anmdtable(bnumber) on update cascade
     );      
 select * from archistable;
-insert into archistable( bnumber )
+
 # 4. 택배기사 테이블 
 create table couriertale( 
     barticle int not null unique,     			 -- 기사코드
@@ -72,7 +72,7 @@ select count(lineNumber) from deliveryStatus;
 /* 7. 문자 테이블 */
 create table texting (
 	customerPhoneNumbe varchar(20) , 			  	 -- 고객전화번호
-    bnumber mediumint unique not null, 		 -- 함번호
+    bnumber mediumint not null, 		 -- 함번호
     dateReceipt datetime default now() ,
     foreign key(bnumber) references anmdtable(bnumber) on update cascade
     );	
@@ -146,8 +146,6 @@ insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumb
 # 7. 문자  레코드         
 insert into texting ( customerPhoneNumbe , bnumber ) values( '01033332222' , 1  );
 insert into texting ( customerPhoneNumbe , bnumber ) values( '01022225555' , 2  );
-select postNumber ,contentPosts,dateCreatedDatetime from bulletinBoard 
-
-
-
+select postNumber ,contentPosts,dateCreatedDatetime from bulletinBoard ;
+insert into texting(customerPhoneNumbe , bnumber) values( '01022223434' , 2 );
 

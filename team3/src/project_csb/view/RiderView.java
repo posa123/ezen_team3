@@ -36,7 +36,7 @@ public class RiderView implements MainInterface {
 		try {
 			System.out.println("\n\n ========= Rider System ==============");
 			System.out.println("1.Cj대한통운 2.로젠택배 3.우체국택배 4.한진택배 5.롯데택배 6.대신택배 7.대신택배 8.건영택배 9.농협택배 10.편의점택배");
-			
+			ExtraUtil.getInstance().getScInstance().nextInt();
 			System.out.println("\n\n전화번호를 입력해주세요 : "); String phoneNumber = ExtraUtil.getInstance().getScInstance().next();
 			
 			if(ExtraUtil.getInstance().phoneNumberCheck(phoneNumber) == false) {
@@ -45,14 +45,18 @@ public class RiderView implements MainInterface {
 			}
 			
 			// 난수 생성 메소드호출 
-			int result1 = ExtraUtil.getInstance().certNumber();						
-			System.out.println("인증번호를 입력하세요 : "); int cNumber = ExtraUtil.getInstance().getScInstance().nextInt();
+			int result1 = ExtraUtil.getInstance().certNumber();	
+			System.out.println("인증번호 : "+ result1);
+			System.out.print("인증번호를 입력하세요 : "); int cNumber = ExtraUtil.getInstance().getScInstance().nextInt();
 			
 			// 입력받은 인증번호가 맞는지 검사
 			if(result1 == cNumber) 
 				System.out.println("인증 되었습니다");
-			else 
+			else {
 				System.out.println("인증 실패 됐습니다");
+				return;
+			}
+				
 			
 			//카테고리 선택 메소드
 			chCategory();
@@ -97,6 +101,8 @@ public class RiderView implements MainInterface {
 				ArrayList<Integer> selectCategory = RiderController.getInstance().categoryPrint(category);	
 				//  리스트내에 저장된 객체를 첫번째부터 마지막까지
 					// 인덱스를 0부터 .size() 미만까지 
+				System.out.println("보관 가능한 보관함 번호");
+				System.out.println("================");
 				for(int i = 0; i<selectCategory.size(); i++) {
 					System.out.println(selectCategory.get(i));
 				}
@@ -110,11 +116,14 @@ public class RiderView implements MainInterface {
 		System.out.println("\n\n ----- 비밀번호를 설정해주세요 -------- ");
 		System.out.println("비밀번호 : "); String pw = ExtraUtil.getInstance().getScInstance().next();
 		//유효성 검사
-		if(ExtraUtil.getInstance().passwordCheck(pw) == false)
+		if(ExtraUtil.getInstance().passwordCheck(pw) == false) {
 			return false;
+		}
+			
 		// 문자발송 메소드
-		if(sendMsg( bnumber ) == false) 
+		if(sendMsg( bnumber ) == false) {
 			return false;
+		}
 			
 		// 생성한 비밀번호 컨트롤에게 전달 
 		return RiderController.getInstance().passwordCreate( bnumber , pw);
@@ -128,7 +137,7 @@ public class RiderView implements MainInterface {
 	public boolean sendMsg( int bnumber ) throws InputMismatchException{
 		System.out.print("고객 전화번호를 입력해주세요."); String phoneNumber = ExtraUtil.getInstance().getScInstance().next();
 		
-		if(ExtraUtil.getInstance().passwordCheck(phoneNumber) == false)
+		if(ExtraUtil.getInstance().phoneNumberCheck(phoneNumber) == false)
 			return false;
 		
 		if(RiderController.getInstance().sendMsg(bnumber, phoneNumber) == false) 

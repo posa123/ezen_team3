@@ -36,7 +36,6 @@ public class RiderDao extends ConnectJdbc{
 	
 	//  보관함 비밀번호 설정 메소드
 		public boolean passwordCreate(int bnumber  , String bpw) {
-			boolean result = false;
 			try {
 				// sql작성
 					// update 함번호를 설정했고 해당 함번호의 비밀번호를 생성해야한다.
@@ -46,14 +45,12 @@ public class RiderDao extends ConnectJdbc{
 				ps.setInt(2 , bnumber);
 				// 실행
 				int row = ps.executeUpdate();
-				if( row == 1) 
-					result = true;
-					
-				if( result == true ) 
-					// 보관 내역 수정 메소드
+				
+				if( row == 1) {
 					parcelboxUpdate( bnumber );
-			
-						
+					return true;
+				}			
+									
 			} catch (Exception e) {System.out.println(e);}
 			
 			return false;
@@ -80,7 +77,7 @@ public class RiderDao extends ConnectJdbc{
 			ps.setInt( 2 , bnumber );
 			int row = ps.executeUpdate();
 			if(row == 1 )
-				return true;
+				return true;	
 		} catch (Exception e) {System.out.println(e);}
 		
 		return false;
