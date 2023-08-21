@@ -28,6 +28,7 @@ public class RiderController {
 	 * 문자 발송 메소드
 	 */
 	public boolean sendMsg(int bnumber , String phoneNumber) {
+		System.out.println("실행1");
 		return RiderDao.getInstance().CustomerRelay(bnumber ,  phoneNumber);
 	}
 	
