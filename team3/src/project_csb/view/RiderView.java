@@ -2,6 +2,8 @@ package project_csb.view;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import project_csb.controller.RiderController;
 import project_csb.utilSet.ExtraUtil;
 import project_csb.utilSet.MainInterface;
@@ -67,7 +69,10 @@ public class RiderView implements MainInterface {
 			}
 			
 				
-		}catch(InputMismatchException e) {System.out.println("잘못된 입력입니다.");}
+		}catch(InputMismatchException e) {
+			System.out.println("잘못된 입력입니다.");
+		ExtraUtil.getInstance().setScInstance(new Scanner(System.in));
+		}
 		catch(Exception e) {System.out.println(e);}	
 	}
 	

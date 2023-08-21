@@ -98,7 +98,7 @@ public class CompanySysView implements MainInterface {
 	public void boxShipping() {
 		ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxShipping();
 		System.out.printf("%-9s %-24s %-9s %-8s %-10s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
-		System.out.println("==================================================================");
+		System.out.println("=============================================================================");
 		for (int i = 0; i < dto.size(); i++) {
 			CompanySysDto tmpDto = dto.get(i); // i번째의 객체를 호출
 			System.out.printf("%-10s %-25s %-10s %-10s %-13s %-10s \n", 

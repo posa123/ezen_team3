@@ -112,11 +112,6 @@ insert into objecttable( bitem , bname , bsituation )   values(333355514 , '동�
 insert into objecttable( bitem , bname , bsituation )   values(333355515 , '냉동 새우' , '냉동');
 insert into objecttable( bitem , bname , bsituation )   values(333355516 , '긴팔' , '실온');
 insert into objecttable( bitem , bname , bsituation )   values(333355517 , '고추장' , '냉장');
-
-# 3. 택배함보관내역 레코드 
- insert into archistable(cnumer , bnumber , storagedate ) values( 1 , 1 , '2023-08-08 17:53:01'  );
- insert into archistable(cnumer , bnumber , storagedate  ) values( 2 , 2 , '2023-08-08 17:53:02'  );
- insert into archistable(cnumer , bnumber , storagedate  ) values( 3 , 3 ,  '2023-08-08 17:53:03'  );
  
  # 4. 택배기사 레코드 
 insert into couriertale(barticle , barname , barphone ) values(230808101 , '홍길동' , '01011112222');
@@ -139,13 +134,6 @@ insert into couriertale(barticle , barname , barphone ) values(230808115 , '이�
 insert into bulletinBoard( postNumber , contentPosts ,  writerPhoneNumber   ) values( 1 ,  '좋은보관함입니다' , '010-1234-0000' );
 insert into bulletinBoard( postNumber  , contentPosts ,  writerPhoneNumber   ) values( 2 ,  '문이 삐그덕 거리네요' , '010-4343-2121');
 
-# 6. 배송 현황 레코드 
-insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe  ) values( date_format(now(6) , '%Y%m%d%H%i%s%f') , 33332222 , 230808101 , '01033332222'  );
-insert into deliveryStatus( InvoiceNumber , bitem , barticle , customerPhoneNumbe ) values( date_format(now(6) , '%Y%m%d%H%i%s%f') , 333355516 ,230808102 , '01022225555' );
+
        
-# 7. 문자  레코드         
-insert into texting ( customerPhoneNumbe , bnumber ) values( '01033332222' , 1  );
-insert into texting ( customerPhoneNumbe , bnumber ) values( '01022225555' , 2  );
-select postNumber ,contentPosts,dateCreatedDatetime from bulletinBoard ;
-insert into texting(customerPhoneNumbe , bnumber) values( '01022223434' , 2 );
 

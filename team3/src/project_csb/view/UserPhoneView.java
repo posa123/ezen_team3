@@ -92,7 +92,7 @@ public class UserPhoneView implements MainInterface{
 		System.out.println("\n==========================================");
 		for (int i = 0; i < dtoList.size(); i++) {
 			UserPhoneDto dto = dtoList.get(i); // i번째의 객체를 호출
-			System.out.printf("%-9d %-12s %-5s" , dto.getBnumber() , dto.getBpw() , dto.getDateRecipt());								
+			System.out.printf("%-9d %-12s %-5s\n" , dto.getBnumber() , dto.getBpw() , dto.getDateRecipt());								
 		}
 	}
 	

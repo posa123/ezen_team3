@@ -22,7 +22,7 @@ public class MainView implements MainInterface {
 		     
 			// scannerValue()는 인터페이스의 디폴트 메소드
 		      int ch = ExtraUtil.getInstance().getScInstance().nextInt()-1;
-		      if( ch > 4 && 1 > ch ) {
+		      if( ch > 2 || 0 > ch ) {
 		    	  System.out.println("잘못 입력하셨습니다.");
 		    	  continue main;
 		      }
