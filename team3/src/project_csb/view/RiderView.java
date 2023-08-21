@@ -105,12 +105,12 @@ public class RiderView implements MainInterface {
 	// 보관함 비밀번호 설정/생성 메소드
 	public boolean passwordCreate() throws InputMismatchException{
 		// 함번호
-<<<<<<< HEAD
+
 		System.out.println("함 번호를 입력하세요 : "); int bnumber = sc.nextInt();
 		System.out.println("\n\n ----- 비밀번호 생성해주세요 -------- ");
 		System.out.println("비밀번호 : "); String pwCreate = sc.next();
 		
-=======
+
 		System.out.println("보관하실 보관함 번호를 입력해주세요 : "); int bnumber = ExtraUtil.getInstance().getScInstance().nextInt();
 		
 		System.out.println("\n\n ----- 비밀번호를 설정해주세요 -------- ");
@@ -122,7 +122,7 @@ public class RiderView implements MainInterface {
 		if(sendMsg( bnumber ) == false) 
 			return false;
 			
->>>>>>> branch 'main' of https://github.com/posa123/ezen_team3.git
+
 		// 생성한 비밀번호 컨트롤에게 전달 
 		return RiderController.getInstance().passwordCreate( bnumber , pw);
 		
