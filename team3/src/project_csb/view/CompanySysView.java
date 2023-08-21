@@ -97,7 +97,7 @@ public class CompanySysView implements MainInterface {
 	// 배송 현황출력 메소드
 	public void boxShipping() {
 		ArrayList<CompanySysDto> dto = CompanySysController.getInstance().boxShipping();
-		System.out.printf("%-9s %-22s %-9s %-7s %-9s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
+		System.out.printf("%-9s %-24s %-9s %-8s %-10s %-10s \n" , "배송번호" , "송장번호" , "물건코드" , "기사코드" , "고객휴대번호", "배송상태" );
 		System.out.println("==================================================================");
 		for (int i = 0; i < dto.size(); i++) {
 			CompanySysDto tmpDto = dto.get(i); // i번째의 객체를 호출
@@ -124,7 +124,7 @@ public class CompanySysView implements MainInterface {
 				
 				switch(ch) {
 					case 1 : 
-						System.out.print("[수정하실 송장번호를 입력해주세요]"); invoiceNumber = ExtraUtil.getInstance().getScInstance().next();
+						System.out.print("[수정하실 송장번호를 입력해주세요 (20자리이상)]"); invoiceNumber = ExtraUtil.getInstance().getScInstance().next();
 						break;
 					case 2 :
 						System.out.print("[수정하실 물건코드를 입력해주세요]"); bitem = ExtraUtil.getInstance().getScInstance().nextInt();

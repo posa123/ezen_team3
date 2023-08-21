@@ -21,11 +21,17 @@ public class BoardDto {
 			this.dateCreatedDatetime = dateCreatedDatetime;
 			this.writerPhoneNumber = writerPhoneNumber;
 		}
-		public BoardDto(String contentPosts, String postTitle, String writerPhoneNumber) {
+		public BoardDto(String contentPosts, String writerPhoneNumber) {
 			super();
 			this.contentPosts = contentPosts;
-			this.postTitle = postTitle;
 			this.writerPhoneNumber = writerPhoneNumber;
+		}
+		
+		public BoardDto(int postNumber, String contentPosts, String dateCreatedDatetime) {
+			super();
+			this.postNumber = postNumber;
+			this.contentPosts = contentPosts;
+			this.dateCreatedDatetime = dateCreatedDatetime;
 		}
 		
 	//3. 메소드

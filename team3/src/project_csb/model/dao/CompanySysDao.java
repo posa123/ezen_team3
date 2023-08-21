@@ -1,5 +1,6 @@
 package project_csb.model.dao;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 
 import project_csb.database.ConnectJdbc;
@@ -24,7 +25,11 @@ public class CompanySysDao extends ConnectJdbc{
 			ps.setString(3, dto.getUserPhone());// 고객전화번호
 			int row = ps.executeUpdate();
 			if( row==1 ) return true;
-		} catch (Exception e) {System.out.println(e);}
+		} 
+		// 기사 코드나 물건코드를 잘못 입력했을 때 예외 발생
+		catch(SQLIntegrityConstraintViolationException e) {return false;}
+		catch (Exception e) {System.out.println(e);}
+		
 		return false; // 실패
 	}
 	// 2. 배송 관리하기 
@@ -95,7 +100,10 @@ public class CompanySysDao extends ConnectJdbc{
 			int row = ps.executeUpdate();
 			if( row == 1 ) return true;
 			
-		}catch (Exception e) {System.out.println(e);}
+		}
+		// 일치하는 기사코드나 물건코드가 없을 때
+		catch(SQLIntegrityConstraintViolationException e) {return false;}
+		catch (Exception e) {System.out.println(e);}
 		
 		return false;
 	}

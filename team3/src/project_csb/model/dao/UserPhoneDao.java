@@ -12,10 +12,10 @@ public class UserPhoneDao extends ConnectJdbc {
 	public static UserPhoneDao getInstance() {return userPhoneDao;}	
 	
 
-	public ArrayList<Integer> invoiceNumber(String phoneSession){
+	public ArrayList<String> invoiceNumber(String phoneSession){
 		// 배열선언하는이유는 유저가 전화번호를 입력했을때 배송상태/송장번호가 여러개 일수있기때문에 그갯수만큼 넣는다 
 			// 배열선언을 해주지않으면 여러개의 배송정보를 부를수가없다.
-		ArrayList<Integer> invoiceList = new ArrayList<>(); 
+		ArrayList<String> invoiceList = new ArrayList<>(); 
 		try {
 			// SQL작성한다
 				// 송장번호를 보기위해 , 배송상태를 확인하기위해 유저핸드폰번호를 입력한다.
@@ -26,7 +26,7 @@ public class UserPhoneDao extends ConnectJdbc {
 			// 레코드값이 몇개인지 모르기 때문에 while문 사용
 			while(rs.next()) {	
 				// 배열안에 넣는다
-				invoiceList.add(rs.getInt(1));			
+				invoiceList.add(rs.getString(1));			
 			}// w e	
 		}catch (Exception e) {System.out.println(e);}
 		//배열 반환
@@ -36,7 +36,7 @@ public class UserPhoneDao extends ConnectJdbc {
 	
 	
 	// 배송상태확인/출력
-		public int deliveryStatus(int invoiceNumber) {
+		public int deliveryStatus(String invoiceNumber) {
 			
 			try {
 				// 1. sql작성
@@ -44,7 +44,7 @@ public class UserPhoneDao extends ConnectJdbc {
 				
 				ps = conn.prepareStatement(sql);
 				// ? 를 채울값을 넣어야된다 
-				ps.setInt(1, invoiceNumber);
+				ps.setString(1, invoiceNumber);
 				rs = ps.executeQuery();
 				// true = 1  false = 2  Error = 0 
 				// 먀냐게 반환값이 true면 배송완료  반환값이 false면 배송중 반환값이 Error면 실패 
